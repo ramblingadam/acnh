@@ -1,0 +1,196 @@
+/* Box Model Bugfixer */
+/* * {
+     outline: 1px solid red;
+} */
+
+/* Box Model */
+* {
+     box-sizing: border-box;
+}
+
+/******************************************
+/* COLORS
+/*******************************************/
+
+
+
+/******************************************
+/* TYPOGRAPHY
+/*******************************************/
+html {
+     font-family: 'Source Sans Pro', sans-serif;
+}
+
+html a,
+h2 {
+     font-family: 'Concert One', cursive;
+     text-shadow: -2px 2px 5px rgba(0,0,0,.5);
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+/* Set 1 rem to 10px */
+html {
+     font-size: 62.5%;
+     /* font-family: sans-serif; */
+     
+
+     background: url('../assets/grassPattern.png');
+     background-size: 5%;
+     /* background-size: 100% auto; */
+     /* background-position: contain; */
+     background-attachment: fixed;
+     /* background: rgb(255, 222, 113); */
+     /* padding-top: 2rem; */
+}
+
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+/* HEADER/ NAV LAYOUT */
+header {
+     background: rgb(255, 222, 113);
+
+
+     display: flex;
+     flex-flow: column nowrap;
+     justify-content: space-around;
+     align-items: center;
+     border-bottom: 3px dashed black;
+}
+
+.logo {
+     max-height: 15rem;
+}
+
+h1 {
+     font-size: 3rem;
+}
+
+/* Nav */
+header ul {
+     display: flex;
+     flex-flow: row nowrap;
+     justify-content: center;
+     font-size: 2rem;
+}
+
+header li {
+     margin: 1rem;
+}
+
+header a {
+     display: inline-block;
+     text-decoration: none;
+
+}
+
+
+
+/* CONTENT LAYOUT */
+.content {
+     
+
+     padding-top: 2rem;
+
+
+     display: flex;
+     flex-flow: column nowrap;
+     justify-content: center;
+     align-items: center;
+
+     
+}
+
+#contentGrid {
+     
+
+     display: flex;
+     flex-flow: row wrap;
+     justify-content: center;
+}
+
+/* CONTENT ITEMS */
+.contentItem {
+     border: 1px solid black;
+     border-radius: 10px;
+     /* height: 25rem; */
+     width: 20rem;
+     padding: .5rem;
+     margin: .5rem;
+     /* background: rgb(255, 255, 255); */
+     background: rgb(255, 222, 113);
+     box-shadow: -2px 2px 5px black;
+
+     /* text-shadow: -1 0 1px white, 0 0 2px white, 0 0 3px white; */
+     /* font-weight: bold; */
+
+     display: flex;
+     flex-flow: column nowrap;
+     align-items: center;
+}
+
+/* Villagers */
+.name {
+     font-size: 2rem;
+     margin-bottom: .2rem;
+}
+
+.personality {
+     font-size: 1.3rem;
+     margin-bottom: .2rem;
+}
+
+.birthday {
+     font-size: 1.3rem;
+     margin-bottom: .2rem;
+}
+
+.birthdayMonth {
+     background: url(../assets/confetti.png), rgb(255, 222, 113);
+     background-size: 170%;
+}
+
+.birthdayMonth .birthday {
+     color: red;
+}
+
+.birthdayDay {
+     background: url(../assets/confetti.png), rgb(255, 255, 0);
+     background-size: 170%;
+}
+
+
+.content img {
+     border-radius: 10px;
+     max-width: 90%;
+     margin-bottom: .2rem;
+}
+
+/* Quote */
+.content p {
+     font-size: 1.3rem;
+     text-align: center;
+     max-width: 80%;
+}
+
+
+
+
+/* Searchbar */
+
+
+/* Content Grid */
+
+
+
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+.hidden {
+     opacity: 0;
+}
