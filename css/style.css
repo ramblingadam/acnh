@@ -47,13 +47,20 @@ html {
      /* padding-top: 2rem; */
 }
 
+body {
+     position: relative;
+}
 
 /******************************************
 /* LAYOUT
 /*******************************************/
 
+
+
 /* HEADER/ NAV LAYOUT */
 header {
+     position: relative;
+
      /* background: rgb(255, 222, 113); */
      background: url('../assets/acnhBeachCropped_sm.jpg');
      background-size: contain;
@@ -66,9 +73,58 @@ header {
      border-bottom: 3px dashed black;
 }
 
+/* FLOATING BALLOON */
+#balloon {
+     position: absolute;
+     top: 10%;
+     animation: sway 5s linear infinite, float 40s linear infinite alternate;
+}
+
+@keyframes sway {
+     0% {
+          transform: rotate(15deg)
+     }
+     /* 45% {
+          transform: rotate(-10deg)
+     } */
+     50% {
+          transform: rotate(-15deg)
+     }
+     /* 95% {
+          transform: rotate(10deg)
+     } */
+
+     100% {
+          transform: rotate(15deg)
+     }
+}
+
+@keyframes float {
+     0% {
+          right: 150%
+     }
+     100% {
+          right: -50%
+     }
+}
+
+@keyframes bob {
+     0% {
+          top: 10%;
+     }
+     50% {
+          top: 15%;
+     }
+     100% {
+          top: 10%;
+     }
+}
+
+/* LOGO */
 .logo {
      max-height: 15rem;
      margin: .5rem;
+     /* z-index: 1; */
 }
 
 h1 {
@@ -140,7 +196,8 @@ header a:hover {
      border-radius: 10px;
      /* height: 25rem; */
      width: 20rem;
-     padding: .5rem;
+     /* padding: .5rem; */
+     padding-bottom: .5rem;
      margin: .5rem;
      /* background: rgb(255, 255, 255); */
      background: rgb(255, 222, 113);
@@ -166,6 +223,11 @@ header a:hover {
 
 
 h2 {
+     width: 100%;
+     background: rgba(255,255,255,.5);
+     border-radius: 10px 10px 0 0;
+     padding: .4rem;
+     text-align: center;
      text-shadow: -2px 2px 5px rgba(0,0,0,.5);
 }
 
@@ -179,6 +241,7 @@ h2 {
 /* Personality */
 .personality {
      font-size: 1.3rem;
+     padding: .2rem;
      margin-bottom: .2rem;
 }
 
@@ -228,6 +291,7 @@ h2 {
      transition: opacity .5s;
 }
 
+/* Catchphrase */
 .catchphraseBox {
      opacity: 0;
      transition: opacity .5s;
@@ -250,6 +314,15 @@ h2 {
 
 .catchphraseBox img {
      max-height: 4rem;
+}
+
+.catchphrase {
+     display: inline-block;
+     background: rgba(255,255,255,.7);
+     color: black;
+     padding: .3rem;
+     
+     border-radius: 10px;
 }
 
 
