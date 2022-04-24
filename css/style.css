@@ -24,8 +24,10 @@ html {
 html a,
 h2 {
      font-family: 'Concert One', cursive;
-     text-shadow: -2px 2px 5px rgba(0,0,0,.5);
+    
 }
+
+
 
 /******************************************
 /* BASE STYLES
@@ -52,8 +54,10 @@ html {
 
 /* HEADER/ NAV LAYOUT */
 header {
-     background: rgb(255, 222, 113);
-
+     /* background: rgb(255, 222, 113); */
+     background: url('../assets/acnhBeachCropped_sm.jpg');
+     background-size: contain;
+     background-repeat: repeat-x;
 
      display: flex;
      flex-flow: column nowrap;
@@ -64,6 +68,7 @@ header {
 
 .logo {
      max-height: 15rem;
+     margin: .5rem;
 }
 
 h1 {
@@ -76,6 +81,8 @@ header ul {
      flex-flow: row nowrap;
      justify-content: center;
      font-size: 2rem;
+     background: rgba(0,0,0,.20);
+     border-radius: 10px 10px 0 0;
 }
 
 header li {
@@ -85,17 +92,27 @@ header li {
 header a {
      display: inline-block;
      text-decoration: none;
+     color: rgb(95, 38, 112);
+     transition: color .5s, text-shadow .5s;
 
+     /* text-shadow: -2px 2px 5px rgba(0,0,0,.5); */
+
+
+}
+
+header a:hover {
+     color: rgb(213, 75, 255);
+     /* text-shadow: -2px 2px 5px rgba(0,0,0,1); */
+     text-shadow: 0 0 5px white;
+
+     transition: color .5s, text-shadow .5s;
 }
 
 
 
 /* CONTENT LAYOUT */
 .content {
-     
-
      padding-top: 2rem;
-
 
      display: flex;
      flex-flow: column nowrap;
@@ -106,8 +123,6 @@ header a {
 }
 
 #contentGrid {
-     
-
      display: flex;
      flex-flow: row wrap;
      justify-content: center;
@@ -115,6 +130,7 @@ header a {
 
 /* CONTENT ITEMS */
 .contentItem {
+     position: relative;
      border: 1px solid black;
      border-radius: 10px;
      /* height: 25rem; */
@@ -131,6 +147,21 @@ header a {
      display: flex;
      flex-flow: column nowrap;
      align-items: center;
+
+     transition: transform .3s;
+     z-index: 0;
+}
+
+.contentItem:hover {
+     transform: scale(1.1);
+     transition: transform .3s;
+     z-index: 1;
+}
+
+
+
+h2 {
+     text-shadow: -2px 2px 5px rgba(0,0,0,.5);
 }
 
 /* Villagers */
@@ -139,11 +170,18 @@ header a {
      margin-bottom: .2rem;
 }
 
+
+/* Personality */
 .personality {
      font-size: 1.3rem;
      margin-bottom: .2rem;
 }
 
+.personality i {
+     color: black;
+}
+
+/* Birthday */
 .birthday {
      font-size: 1.3rem;
      margin-bottom: .2rem;
@@ -156,6 +194,7 @@ header a {
 
 .birthdayMonth .birthday {
      color: red;
+     font-weight: bold;
 }
 
 .birthdayDay {
@@ -163,12 +202,51 @@ header a {
      background-size: 170%;
 }
 
+/* Villager Image Box - Img & Catchphrase Hover */
+.villagerImgBox {
+     position: relative;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     max-width: 90%;
+}
+
 
 .content img {
      border-radius: 10px;
-     max-width: 90%;
+     max-width: 100%;
      margin-bottom: .2rem;
 }
+
+.contentItem:hover .catchphraseBox {
+     opacity: 1;
+     transition: opacity .5s;
+}
+
+.catchphraseBox {
+     opacity: 0;
+     transition: opacity .5s;
+     position: absolute;
+     top: 0;
+     height: 99%;
+     width: 100%;
+
+     background: rgba(0,0,0,.5);
+     border-radius: 10px;
+
+     display: flex;
+     flex-flow: column nowrap;
+     justify-content: flex-end;
+     align-items: center;
+
+     color: white;
+     font-size: 2rem;
+}
+
+.catchphraseBox img {
+     max-height: 4rem;
+}
+
 
 /* Quote */
 .content p {

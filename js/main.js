@@ -1,20 +1,6 @@
 
 
 
-const contentGrid = document.querySelector('#contentGrid')
-
-
-
-
-
-function clearGrid() {
-  items = document.querySelectorAll('.contentItem')
-  items.forEach(item => item.remove())
-}
-
-function getVillagers() {
-  
-}
 
 //------ INITIALIZATION ---------
 // Declare villager data storage
@@ -23,7 +9,34 @@ let villagers
 // Grab current date to check birthdays
 let now = new Date()
 
-fetch(`http://acnhapi.com/v1a/villagers/`)
+// GRAB HTML ELEMENTS
+const contentGrid = document.querySelector('#contentGrid')
+
+
+
+
+
+
+
+
+
+
+// Start by loading villagers by default.
+getVillagers()
+
+
+function musicSelection() {
+  
+}
+
+
+function clearGrid() {
+  items = document.querySelectorAll('.contentItem')
+  items.forEach(item => item.remove())
+}
+
+function getVillagers() {
+  fetch(`http://acnhapi.com/v1a/villagers/`)
 .then(res => res.json())
 .then(data => {
     console.log(data)
@@ -52,8 +65,13 @@ fetch(`http://acnhapi.com/v1a/villagers/`)
         }
       }    
 
+      // Determine gender
+      let genderString
+      if(villager.gender === 'Male') genderString = '<i class="fa-solid fa-mars"></i>'
+      else genderString = '<i class="fa-solid fa-venus"></i>'
+
       // CREATING VILLAGER TILES
-      li.innerHTML = `<h2 class="name">${villager.name['name-USen']}</h3><h4 class="personality">${villager.personality}</h4><h4 class="birthday${birthdayMonth}"><i class="fa-solid fa-cake-candles"></i> ${villager['birthday-string']}</h4><img src="${villager['image_uri']}"><p class="quote">${villager.saying}</p>`
+      li.innerHTML = `<h2 class="name">${villager.name['name-USen']}</h3><h4 class="personality">${genderString}${villager.personality}</h4><h4 class="birthday${birthdayMonth}"><i class="fa-solid fa-cake-candles"></i> ${villager['birthday-string']}</h4><div class="villagerImgBox"><img src="${villager['image_uri']}"><div class="catchphraseBox"><span class="catchphrase">${villager['catch-phrase']}</span><img src="${villager['icon_uri']}"></div></div><p class="quote">${villager.saying}</p>`
 
       
 
@@ -67,4 +85,6 @@ fetch(`http://acnhapi.com/v1a/villagers/`)
 .catch(err => {
     console.log(`error ${err}`)
 })
+}
+
 
