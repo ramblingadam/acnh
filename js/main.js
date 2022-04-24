@@ -10,35 +10,54 @@ let villagers
 let now = new Date()
 
 // GRAB HTML ELEMENTS
+// Grab content grid
 const contentGrid = document.querySelector('#contentGrid')
 
-
-
-
-
-
-
-
+// Grab audio element for BG Music
+const bgAudio = document.querySelector('#bgMusic')
 
 
 // Start by loading villagers by default.
 getVillagers()
-
+// Play music.
+musicSelection()
 
 function musicSelection() {
-  
+  let weather = 'Rainy'
+  let hour = String(now.getHours())
+  if(hour.length === 1) hour = '0' + hour
+
+  console.log(hour)
+
+  fetch(`http://acnhapi.com/v1/backgroundmusic/`)
+  .then(res => res.json())
+  .then(data => {
+      console.log(data)
+      const musicData = data
+      const musicURI = musicData[`BGM_24Hour_${hour}_${weather}`]['music_uri']
+      console.log(musicURI)
+      bgAudio.src = musicURI
+      bgAudio.play()
+
+  })
+  .catch(err => {
+      console.log(`error ${err}`)
+  })
 }
 
 
+
+// CLEAR CONTENT GRID
 function clearGrid() {
   items = document.querySelectorAll('.contentItem')
   items.forEach(item => item.remove())
 }
 
+// LIST ALL VILLAGERS
 function getVillagers() {
   fetch(`http://acnhapi.com/v1a/villagers/`)
-.then(res => res.json())
-.then(data => {
+  .then(res => res.json())
+  .then(data => {
     console.log(data)
     villagers = data
 
@@ -57,7 +76,7 @@ function getVillagers() {
       // Init birthdayMonth string for template literal to be empty.
       let birthdayMonth = ''
       if(birthday.getMonth() === now.getMonth()) {
-        console.log(`${villager.name['name-USen']}'s birthday is this month!`)
+        // console.log(`${villager.name['name-USen']}'s birthday is this month!`)
         // birthdayMonth = ' birthdayMonth'
         li.classList.add('birthdayMonth')
         if(birthday.getDate() === now.getDate()) {
@@ -76,13 +95,13 @@ function getVillagers() {
       
 
       contentGrid.appendChild(li)
-      console.log('-----')
+      // console.log('-----')
       // console.log(now.toLocaleString())
     })
     
 
-})
-.catch(err => {
+  })
+  .catch(err => {
     console.log(`error ${err}`)
 })
 }

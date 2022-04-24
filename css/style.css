@@ -75,6 +75,11 @@ h1 {
      font-size: 3rem;
 }
 
+/* Audio */
+audio {
+     height: 2rem;
+}
+
 /* Nav */
 header ul {
      display: flex;
