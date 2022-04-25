@@ -188,7 +188,7 @@ function displayVillagers(villagerArray = allVillagers) {
     else genderString = '<i class="fa-solid fa-venus"></i>'
 
     // CREATING VILLAGER TILES
-    li.innerHTML = `<h2 class="name">${villager.name['name-USen']}</h3><h4 class="personality">${genderString}${villager.personality}</h4><h4 class="birthday${birthdayMonth}"><i class="fa-solid fa-cake-candles"></i> ${villager['birthday-string']}</h4><div class="villagerImgBox"><img src="${villager['image_uri']}"><div class="catchphraseBox"><span class="catchphrase">"${villager['catch-phrase']}!"</span><img src="${villager['icon_uri']}"></div></div><p class="quote">${villager.saying}</p>`
+    li.innerHTML = `<h2 class="name">${villager.name['name-USen']}</h2><h4 class="personality">${genderString}${villager.personality}</h4><h4 class="birthday${birthdayMonth}"><i class="fa-solid fa-cake-candles"></i> ${villager['birthday-string']}</h4><div class="villagerImgBox"><img src="${villager['image_uri']}"><div class="catchphraseBox"><span class="catchphrase">"${villager['catch-phrase']}!"</span><img src="${villager['icon_uri']}"></div></div><p class="quote">${villager.saying}</p>`
 
     
 
