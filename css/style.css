@@ -29,7 +29,7 @@ html {
      font-family: 'Source Sans Pro', sans-serif;
 }
 
-html a,
+header li,
 h2 {
      /* font-family: 'Concert One', cursive; */
      font-family: 'Fink Heavy', serif;
@@ -88,8 +88,9 @@ header {
 /* FLOATING BALLOON */
 #balloon {
      position: absolute;
-     top: 10%;
+     top: 7%;
      animation: sway 5s linear infinite, float 40s linear infinite alternate;
+     z-index: 1
 }
 
 @keyframes sway {
@@ -132,16 +133,28 @@ header {
      }
 }
 
+
+/* MUTE BUTTON */
+
+
 /* LOGO */
+.logoBox {
+     position: relative;
+}
 .logo {
      max-height: 15rem;
      margin: .5rem;
      /* z-index: 1; */
 }
-
-h1 {
-     font-size: 3rem;
+#musicToggle {
+     position: absolute;
+     left: 20%;
+     top: 10%;
+     font-size: 2rem;
+     color: rgb(122, 84, 46);
+     cursor: pointer;
 }
+
 
 /* Audio */
 audio {
@@ -159,21 +172,16 @@ header ul {
 }
 
 header li {
-     margin: 1rem;
-}
-
-header a {
-     display: inline-block;
+     padding: 1rem;
      text-decoration: none;
      color: rgb(95, 38, 112);
+
      transition: color .5s, text-shadow .5s;
-
-     /* text-shadow: -2px 2px 5px rgba(0,0,0,.5); */
-
-
 }
 
-header a:hover {
+
+header li:hover {
+     cursor: pointer;
      color: rgb(213, 75, 255);
      /* text-shadow: -2px 2px 5px rgba(0,0,0,1); */
      text-shadow: 0 0 5px white;
@@ -197,7 +205,9 @@ header a:hover {
 
 /* Category Heading & Search Bar */
 .headerBox {
-     background: rgba(255,255,255,.5)
+     background: rgba(255,255,255,.5);
+     padding: 0 1rem 1rem 1rem;
+     border-radius: 0 0 10px 10px;
 }
 h2.category {
      font-size: 3rem;

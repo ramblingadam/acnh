@@ -1,32 +1,61 @@
-
-
-
-
 //------ INITIALIZATION ---------
 // Declare villager data storage
 let allVillagers
+
+// Turn on music by default.
+musicOn = true
 
 // Grab current date to check birthdays
 let now = new Date()
 
 // GRAB HTML ELEMENTS
+// Grab audio element for BG Music
+const bgAudio = document.querySelector('#bgMusic')
+// Grab mute button
+const musicToggle = document.querySelector('#musicToggle')
+// Grab search bar
+const searchBar = document.querySelector('#search')
+// Grab main menu items
+const btnVillagers = document.querySelector('#btnVillagers')
+
 // Grab content grid
 const contentGrid = document.querySelector('#contentGrid')
 
-// Grab audio element for BG Music
-const bgAudio = document.querySelector('#bgMusic')
 
-// Grab search bar
-const searchBar = document.querySelector('#search')
+
+
 
 
 // EVENT LISTENERS
+// Music Toggle
+musicToggle.addEventListener('click', toggleMusic)
+
+// Main Menu - Villagers Button
+
+
+
+// Active search
 searchBar.addEventListener('input', search)
 
 // Start by loading villagers by default.
 getVillagers()
 // Play music.
 setTimeout(musicSelection, 1000)
+
+
+function toggleMusic() {
+  if(musicOn) {
+    musicOn = false
+    musicToggle.classList.remove('fa-volume-high')
+    musicToggle.classList.add('fa-volume-xmark')
+    bgAudio.pause()
+  } else {
+    musicOn = true
+    musicToggle.classList.remove('fa-volume-xmark')
+    musicToggle.classList.add('fa-volume-high')
+    bgAudio.play()
+  }
+}
 
 
 function search(e) {
@@ -58,7 +87,7 @@ function musicSelection() {
       const musicURI = musicData[`BGM_24Hour_${hour}_${weather}`]['music_uri']
       console.log(musicURI)
       bgAudio.src = musicURI
-      // bgAudio.play()
+      bgAudio.play()
 
   })
   .catch(err => {

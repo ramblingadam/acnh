@@ -29,10 +29,13 @@
 	<header>
 		<img id="balloon" src="assets/balloon_sm.png">
 		<!-- <section class="headerLeft"> -->
-		<img class="logo" src="assets/NewHorizons_sm2.png">
+		<div class="logoBox">
+			<img class="logo" src="assets/NewHorizons_sm2.png">
+			<span><i id="musicToggle" class="fa-solid fa-volume-high"></i></span>
+		</div>
 		<!-- Background Music -->
-		<audio id="bgMusic" src="" loop controls></audio>
-		<span><i class="fa-solid fa-volume-high"></i></span>
+		<audio id="bgMusic" src="" loop></audio>
+		
 		<!-- </section> -->
 		<!-- <section class="header center"> -->
 		<!-- <h1>Welcome to the ACNH Database!</h1> -->
@@ -40,13 +43,13 @@
 		
 		<nav>
 			<ul>
-				<li><a href="">Villagers</a></li>
-				<li><a href="">Fish</a></li>
-				<li><a href="">Sea Creatures</a></li>
-				<li><a href="">Bugs</a></li>
-				<li><a href="">Fossils</a></li>
-				<li><a href="">Art</a></li>
-				<li><a href="">Songs</a></li>
+				<li>Villagers</li>
+				<li>Fish</li>
+				<li>Sea Creatures</li>
+				<li>Bugs</li>
+				<li>Fossils</li>
+				<li>Art</li>
+				<li>Songs</li>
 			</ul>
 		</nav>
 		<!-- </section> -->
@@ -60,7 +63,7 @@
 		<div class="headerBox">
 		<h2 class="category">Villagers</h2>
 		<form>
-			<input type="search" id="search" placeholder="Name, species, personality, birth month...">
+			<input type="search" id="search" placeholder="Search name, species, personality, birthday...">
 		</form>
 		</div>
 		<ul id="contentGrid">
