@@ -17,13 +17,23 @@
 /******************************************
 /* TYPOGRAPHY
 /*******************************************/
+@font-face {
+     font-family: 'Fink Heavy';
+     src: url('../assets/FinkHeavy.otf') format('opentype');
+}
+@font-face {
+     font-family: 'Adventure';
+     src: url('../assets/Adventure.otf') format('opentype');
+}
 html {
      font-family: 'Source Sans Pro', sans-serif;
 }
 
 html a,
 h2 {
-     font-family: 'Concert One', cursive;
+     /* font-family: 'Concert One', cursive; */
+     font-family: 'Fink Heavy', serif;
+     /* font-family: 'Adventure' */
     
 }
 
@@ -39,7 +49,7 @@ html {
      
 
      background: url('../assets/grassPattern.png');
-     background-size: 5%;
+     background-size: 70px;
      /* background-size: 100% auto; */
      /* background-position: contain; */
      background-attachment: fixed;
@@ -71,6 +81,8 @@ header {
      justify-content: space-around;
      align-items: center;
      border-bottom: 3px dashed black;
+
+     overflow: hidden;
 }
 
 /* FLOATING BALLOON */
@@ -171,18 +183,46 @@ header a:hover {
 
 
 
+
 /* CONTENT LAYOUT */
 .content {
-     padding-top: 2rem;
+     /* padding-top: 1rem; */
 
      display: flex;
      flex-flow: column nowrap;
      justify-content: center;
      align-items: center;
-
-     
+ 
 }
 
+/* Category Heading & Search Bar */
+.headerBox {
+     background: rgba(255,255,255,.5)
+}
+h2.category {
+     font-size: 3rem;
+     padding: 1rem;
+     width: 100%;
+     text-align: center;
+
+}
+
+/* Search Bar */
+form {
+     background: rgba(0,0,0,.5);
+}
+form span {
+     display: block;
+     font-size: 2rem;
+}
+
+#search {
+     min-width: 30rem;
+     text-align: center;
+}
+
+
+/* CONTENT GRID */
 #contentGrid {
      display: flex;
      flex-flow: row wrap;
@@ -222,7 +262,7 @@ header a:hover {
 
 
 
-h2 {
+.contentItem h2 {
      width: 100%;
      background: rgba(255,255,255,.5);
      border-radius: 10px 10px 0 0;
