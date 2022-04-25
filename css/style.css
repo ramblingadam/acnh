@@ -59,12 +59,46 @@ html {
 
 body {
      position: relative;
+     overflow-y: scroll;
 }
+
+
+/* SCROLLBARS */
+/* Firefox */
+* {
+     scrollbar-width: auto;
+     scrollbar-color: orange rgb(255, 203, 65);
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+background: rgb(255, 222, 113);
+}
+
+*::-webkit-scrollbar-thumb {
+background-color: rgb(255, 203, 65);
+border-radius: 20px;
+border: 3px solid orange;
+}
+/* END SCROLLBARS */
+
 
 /******************************************
 /* LAYOUT
 /*******************************************/
 
+/* To Top Button */
+#toTop {
+     position: fixed;
+     bottom: -5rem;
+     right: -5rem;
+
+     font-size: 3rem;
+}
 
 
 /* HEADER/ NAV LAYOUT */
@@ -152,7 +186,15 @@ header {
      top: 10%;
      font-size: 2rem;
      color: rgb(122, 84, 46);
+     /* color: rgb(255, 209, 80); */
+     /* text-shadow: 2px 2px 4px rgb(255, 209, 80); */
      cursor: pointer;
+     transition: text-shadow .5s;
+}
+
+#musicToggle:hover {
+     text-shadow: 0 0 5px rgba(255, 255, 255,1);
+     transition: .3s;
 }
 
 
@@ -167,7 +209,7 @@ header ul {
      flex-flow: row nowrap;
      justify-content: center;
      font-size: 2rem;
-     background: rgba(0,0,0,.20);
+     background: rgba(255, 222, 113,1);
      border-radius: 10px 10px 0 0;
 }
 
@@ -189,6 +231,11 @@ header li:hover {
      transition: color .5s, text-shadow .5s;
 }
 
+.currentCategory {
+     color: rgb(213, 75, 255);
+     text-shadow: 0 0 10px rgb(255, 255, 255);
+}
+
 
 
 
@@ -205,9 +252,11 @@ header li:hover {
 
 /* Category Heading & Search Bar */
 .headerBox {
-     background: rgba(255,255,255,.5);
-     padding: 0 1rem 1rem 1rem;
-     border-radius: 0 0 10px 10px;
+     /* background: rgba(255, 222, 113,1); */
+     /* padding: 0 1rem 1rem 1rem; */
+     padding: 1.3rem;
+     /* border-radius: 0 0 10px 10px; */
+     border-radius: 10px;
 }
 h2.category {
      font-size: 3rem;
@@ -217,10 +266,8 @@ h2.category {
 
 }
 
+
 /* Search Bar */
-form {
-     background: rgba(0,0,0,.5);
-}
 form span {
      display: block;
      font-size: 2rem;
@@ -229,6 +276,9 @@ form span {
 #search {
      min-width: 30rem;
      text-align: center;
+     border-radius: 10px;
+     padding: .5rem;
+     background: rgb(255, 222, 113);
 }
 
 
@@ -281,7 +331,7 @@ form span {
      text-shadow: -2px 2px 5px rgba(0,0,0,.5);
 }
 
-/* Villagers */
+/* ! ---------- VILLAGERS ----------- */
 .name {
      font-size: 2rem;
      margin-bottom: .2rem;
@@ -374,7 +424,6 @@ form span {
      
      border-radius: 10px;
 }
-
 
 /* Quote */
 .content p {
