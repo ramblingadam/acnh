@@ -50,7 +50,7 @@ function musicSelection() {
 
   console.log(hour)
 
-  fetch(`http://acnhapi.com/v1/backgroundmusic/`)
+  fetch(`https://acnhapi.com/v1/backgroundmusic/`)
   .then(res => res.json())
   .then(data => {
       console.log(data)
@@ -76,7 +76,7 @@ function clearGrid() {
 
 // GRAB VILLAGER DATA
 function getVillagers() {
-  fetch(`http://acnhapi.com/v1a/villagers/`)
+  fetch(`https://acnhapi.com/v1a/villagers/`)
   .then(res => res.json())
   .then(data => {
     console.log(data)
