@@ -1,4 +1,5 @@
 // ! --------------- GRAB HTML ELEMENTS --------------------
+// ? -------------- HEADER ELEMENTS ------------------
 // Grab audio element for BG Music
 const bgAudio = document.querySelector('#bgMusic')
 
@@ -17,17 +18,27 @@ const btnFish = document.querySelector('#btnFish')
 // const btnArt = document.querySelector('#btnArt')
 // const btnSongs = document.querySelector('#btnSongs')
 
-
+// ? ------------ CONTENT GRID AREA ELEMENTS ----------------
 // Grab search bar
 const searchForm = document.querySelector('form')
 const searchBar = document.querySelector('#search')
-
 
 // Grab content grid
 const contentGrid = document.querySelector('#contentGrid')
 
 
+// ? ------------- BLATHERS FULL TEXT --------------------
+const blathersFullWindow = document.querySelector('.blathersFullWindow')
+const blathersFullCritterName = document.querySelector('#blathersFullCritterName')
+const blathersFullCritterImg = document.querySelector('#blathersFullCritterImg')
+const blathersFullCritterText = document.querySelector('#blathersFullCritterText')
+console.log('blathers overlay', blathersFullWindow)
+console.log('blathers critter name', blathersFullCritterName)
+console.log('blathers img', blathersFullCritterImg)
+console.log('blathers text', blathersFullCritterText)
+
 // ! ----------------- EVENT LISTENERS ---------------
+// ? ------------ Header UI -------------
 // Music Toggle
 musicToggle.addEventListener('click', toggleMusic)
 // Hemisphere Toggle
@@ -37,34 +48,54 @@ hemisphereToggle.addEventListener('click', toggleHemisphere)
 btnVillagers.addEventListener('click', () => {displayVillagers()})
 btnFish.addEventListener('click', () => {displayFish()})
 
+// ? -----------Content Grid Area UI --------------
 // Active search
 searchBar.addEventListener('input', search)
 
+// Blathers Full Text - Hide when clicked
+blathersFullWindow.addEventListener('click', hideBlathersOverlay)
+// TODO Event listeners to DISPLAY the Blathers Overlay are in the displayFish function.
+
 
 // ! ---------------- GLOBAL VARIABLES --------------
+// Declare month reference cache. Fish, Diving, and Bugs will use this.
+const monthCache = {
+  1: 'January',
+  2: 'February',
+  3: 'March',
+  4: 'April',
+  5: 'May',
+  6: 'June',
+  7: 'July',
+  8: 'August',
+  9: 'September',
+  10: 'October',
+  11: 'November',
+  12: 'December',
+}
 // Declare villager data storage
 let allVillagers
 let allFish
 let allSea
 let allBugs
 
-
+let searchCategory
 
 // Turn on music by default.
 let musicOn = true
 
 let hemisphere = 'northern'
 
-// Store current date to check birthdays
+// Store current date to check birthdays and critter availability
 let now = new Date()
 
 
 // ! --------------- RUN INITIAL FUNCTIONS -------------
 // Start by loading villagers by default.
-getVillagers()
+// getVillagers()
 
 // Grab fish data.
-getFish()
+// getFish()
 
 // Play music.
 setTimeout(musicSelection, 1000)
@@ -97,6 +128,14 @@ function musicSelection() {
 }
 
 
+
+
+// TODO BLATHERS HIDE FUNCTION
+function hideBlathersOverlay() {
+  blathersFullWindow.classList.add('blathersHidden')
+  setTimeout(blathersFullWindow.classList.add('blathersHiddenZ'), 600)
+}
+
 // ! ------------------- USER INTERFACE FUNCTIONS ----------------------
 // HEMISPHERE TOGGLE FUNCITON
 function toggleHemisphere() {
@@ -104,12 +143,14 @@ function toggleHemisphere() {
     hemisphere = 'southern'
     hemisphereToggle.classList.remove('fa-earth-americas')
     hemisphereToggle.classList.add('fa-earth-oceania')
-    displayFish()
+    search()
+    // displayFish()
   } else {
     hemisphere = 'northern'
     hemisphereToggle.classList.remove('fa-earth-oceania')
     hemisphereToggle.classList.add('fa-earth-americas')
-    displayFish()
+    search()
+    // displayFish()
   }
 }
 
@@ -131,15 +172,35 @@ function toggleMusic() {
 // ACTIVE SEARCH FUNCTION
 function search(e) {
   clearGrid()
-  searchString = e.target.value.toLowerCase()
-  const filtered = allVillagers.filter(villager => {
-    if(villager.name['name-USen'].toLowerCase().includes(searchString)
-    || villager.personality.toLowerCase().includes(searchString)
-    || villager.species.toLowerCase().includes(searchString)
-    || villager['birthday-string'].toLowerCase().includes(searchString)) return true
-  })
-  displayVillagers(filtered)
+  searchString = searchBar.value.toLowerCase()
+  if(searchCategory === 'Villagers') {
+      const filtered = allVillagers.filter(villager => {
+        if(villager.name['name-USen'].toLowerCase().includes(searchString)
+        || villager.personality.toLowerCase().includes(searchString)
+        || villager.species.toLowerCase().includes(searchString)
+        || villager['birthday-string'].toLowerCase().includes(searchString)) return true
+      })
+      displayVillagers(filtered)
+  }
+  else if(searchCategory === 'Fish') {
+
+    const filtered = allFish.filter(fish => {
+
+      fishMonths = buildFishMonthString(fish)
+
+      if(fish.name['name-USen'].toLowerCase().includes(searchString)
+      || fish.availability.location.toLowerCase().includes(searchString)
+      || fish.availability.rarity.toLowerCase().includes(searchString)
+      || fishMonths.toLowerCase().includes(searchString)
+      ) return true
+    })
+    displayFish(filtered)
+  }
+
+  
 }
+
+
 
 // UPDATE CURRENT CATEGORY
 function updateCategory(category) {
@@ -152,13 +213,16 @@ function updateCategory(category) {
       btn.classList.remove('currentCategory')
     }
   })
+  searchCategory = category
+  // console.log('we in here')
+  // searchBar.value = ''
 }
 
 // UPDATE SEARCHBAR TO CURRENT CATEGORY
 function updateSearchBar(category) {
   const categoryClasses = ['villagers', 'fish', 'sea', 'bugs', 'fossils', 'art', 'songs']
   if(category === 'Fish') {
-    searchBar.placeholder = 'Search species, location, month, time...'
+    searchBar.placeholder = 'Search species, location, rarity, month...'
     categoryClasses.forEach(categoryClass => {
       searchBar.classList.remove(categoryClass)
     })
@@ -172,6 +236,7 @@ function updateSearchBar(category) {
     })
     searchBar.classList.add(category.toLowerCase())
   }
+  
 }
 
 //  CLEAR CONTENT GRID
@@ -260,6 +325,8 @@ function getFish() {
 })
 }
 
+
+
 // DISPLAY FISH
 function displayFish(fishArray = allFish) {
   updateCategory('Fish')
@@ -292,14 +359,53 @@ function displayFish(fishArray = allFish) {
     museumStringArray = museumString.split(' ')
     museumStringArray.length = 5
     museumStringPreview = museumStringArray.join(' ') + '...'
+
+
+    // Add .availableNow class if available in current month, for highlight
+    if(buildFishMonthString(fish).includes(monthCache[now.getMonth() + 1])) {
+      li.classList.add('availableNow')
+    }
+
     
     // CREATING FISH TILES
     li.innerHTML = `<h2 class="name">${fish.name['name-USen']}</h2><h4 class="location">${fish.availability.location} • ${fish.availability.rarity}</h4><h4 class="months">${monthString}</h4><h4 class="time">${fish.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${fish['icon_uri']}"><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p class="quote">${fish['catch-phrase']}</p>`
+
 
     
 
     contentGrid.appendChild(li)
     // console.log('-----')
-    // console.log(now.toLocaleString())
   })
+  // ! Add Event Listeners to display Blathers overlay, MOVE TO SEPARATE FUNCTION FOR OTHER CRITTERS?
+  document.querySelectorAll('#contentGrid li').forEach(critter => {
+    critter.addEventListener('click', displayBlathersOverlay)
+  })
+}
+
+// TODO BLATHERS OVERLAY FUNCTION MOVE ME
+function displayBlathersOverlay(e) {
+  // critter = e.target
+  // Update information in Blathers overly
+  blathersFullCritterImg.src = critter['image-uri']
+  blathersFullCritterName.innerText = critter.name['name-USen']
+  blathersFullCritterText.innerText = critter['museum-phrase']
+
+  // Remove hidden classes to display Blathers overlay
+  blathersFullWindow.classList.remove('blathersHiddenZ')
+  blathersFullWindow.classList.remove('blathersHidden')
+}
+
+// * HELPER FUNCTION - BUILD FISH MONTH STRING
+function buildFishMonthString(fish) {
+  let fishMonths = []
+  if(fish.availability.isAllYear === true) {
+    for(let key in monthCache) fishMonths.push(monthCache[key])
+  }
+  else {
+    fish.availability[`month-array-${hemisphere}`].forEach(monthNum => {
+      fishMonths.push(monthCache[monthNum])
+    })
+  }
+  fishMonths = fishMonths.join('')
+  return fishMonths
 }

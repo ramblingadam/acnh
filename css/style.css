@@ -218,19 +218,29 @@ header {
 /* ! ---------------- CATEGORIES MENU --------------- */
 
 /* Nav */
+
 nav ul {
      display: flex;
      flex-flow: row nowrap;
      justify-content: center;
      font-size: 2rem;
      background: rgba(255, 222, 113,1);
+     /* background: rgba(162, 107, 56,1); */
      border-radius: 10px 10px 0 0;
+     border-top: 2px dashed black;
+     border-right: 2px dashed black;
+     border-left: 2px dashed black;
+
 }
 
 nav li {
      padding: 1rem;
      text-decoration: none;
      color: rgb(95, 38, 112);
+     /* color: rgb(255, 222, 113); */
+     /* border: 1px solid rgb(162, 107, 56); */
+     /* min-width: 10rem; */
+     text-align: center;
 
      transition: color .5s, text-shadow .5s;
 }
@@ -251,21 +261,20 @@ nav li:hover {
 
 /* TODO Hamburger Menu */
 @media all and (max-width: 580px) {
-     nav ul {
-          position: fixed;
-          display: flex;
-          flex-flow: column nowrap;
-          z-index: 100;
-          border-radius: 10px;
+     /* nav ul { */
+          /* position: fixed; */
+          /* display: flex; */
+          /* flex-flow: column nowrap; */
+          /* z-index: 100; */
+          /* border-radius: 10px; */
           /* width: 10vw; */
-          left: 25vw;
-     }
-     nav li:not(:last-of-type) {
-       padding-bottom: 0rem   
-     }
-
-
+          /* left: 25vw; */
+     /* } */
+     /* nav li:not(:last-of-type) { */
+       /* padding-bottom: 0rem    */
+     /* } */
 }
+
 
 
 /* ! ---------------- CONTENT GRID ------------------ */
@@ -332,10 +341,10 @@ form  {
      background: rgb(255, 222, 113);
 }
 
-#search.fish {
+/* #search.fish {
      width: 20rem;
      transition: .5s;
-}
+} */
 
 
 .blackBG {
@@ -352,7 +361,7 @@ form  {
 /* CONTENT ITEMS */
 .contentItem {
      position: relative;
-     border: 1px solid black;
+     border: 2px solid black;
      border-radius: 10px;
      /* height: 25rem; */
      width: 20rem;
@@ -382,7 +391,8 @@ form  {
 
 
 
-.contentItem h2 {
+.contentItem h2,
+.blathersFullInnerWindow h2 {
      width: 100%;
      background: rgba(255,255,255,.5);
      border-radius: 10px 10px 0 0;
@@ -391,7 +401,7 @@ form  {
      text-shadow: -2px 2px 5px rgba(0,0,0,.5);
 }
 
-/* ! ---------- VILLAGERS ----------- */
+/* ! ----------------------- VILLAGERS ----------------------- */
 .name {
      font-size: 2rem;
      margin-bottom: .2rem;
@@ -496,7 +506,13 @@ form  {
 
 
 
-/* ! ------- FISH --------- */
+/* ! ------------------------- FISH ---------------------- */
+/* Available In Current Month */
+.availableNow {
+     background: radial-gradient(rgb(255, 244, 207), orange),rgb(255, 222, 113);
+     border: 2px solid black;
+}
+
 /* Location */
 .location {
      font-size: 1.3rem;
@@ -567,8 +583,68 @@ form  {
 }
 
 
+/* TODO BLATHERS TEXT */
+.blathersFullWindow {
+     position: fixed;
+     width: 100vw;
+     height: 100vh;
+     background:rgba(0, 0, 0,.5);
+     z-index: 5;
+     cursor: pointer;
+     opacity: 1;
+
+     transition: opacity .5s;
+}
 
 
+.blathersFullInnerWindow {
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     text-align: left;
+     background:rgba(0, 0, 0,.9);
+     background: rgb(255, 222, 113);
+     border: 2px solid black;
+     color: black;
+     z-index: 10;
+     font-size: 2rem;
+     width: 90vw;
+     max-width: 50rem;
+
+     border-radius: 10px;
+     padding-bottom: 1.5rem;
+
+     display: flex;
+     flex-flow: column nowrap;
+     justify-content: center;
+     align-items: center;
+}
+.bigFish {
+     max-width: 100%;
+     padding: 0 1.5rem 0 1.5rem;
+}
+
+.blathersFullInnerWindow p {
+     margin: 0 1rem .5rem 1rem;
+     padding: .5rem;
+     background: rgba(255, 255, 255,.5);
+     border-radius: 10px;
+}
+
+.blathersFace {
+     max-height: 7rem;
+     text-align: center;
+}
+
+.blathersHidden {
+     opacity: 0;
+     transition: .5s;
+}
+
+.blathersHiddenZ {
+     z-index: -5;
+}
 
 
 
@@ -587,3 +663,4 @@ form  {
 .hidden {
      opacity: 0;
 }
+
