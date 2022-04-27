@@ -139,7 +139,7 @@ header {
 #balloon {
      position: absolute;
      top: 7%;
-     animation: sway 5s linear infinite, float 40s linear infinite alternate;
+     animation: sway 5s linear infinite, float 60s linear infinite alternate;
      z-index: 1
 }
 
@@ -184,7 +184,7 @@ header {
 }
 
 
-/* MUTE BUTTON */
+
 
 
 /* LOGO */
@@ -196,6 +196,7 @@ header {
      margin: .5rem;
      /* z-index: 1; */
 }
+/* Music Toggle Button */
 #musicToggle {
      position: absolute;
      left: 20%;
@@ -214,13 +215,10 @@ header {
 }
 
 
-/* Audio */
-audio {
-     height: 2rem;
-}
+/* ! ---------------- CATEGORIES MENU --------------- */
 
 /* Nav */
-header ul {
+nav ul {
      display: flex;
      flex-flow: row nowrap;
      justify-content: center;
@@ -229,7 +227,7 @@ header ul {
      border-radius: 10px 10px 0 0;
 }
 
-header li {
+nav li {
      padding: 1rem;
      text-decoration: none;
      color: rgb(95, 38, 112);
@@ -237,8 +235,7 @@ header li {
      transition: color .5s, text-shadow .5s;
 }
 
-
-header li:hover {
+nav li:hover {
      cursor: pointer;
      color: rgb(213, 75, 255);
      /* text-shadow: -2px 2px 5px rgba(0,0,0,1); */
@@ -252,10 +249,27 @@ header li:hover {
      text-shadow: 0 0 10px rgb(255, 255, 255);
 }
 
+/* TODO Hamburger Menu */
+@media all and (max-width: 580px) {
+     nav ul {
+          position: fixed;
+          display: flex;
+          flex-flow: column nowrap;
+          z-index: 100;
+          border-radius: 10px;
+          /* width: 10vw; */
+          left: 25vw;
+     }
+     nav li:not(:last-of-type) {
+       padding-bottom: 0rem   
+     }
 
 
+}
 
-/* CONTENT LAYOUT */
+
+/* ! ---------------- CONTENT GRID ------------------ */
+/** GRID CONTAINER */
 .content {
      /* padding-top: 1rem; */
 
@@ -266,37 +280,67 @@ header li:hover {
  
 }
 
-/* Category Heading & Search Bar */
-.headerBox {
+
+/** SEARCH BAR & HEMISPHERE TOGGLE */
+.searchBox {
      /* background: rgba(255, 222, 113,1); */
      /* padding: 0 1rem 1rem 1rem; */
      padding: 1.3rem;
      /* border-radius: 0 0 10px 10px; */
      border-radius: 10px;
 }
-h2.category {
+
+form  {
+     position: relative;
+}
+
+
+/** Hemisphere Toggle Button */
+#hemisphereToggle {
+     position: absolute;
+     left: -12%;
+     top: -8%;
      font-size: 3rem;
-     padding: 1rem;
-     width: 100%;
-     text-align: center;
+     color: rgb(255, 222, 113);
+     /* color: rgb(255, 209, 80); */
+     /* text-shadow: 2px 2px 4px rgb(255, 209, 80); */
+     cursor: pointer;
+     transition: text-shadow .5s, transform .5s;
 
+     text-shadow: 0 0 1px rgba(0, 0, 0,1);
+     
+}
+#hemisphereToggle:hover {
+     /* text-shadow: 0 0 3px rgba(255, 255, 255,1); */
+     text-shadow: 0 3px 3px rgba(0, 0, 0,1);
+     transform: translateY(-2px);
+     transition: .5s;
+}
+#hemisphereToggle:active {
+     /* text-shadow: 0 0 3px rgba(255, 255, 255,1); */
+     text-shadow: 0 0 3px rgba(255, 255, 255,1);
+     transform: translateY(0px);
+     transition: text-shadow .2s;
 }
 
-
-/* Search Bar */
-form span {
-     display: block;
-     font-size: 2rem;
-}
 
 #search {
-     min-width: 30rem;
+     width: 30rem;
      text-align: center;
      border-radius: 10px;
      padding: .5rem;
      background: rgb(255, 222, 113);
 }
 
+#search.fish {
+     width: 20rem;
+     transition: .5s;
+}
+
+
+.blackBG {
+     background: black !important
+}
 
 /* CONTENT GRID */
 #contentGrid {
@@ -403,12 +447,13 @@ form span {
      margin-bottom: .2rem;
 }
 
+
+
+/* Catchphrase */
 .contentItem:hover .catchphraseBox {
      opacity: 1;
      transition: opacity .5s;
 }
-
-/* Catchphrase */
 .catchphraseBox {
      opacity: 0;
      transition: opacity .5s;
@@ -452,7 +497,7 @@ form span {
 
 
 /* ! ------- FISH --------- */
-/* Personality */
+/* Location */
 .location {
      font-size: 1.3rem;
      padding: .2rem;
@@ -477,6 +522,56 @@ form span {
      font-size: 2rem;
      display: flex;
 }
+
+/* Critter Hover Box */
+.contentItem.fish:hover {
+     cursor: pointer;
+}
+
+.contentItem:hover .critterHoverBox {
+     opacity: 1;
+     transition: opacity .5s;
+}
+.critterHoverBox {
+     opacity: 0;
+     transition: opacity .5s;
+     position: absolute;
+     top: 0;
+     height: 99%;
+     width: 100%;
+
+     background: rgba(0,0,0,.5);
+     border-radius: 10px;
+
+     display: flex;
+     flex-flow: column nowrap;
+     justify-content: flex-end;
+     align-items: center;
+
+     color: white;
+     font-size: 1.7rem;
+}
+
+.critterHoverBox img {
+     max-height: 4rem;
+}
+
+.blathersQuote {
+     display: inline-block;
+     text-align: center;
+     background: rgba(255,255,255,.7);
+     color: black;
+     padding: .3rem;
+     
+     border-radius: 10px;
+}
+
+
+
+
+
+
+
 
 /* Searchbar */
 
