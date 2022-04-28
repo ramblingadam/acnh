@@ -92,10 +92,10 @@ let now = new Date()
 
 // ! --------------- RUN INITIAL FUNCTIONS -------------
 // Start by loading villagers by default.
-// getVillagers()
+getVillagers()
 
 // Grab fish data.
-// getFish()
+getFish()
 
 // Play music.
 setTimeout(musicSelection, 1000)
@@ -366,11 +366,15 @@ function displayFish(fishArray = allFish) {
       li.classList.add('availableNow')
     }
 
+    // Add critter class and fish.id class so Blathers overlay can find and display the right info
+    li.classList.add('critter')
+    li.classList.add(`${fish.id}`) 
     
-    // CREATING FISH TILES
-    li.innerHTML = `<h2 class="name">${fish.name['name-USen']}</h2><h4 class="location">${fish.availability.location} • ${fish.availability.rarity}</h4><h4 class="months">${monthString}</h4><h4 class="time">${fish.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${fish['icon_uri']}"><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p class="quote">${fish['catch-phrase']}</p>`
+     // * CREATING FISH TILES
+     li.innerHTML = `<h2 class="name">${fish.name['name-USen']}</h2><h4 class="location">${fish.id === 80 ? 'Sea (Raining)' : fish.availability.location} • ${fish.availability.rarity}</h4><h4 class="months">${monthString}</h4><h4 class="time">${fish.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${fish['icon_uri']}"><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p class="quote">${fish['catch-phrase']}</p>`
 
-
+    // CREATING BLATHERS WINDOWS
+   
     
 
     contentGrid.appendChild(li)
@@ -384,11 +388,43 @@ function displayFish(fishArray = allFish) {
 
 // TODO BLATHERS OVERLAY FUNCTION MOVE ME
 function displayBlathersOverlay(e) {
-  // critter = e.target
-  // Update information in Blathers overly
-  blathersFullCritterImg.src = critter['image-uri']
-  blathersFullCritterName.innerText = critter.name['name-USen']
-  blathersFullCritterText.innerText = critter['museum-phrase']
+
+  let critterLiElement
+
+  // Iterate through each element in the event path (except the last two, which are always #document and Window), searching for the
+  for(let i = 0; i < e.path.length -2 ; i++) {
+    const element = e.path[i]
+      if(element.classList.contains('critter')) {
+        critterLiElement = element
+      }
+  }
+  let critterLiElementClasses = Array.from(critterLiElement.classList) // Grab classlist of the content item and convert that list into an array
+  // console.log(critterLiElementClasses)
+  const critterID = +critterLiElementClasses.pop() // Grab the last item from the classlist, which should be the fish ID num
+  // console.log(critterID)
+
+  switch(searchCategory) {
+    case 'Fish': critterArray = allFish
+    break
+    // case 'Diving': critterArray = allFish
+    // break
+    // case 'Bugs': critterArray = allFish
+    // break
+    // case 'Fossils': critterArray = allFish
+    // break
+    // case 'Art': critterArray = allFish
+    // break
+  }
+
+  const currentCritter = critterArray[critterID - 1]
+  // console.log(currentCritter)
+
+  // console.log(critterLiElement)
+  // Update information in Blathers overlay
+  blathersFullCritterImg.src = ''
+  blathersFullCritterImg.src = currentCritter['image_uri']
+  blathersFullCritterName.innerText = currentCritter.name['name-USen']
+  blathersFullCritterText.innerText = currentCritter['museum-phrase']
 
   // Remove hidden classes to display Blathers overlay
   blathersFullWindow.classList.remove('blathersHiddenZ')

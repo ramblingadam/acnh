@@ -341,12 +341,6 @@ form  {
      background: rgb(255, 222, 113);
 }
 
-/* #search.fish {
-     width: 20rem;
-     transition: .5s;
-} */
-
-
 .blackBG {
      background: black !important
 }
@@ -592,6 +586,7 @@ form  {
      z-index: 5;
      cursor: pointer;
      opacity: 1;
+     /* overflow: none; */
 
      transition: opacity .5s;
 }
@@ -619,6 +614,9 @@ form  {
      flex-flow: column nowrap;
      justify-content: center;
      align-items: center;
+}
+.blathersFullInnerWindow h2 {
+     font-size: 3rem;
 }
 .bigFish {
      max-width: 100%;
