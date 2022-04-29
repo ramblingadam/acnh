@@ -61,6 +61,7 @@ html {
 
 body {
      position: relative;
+     overflow-x:hidden;
      overflow-y: scroll;
 }
 
@@ -196,7 +197,8 @@ header {
      margin: .5rem;
      /* z-index: 1; */
 }
-/* Music Toggle Button */
+
+/** Music Toggle Button */
 #musicToggle {
      position: absolute;
      left: 20%;
@@ -212,6 +214,31 @@ header {
 #musicToggle:hover {
      text-shadow: 0 0 5px rgba(255, 255, 255,1);
      transition: .3s;
+}
+
+/* Now Playing Popup */
+.nowPlayingBox {
+     position: absolute;
+     top: 40px;
+     left: 50%;
+     transform: translateX(-50%);
+     white-space: nowrap;
+
+     font-size: 2rem;
+     padding: .5rem;
+     background: rgb(255, 222, 113);
+     border-radius: 5px;
+}
+
+.nowPlayingHeader {
+     position: absolute;
+     top: -10px;
+     left: 0;
+}
+
+.nowPlayingHidden {
+     width: 0;
+     transition: .8s;
 }
 
 
@@ -360,7 +387,7 @@ form  {
      /* height: 25rem; */
      width: 20rem;
      /* padding: .5rem; */
-     padding-bottom: .5rem;
+     /* padding-bottom: .5rem; */
      margin: .5rem;
      /* background: rgb(255, 255, 255); */
      background: rgb(255, 222, 113);
@@ -375,6 +402,14 @@ form  {
 
      transition: transform .3s;
      z-index: 0;
+}
+
+@media all and (max-width: 435px) {
+     .contentItem {
+          width: 15rem;
+          margin: .2rem;
+     }
+
 }
 
 .contentItem:hover {
@@ -393,6 +428,10 @@ form  {
      padding: .4rem;
      text-align: center;
      text-shadow: -2px 2px 5px rgba(0,0,0,.5);
+}
+
+.contentItem p {
+     font-size: 1.5rem;
 }
 
 /* ! ----------------------- VILLAGERS ----------------------- */
@@ -442,6 +481,7 @@ form  {
      justify-content: center;
      align-items: center;
      max-width: 90%;
+     margin-bottom: 1rem;
 }
 
 
@@ -493,14 +533,23 @@ form  {
 
 /* Quote */
 .content p {
-     font-size: 1.3rem;
-     text-align: center;
-     max-width: 80%;
+     
 }
 
+p.quote {
+     font-size: 1.3rem;
+     text-align: center;
+     /* width: 80%; */
+     /* padding-bottom: .8rem; */
+     width: 100%;
+     max-width: 100%;
+     background: rgba(255, 255, 255,.5);
+     padding: .5rem 1.5rem .5rem 1.5rem;
+     height: 100%;
+     border-radius: 0 0 10px 10px;
+}
 
-
-/* ! ------------------------- FISH ---------------------- */
+/* ! ------------------------- FISH / CRITTERS---------------------- */
 /* Available In Current Month */
 .availableNow {
      background: radial-gradient(rgb(255, 244, 207), orange),rgb(255, 222, 113);
@@ -533,8 +582,21 @@ form  {
      display: flex;
 }
 
+/* Critter Saleprice  */
+#salesPrice {
+     display: flex;
+     flex-flow: row nowrap;
+     align-items: center;
+     justify-content: center;;
+}
+#salesPrice img {
+     max-width: 1.5rem;
+}
+
 /* Critter Hover Box */
-.contentItem.fish:hover {
+.contentItem.fish:hover,
+.contentItem.sea:hover,
+.contentItem.bug:hover {
      cursor: pointer;
 }
 

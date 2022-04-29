@@ -13,7 +13,8 @@ const hemisphereToggle = document.querySelector('#hemisphereToggle')
 const btnList = document.querySelectorAll('nav ul li')
 const btnVillagers = document.querySelector('#btnVillagers')
 const btnFish = document.querySelector('#btnFish')
-// const btnSea = document.querySelector('#btnSea')
+const btnSea = document.querySelector('#btnSea')
+const btnBugs = document.querySelector('#btnBugs')
 // const btnFossils = document.querySelector('#btnFossils')
 // const btnArt = document.querySelector('#btnArt')
 // const btnSongs = document.querySelector('#btnSongs')
@@ -47,6 +48,8 @@ hemisphereToggle.addEventListener('click', toggleHemisphere)
 // Main Menu Buttons
 btnVillagers.addEventListener('click', () => {displayVillagers()})
 btnFish.addEventListener('click', () => {displayFish()})
+btnSea.addEventListener('click', () => {displaySea()})
+btnBugs.addEventListener('click', () => {displayBugs()})
 
 // ? -----------Content Grid Area UI --------------
 // Active search
@@ -95,10 +98,12 @@ let now = new Date()
 getVillagers()
 
 // Grab fish data.
-getFish()
+setTimeout(getFish, 500)
+setTimeout(getSea, 750)
+setTimeout(getBugs, 1000)
 
 // Play music.
-setTimeout(musicSelection, 1000)
+setTimeout(musicSelection, 1200)
 
 
 // ! ------------------ INITIALIZATION --------------------
@@ -196,8 +201,34 @@ function search(e) {
     })
     displayFish(filtered)
   }
+  else if(searchCategory === 'Sea') {
 
-  
+    const filtered = allSea.filter(sea => {
+
+      seaMonths = buildFishMonthString(sea)
+
+      if(sea.name['name-USen'].toLowerCase().includes(searchString)
+      || sea.availability.location.toLowerCase().includes(searchString)
+      || sea.availability.rarity.toLowerCase().includes(searchString)
+      || seaMonths.toLowerCase().includes(searchString)
+      ) return true
+    })
+    displaySea(filtered)
+  }
+  else if(searchCategory === 'Bugs') {
+
+    const filtered = allBugs.filter(bug => {
+
+      bugMonths = buildFishMonthString(bug)
+
+      if(bug.name['name-USen'].toLowerCase().includes(searchString)
+      || bug.availability.location.toLowerCase().includes(searchString)
+      || bug.availability.rarity.toLowerCase().includes(searchString)
+      || bugMonths.toLowerCase().includes(searchString)
+      ) return true
+    })
+    displayBugs(filtered)
+  }
 }
 
 
@@ -236,7 +267,20 @@ function updateSearchBar(category) {
     })
     searchBar.classList.add(category.toLowerCase())
   }
-  
+  else if(category === 'Sea') {
+    searchBar.placeholder = 'Search species, shadow, speed, month...'
+    categoryClasses.forEach(categoryClass => {
+      searchBar.classList.remove(categoryClass)
+    })
+    searchBar.classList.add(category.toLowerCase())
+  }
+  else if(category === 'Bugs') {
+    searchBar.placeholder = 'Search species, location, rarity, month...'
+    categoryClasses.forEach(categoryClass => {
+      searchBar.classList.remove(categoryClass)
+    })
+    searchBar.classList.add(category.toLowerCase())
+  }
 }
 
 //  CLEAR CONTENT GRID
@@ -325,8 +369,6 @@ function getFish() {
 })
 }
 
-
-
 // DISPLAY FISH
 function displayFish(fishArray = allFish) {
   updateCategory('Fish')
@@ -366,12 +408,11 @@ function displayFish(fishArray = allFish) {
       li.classList.add('availableNow')
     }
 
-    // Add critter class and fish.id class so Blathers overlay can find and display the right info
-    li.classList.add('critter')
+    // Add fish.id class so Blathers overlay can find and display the right info
     li.classList.add(`${fish.id}`) 
     
      // * CREATING FISH TILES
-     li.innerHTML = `<h2 class="name">${fish.name['name-USen']}</h2><h4 class="location">${fish.id === 80 ? 'Sea (Raining)' : fish.availability.location} • ${fish.availability.rarity}</h4><h4 class="months">${monthString}</h4><h4 class="time">${fish.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${fish['icon_uri']}"><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p class="quote">${fish['catch-phrase']}</p>`
+     li.innerHTML = `<h2 class="name">${fish.name['name-USen']}</h2><h4 class="location">${fish.id === 80 ? 'Sea (Raining)' : fish.availability.location} • ${fish.availability.rarity}</h4><h4 class="months">${monthString}</h4><h4 class="time">${fish.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${fish['icon_uri']}"><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${fish.price}</p><p class="quote">${fish['catch-phrase']}</p>`
 
     // CREATING BLATHERS WINDOWS
    
@@ -380,36 +421,181 @@ function displayFish(fishArray = allFish) {
     contentGrid.appendChild(li)
     // console.log('-----')
   })
-  // ! Add Event Listeners to display Blathers overlay, MOVE TO SEPARATE FUNCTION FOR OTHER CRITTERS?
+  // * Add Event Listeners to display Blathers overlay
+  addBlathersOverlayListeners()
+}
+
+
+
+// ! ----------------------- SEA CREATURES --------------------
+
+function getSea() {
+  fetch(`https://acnhapi.com/v1a/sea/`)
+  .then(res => res.json())
+  .then(data => {
+    console.log(data)
+    allSea = data  
+  })
+  .catch(err => {
+    console.log(`error ${err}`)
+})
+}
+function displaySea(seaArray = allSea) {
+  updateCategory('Sea')
+  clearGrid()
+  seaArray.forEach(sea => {
+    const li = document.createElement('li')
+    // console.log(li)
+  
+    // console.log(villager)
+    li.classList.add('contentItem')
+    li.classList.add('sea')   
+
+    // Convert months into string
+    const monthArray = [null, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    
+    const seaMonths = sea.availability[`month-array-${hemisphere}`]
+    let monthString
+    if(seaMonths.length === 12) {
+      monthString = 'All Year'
+    }
+    else {
+      const firstMonth = monthArray[seaMonths[0]]
+      const lastMonth = monthArray[seaMonths[seaMonths.length - 1]]
+      monthString = `${firstMonth} - ${lastMonth}`
+    }
+    
+
+    // Create museum string preview
+    museumString = sea['museum-phrase']
+    museumStringArray = museumString.split(' ')
+    museumStringArray.length = 5
+    museumStringPreview = museumStringArray.join(' ') + '...'
+
+
+    // Add .availableNow class if available in current month, for highlight
+    if(buildFishMonthString(sea).includes(monthCache[now.getMonth() + 1])) {
+      li.classList.add('availableNow')
+    }
+
+    // Add sea.id class so Blathers overlay can find and display the right info
+    li.classList.add(`${sea.id}`) 
+    
+     // * CREATING SEA TILES
+     li.innerHTML = `<h2 class="name">${sea.name['name-USen']}</h2><h4 class="location">${sea.shadow} Shadow • ${sea.speed}</h4><h4 class="months">${monthString}</h4><h4 class="time">${sea.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${sea['icon_uri']}"><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${sea.price}</p><p class="quote">${sea['catch-phrase']}</p>`
+
+    // CREATING BLATHERS WINDOWS
+   
+    
+
+    contentGrid.appendChild(li)
+    // console.log('-----')
+  })
+  addBlathersOverlayListeners()
+}
+
+
+// ! ----------------------------- BUGS ----------------------------
+function getBugs() {
+  fetch(`https://acnhapi.com/v1a/bugs/`)
+  .then(res => res.json())
+  .then(data => {
+    console.log(data)
+    allBugs = data  
+  })
+  .catch(err => {
+    console.log(`error ${err}`)
+})
+}
+function displayBugs(bugArray = allBugs) {
+  updateCategory('Bugs')
+  clearGrid()
+  bugArray.forEach(bug => {
+    const li = document.createElement('li')
+    // console.log(li)
+  
+    // console.log(villager)
+    li.classList.add('contentItem')
+    li.classList.add('bug')   
+
+    // Convert months into string
+    const monthArray = [null, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    
+    const bugMonths = bug.availability[`month-array-${hemisphere}`]
+    let monthString
+    if(bugMonths.length === 12) {
+      monthString = 'All Year'
+    }
+    else {
+      const firstMonth = monthArray[bugMonths[0]]
+      const lastMonth = monthArray[bugMonths[bugMonths.length - 1]]
+      monthString = `${firstMonth} - ${lastMonth}`
+    }
+    
+
+    // Create museum string preview
+    museumString = bug['museum-phrase']
+    museumStringArray = museumString.split(' ')
+    museumStringArray.length = 5
+    museumStringPreview = museumStringArray.join(' ') + '...'
+
+
+    // Add .availableNow class if available in current month, for highlight
+    if(buildFishMonthString(bug).includes(monthCache[now.getMonth() + 1])) {
+      li.classList.add('availableNow')
+    }
+
+    // Add sea.id class so Blathers overlay can find and display the right info
+    li.classList.add(`${bug.id}`) 
+    
+     // * CREATING BUG TILES
+     li.innerHTML = `<h2 class="name">${bug.name['name-USen']}</h2><h4 class="location">${bug.availability.location} • ${bug.availability.rarity}</h4><h4 class="months">${monthString}</h4><h4 class="time">${bug.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${bug['icon_uri']}"><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${bug.price}</p><p class="quote">${bug['catch-phrase']}</p>`
+
+    contentGrid.appendChild(li)
+    // console.log('-----')
+  })
+  // Add Blathers Overlay Listeners
+  addBlathersOverlayListeners()
+}
+
+
+
+// TODO BLATHERS OVERLAY FUNCTION MOVE ME
+// *Adds event listeners for Blathers overlay to all critters
+function addBlathersOverlayListeners() {
   document.querySelectorAll('#contentGrid li').forEach(critter => {
     critter.addEventListener('click', displayBlathersOverlay)
   })
 }
 
-// TODO BLATHERS OVERLAY FUNCTION MOVE ME
+// *Display Blathers overlay when critter item clicked
 function displayBlathersOverlay(e) {
 
   let critterLiElement
 
+  console.log(e.composedPath)
+
   // Iterate through each element in the event path (except the last two, which are always #document and Window), searching for the
-  for(let i = 0; i < e.path.length -2 ; i++) {
-    const element = e.path[i]
-      if(element.classList.contains('critter')) {
+  let path = e.path || (e.composedPath() && e.composedPath)
+  console.log(path)
+  for(let i = 0; i < path.length - 2 ; i++) {
+    const element = path[i]
+      if(element.matches('li')) {
         critterLiElement = element
       }
   }
   let critterLiElementClasses = Array.from(critterLiElement.classList) // Grab classlist of the content item and convert that list into an array
-  // console.log(critterLiElementClasses)
+  console.log(critterLiElementClasses)
   const critterID = +critterLiElementClasses.pop() // Grab the last item from the classlist, which should be the fish ID num
-  // console.log(critterID)
+  console.log(critterID)
 
   switch(searchCategory) {
     case 'Fish': critterArray = allFish
     break
-    // case 'Diving': critterArray = allFish
-    // break
-    // case 'Bugs': critterArray = allFish
-    // break
+    case 'Sea': critterArray = allSea
+    break
+    case 'Bugs': critterArray = allBugs
+    break
     // case 'Fossils': critterArray = allFish
     // break
     // case 'Art': critterArray = allFish
