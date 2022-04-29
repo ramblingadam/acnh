@@ -208,8 +208,8 @@ function search(e) {
       seaMonths = buildFishMonthString(sea)
 
       if(sea.name['name-USen'].toLowerCase().includes(searchString)
-      || sea.availability.location.toLowerCase().includes(searchString)
-      || sea.availability.rarity.toLowerCase().includes(searchString)
+      || sea.shadow.toLowerCase().includes(searchString)
+      || sea.speed.toLowerCase().includes(searchString)
       || seaMonths.toLowerCase().includes(searchString)
       ) return true
     })
@@ -617,7 +617,7 @@ function displayBlathersOverlay(e) {
   blathersFullWindow.classList.remove('blathersHidden')
 }
 
-// * HELPER FUNCTION - BUILD FISH MONTH STRING
+// * HELPER FUNCTION - BUILD CRITTER MONTH STRING
 function buildFishMonthString(fish) {
   let fishMonths = []
   if(fish.availability.isAllYear === true) {

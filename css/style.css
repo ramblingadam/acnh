@@ -125,6 +125,7 @@ header {
      /* background: rgb(255, 222, 113); */
      background: url('../assets/acnhBeachCropped_sm.jpg');
      background-size: contain;
+     background-size: auto 100%;
      background-repeat: repeat-x;
 
      display: flex;
