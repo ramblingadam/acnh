@@ -120,6 +120,17 @@ border: 3px solid orange;
      display: flex;
      justify-content: center;
      align-items: center;
+     /* transition: .5s; */
+
+}
+
+#toTop a {
+     color:rgb(95, 38, 112);
+     transition: color .3s;
+}
+#toTop a:hover {
+     color:rgb(213, 75, 255);
+     transition: color .3s;
 }
 
 
@@ -233,26 +244,29 @@ header {
 /* Now Playing Popup */
 .nowPlayingBox {
      position: absolute;
-     top: 40px;
-     left: 50%;
+     top: 6%;
+     left: 65%;
      transform: translateX(-50%);
      white-space: nowrap;
 
      font-size: 2rem;
      padding: .5rem;
      background: rgb(255, 222, 113);
+     border: 1px dashed black;
      border-radius: 5px;
+     opacity: 1;
+     transition: opacity .5s;
+     width: auto;
 }
 
-.nowPlayingHeader {
-     position: absolute;
-     top: -10px;
-     left: 0;
+
+.nowPlayingBox i {
+     animation: tinywiggle 3s linear infinite;
 }
 
 .nowPlayingHidden {
-     width: 0;
-     transition: .8s;
+     opacity: 0;
+     transition: opacity 2s;
 }
 
 /* Twitter Button */
@@ -289,6 +303,21 @@ header {
      }
      75%{
           transform: rotate(15deg);
+     }
+     100% {
+          transform: rotate(0deg);
+     }
+}
+
+@keyframes tinywiggle {
+     0% {
+          transform: rotate(0deg);
+     }
+     25%{
+          transform: rotate(-5deg);
+     }
+     75%{
+          transform: rotate(5deg);
      }
      100% {
           transform: rotate(0deg);
@@ -398,16 +427,18 @@ form  {
      transition: text-shadow .5s, transform .5s;
 
      text-shadow: 0 0 1px rgba(0, 0, 0,1);
-     text-shadow: 0 3px 3px rgba(0, 0, 0,1);
-     transform: translateY(-2px);
-     
-}
-/* #hemisphereToggle:hover { */
-     /* text-shadow: 0 0 3px rgba(255, 255, 255,1); */
      /* text-shadow: 0 3px 3px rgba(0, 0, 0,1); */
      /* transform: translateY(-2px); */
-     /* transition: .5s; */
-/* } */
+     
+}
+#hemisphereToggle:hover {
+     /* text-shadow: 0 0 2px rgba(255, 255, 255,1); */
+     text-shadow: 0 3px 3px rgba(0, 0, 0,1);
+     /* transform: translateY(-2px); */
+     transform: translateY(-2px);
+     transition: .5s;
+     /* animation: wiggle 1s linear infinite; */
+}
 #hemisphereToggle:active {
      /* text-shadow: 0 0 3px rgba(255, 255, 255,1); */
      text-shadow: 0 0 3px rgba(255, 255, 255,1);

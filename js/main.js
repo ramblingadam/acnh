@@ -11,6 +11,9 @@ const bgAudio = document.querySelector('#bgMusic')
 
 // Grab music toggle button
 const musicToggle = document.querySelector('#musicToggle')
+// Grab now playing window
+const nowPlayingBox = document.querySelector('.nowPlayingBox')
+const nowPlayingSong = document.querySelector('#nowPlayingSong')
 
 // Grab hemisphere toggle button
 const hemisphereToggle = document.querySelector('#hemisphereToggle')
@@ -39,10 +42,6 @@ const blathersFullWindow = document.querySelector('.blathersFullWindow')
 const blathersFullCritterName = document.querySelector('#blathersFullCritterName')
 const blathersFullCritterImg = document.querySelector('#blathersFullCritterImg')
 const blathersFullCritterText = document.querySelector('#blathersFullCritterText')
-console.log('blathers overlay', blathersFullWindow)
-console.log('blathers critter name', blathersFullCritterName)
-console.log('blathers img', blathersFullCritterImg)
-console.log('blathers text', blathersFullCritterText)
 
 // ! ----------------- EVENT LISTENERS ---------------
 // ? ------------ Header UI -------------
@@ -114,29 +113,6 @@ setTimeout(musicSelection, 1200)
 
 // ! ------------------ INITIALIZATION --------------------
 
-//  HOURLY MUSIC SELECTION
-function musicSelection() {
-  let weather = 'Sunny'
-  let hour = String(now.getHours())
-  if(hour.length === 1) hour = '0' + hour
-
-  console.log(hour)
-
-  fetch(`https://acnhapi.com/v1/backgroundmusic/`)
-  .then(res => res.json())
-  .then(data => {
-      console.log(data)
-      const musicData = data
-      const musicURI = musicData[`BGM_24Hour_${hour}_${weather}`]['music_uri']
-      console.log(musicURI)
-      bgAudio.src = musicURI
-      // bgAudio.play()
-
-  })
-  .catch(err => {
-      console.log(`error ${err}`)
-  })
-}
 
 
 
@@ -165,6 +141,39 @@ function toggleHemisphere() {
   }
 }
 
+// ? ----------------------- MUSIC -------------------
+//  HOURLY MUSIC SELECTION
+function musicSelection() {
+  let weather = 'Sunny'
+  let hour = String(now.getHours())
+  let shortHour = hour
+  if(hour.length === 1) hour = '0' + hour
+
+  fetch(`https://acnhapi.com/v1/backgroundmusic/`)
+  .then(res => res.json())
+  .then(data => {
+      // console.log(data)
+      const musicData = data
+      const musicURI = musicData[`BGM_24Hour_${hour}_${weather}`]['music_uri']
+      bgAudio.src = musicURI
+      bgAudio.play()
+      bgAudio.addEventListener('playing', () => {displayCurrentMusic(shortHour, weather)})
+
+  })
+  .catch(err => {
+      console.log(`error ${err}`)
+  })
+}
+
+
+// NOW PLAYING WINDOW UPDATE
+function displayCurrentMusic(hour, weather) {
+  // console.log(hour, weather)
+  nowPlayingSong.innerText = `${hour}${+hour >= 0 && hour < 11 ? 'am' : 'pm'} - ${weather}`
+  nowPlayingBox.classList.remove('nowPlayingHidden')
+  const hidePlayingBox = () => {nowPlayingBox.classList.add('nowPlayingHidden')}
+  setTimeout(hidePlayingBox, 3000)
+}
 // MUSIC TOGGLE FUNCTION
 function toggleMusic() {
   if(musicOn) {
@@ -177,6 +186,7 @@ function toggleMusic() {
     musicToggle.classList.remove('fa-volume-xmark')
     musicToggle.classList.add('fa-volume-high')
     bgAudio.play()
+    musicSelection()
   }
 }
 
@@ -303,7 +313,7 @@ function getVillagers() {
   fetch(`https://acnhapi.com/v1a/villagers/`)
   .then(res => res.json())
   .then(data => {
-    console.log(data)
+    // console.log(data)
     allVillagers = data
 
     // Run villager display function
@@ -317,8 +327,6 @@ function getVillagers() {
 
 // DISPLAY VILLAGERS
 function displayVillagers(villagerArray = allVillagers) {
-  console.log(villagerArray)
-
   updateCategory('Villagers')
   clearGrid()
   villagerArray.forEach(villager => {
@@ -367,7 +375,7 @@ function getFish() {
   fetch(`https://acnhapi.com/v1a/fish/`)
   .then(res => res.json())
   .then(data => {
-    console.log(data)
+    // console.log(data)
     allFish = data  
   })
   .catch(err => {
@@ -439,7 +447,7 @@ function getSea() {
   fetch(`https://acnhapi.com/v1a/sea/`)
   .then(res => res.json())
   .then(data => {
-    console.log(data)
+    // console.log(data)
     allSea = data  
   })
   .catch(err => {
@@ -506,7 +514,7 @@ function getBugs() {
   fetch(`https://acnhapi.com/v1a/bugs/`)
   .then(res => res.json())
   .then(data => {
-    console.log(data)
+    // console.log(data)
     allBugs = data  
   })
   .catch(err => {
@@ -518,9 +526,7 @@ function displayBugs(bugArray = allBugs) {
   clearGrid()
   bugArray.forEach(bug => {
     const li = document.createElement('li')
-    // console.log(li)
-  
-    // console.log(villager)
+
     li.classList.add('contentItem')
     li.classList.add('bug')   
 
@@ -558,7 +564,7 @@ function displayBugs(bugArray = allBugs) {
      li.innerHTML = `<h2 class="name">${bug.name['name-USen']}</h2><h4 class="location">${bug.id === 4 ? 'Flying' : bug.availability.location} • ${bug.availability.rarity}</h4><h4 class="months"><i class="fa-solid fa-calendar-days"></i> ${monthString}</h4><h4 class="time"><i class="fa-solid fa-clock"></i> ${bug.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${bug['icon_uri']}"><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${bug.price}</p><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p class="quote">${bug['catch-phrase']}</p>`
 
     contentGrid.appendChild(li)
-    // console.log('-----')
+
   })
   // Add Blathers Overlay Listeners
   addBlathersOverlayListeners()
@@ -579,11 +585,11 @@ function displayBlathersOverlay(e) {
 
   let critterLiElement
 
-  console.log(e.composedPath)
+  // console.log(e.composedPath)
 
   // Iterate through each element in the event path (except the last two, which are always #document and Window), searching for the
   let path = e.path || (e.composedPath() && e.composedPath)
-  console.log(path)
+  // console.log(path)
   for(let i = 0; i < path.length - 2 ; i++) {
     const element = path[i]
       if(element.matches('li')) {
@@ -591,9 +597,9 @@ function displayBlathersOverlay(e) {
       }
   }
   let critterLiElementClasses = Array.from(critterLiElement.classList) // Grab classlist of the content item and convert that list into an array
-  console.log(critterLiElementClasses)
+  // console.log(critterLiElementClasses)
   const critterID = +critterLiElementClasses.pop() // Grab the last item from the classlist, which should be the fish ID num
-  console.log(critterID)
+  // console.log(critterID)
 
   switch(searchCategory) {
     case 'Fish': critterArray = allFish
