@@ -1,3 +1,8 @@
+<!-- ACNH DATABASE by ADAM MORSA
+twitter.com/ramblingadam
+github.com/ramblingadam 
+
+All code copyright Adam Morsa. All rights reserved. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,11 +32,15 @@
 	<div id="toTop"><a href="#"><i class="fa-solid fa-angle-up"></i></a></div>
 
 	<section class="blathersFullWindow blathersHidden blathersHiddenZ">
+	<!-- <section class="blathersFullWindow"> -->
 		<div class="blathersFullInnerWindow">
 			<h2 id="blathersFullCritterName" class="name">Bitterling</h2>
-			<img id="blathersFullCritterImg" class="bigFish" src="https://acnhapi.com/v1/images/fish/44">
+			<div id="blathersFullImgBox">
+				<img id="blathersFullCritterImg" class="bigFish" src="https://acnhapi.com/v1/images/fish/44">
+				<img class = "blathersFace" src="assets/blathers_book.png">
+			</div>
 			<p id="blathersFullCritterText">Bitterlings hide their eggs inside large bivalves—like clams—where the young can stay safe until grown. The bitterling isn't being sneaky. No, their young help keep the bivalve healthy by eating invading parasites! It's a wonderful bit of evolutionary deal making, don't you think? Each one keeping the other safe... Though eating parasites does not sound like a happy childhood... Is that why the fish is so bitter?</p>
-			<img class = "blathersFace" src="assets/blathers_book.png">
+			
 		</div>
 	</section>
 
@@ -41,6 +50,7 @@
 		<div class="logoBox">
 			<img class="logo" src="assets/NewHorizons_sm2.png">
 			<i id="musicToggle" class="fa-solid fa-volume-high"></i>
+			<a href="https://twitter.com/ramblingadam" target="_blank"><i id="twitter" class="fa-brands fa-twitter"></i></a>
 			<!-- TODO Now Playing Popup -->
 			<!-- <div class="nowPlayingBox">
 				<span class="nowPlayingHeader">Now Playing</span> <span class="nowPlayingSong">1AM, Rainy</span>
@@ -60,8 +70,8 @@
 			<ul>
 				<li id="btnVillagers">Villagers</li>
 				<li id="btnFish">Fish</li>
-				<li id="btnSea">Diving</li>
 				<li id="btnBugs">Bugs</li>
+				<li id="btnSea">Diving</li>
 				<!-- <li id="btnFossils">Fossils</li> -->
 				<!-- <li id="btnArt">Art</li> -->
 				<!-- <li id="btnSongs">Songs</li> -->
@@ -76,11 +86,10 @@
 	
 	<section class="content">
 		<div class="searchBox">
-		<!-- <h2 class="category">Villagers</h2> -->
-		<form>
-			<i id="hemisphereToggle" class="fa-solid fa-earth-americas"></i>
-			<input type="search" id="search" placeholder="Search name, species, personality, birthday...">
-		</form>
+			<form>
+				<i id="hemisphereToggle" class="fa-solid fa-earth-americas"></i>
+				<input type="search" id="search" placeholder="Search name, species, personality, birthday...">
+			</form>
 		</div>
 		<ul id="contentGrid">
 			<!-- ! villager demo -->

@@ -1,3 +1,9 @@
+// ACNH DATABASE by ADAM MORSA
+// twitter.com/ramblingadam
+// github.com/ramblingadam 
+
+// All code copyright Adam Morsa. All rights reserved.
+
 // ! --------------- GRAB HTML ELEMENTS --------------------
 // ? -------------- HEADER ELEMENTS ------------------
 // Grab audio element for BG Music
@@ -76,7 +82,7 @@ const monthCache = {
   11: 'November',
   12: 'December',
 }
-// Declare villager data storage
+// Declare local data storage
 let allVillagers
 let allFish
 let allSea
@@ -412,7 +418,7 @@ function displayFish(fishArray = allFish) {
     li.classList.add(`${fish.id}`) 
     
      // * CREATING FISH TILES
-     li.innerHTML = `<h2 class="name">${fish.name['name-USen']}</h2><h4 class="location">${fish.id === 80 ? 'Sea (Raining)' : fish.availability.location} • ${fish.availability.rarity}</h4><h4 class="months">${monthString}</h4><h4 class="time">${fish.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${fish['icon_uri']}"><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${fish.price}</p><p class="quote">${fish['catch-phrase']}</p>`
+     li.innerHTML = `<h2 class="name">${fish.name['name-USen']}</h2><h4 class="location">${fish.id === 80 ? 'Sea (Raining)' : fish.availability.location} • ${fish.availability.rarity}</h4><h4 class="months"><i class="fa-solid fa-calendar-days"></i> ${monthString}</h4><h4 class="time"><i class="fa-solid fa-clock"></i> ${fish.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${fish['icon_uri']}"><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${fish.price}</p><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p class="quote">${fish['catch-phrase']}</p>`
 
     // CREATING BLATHERS WINDOWS
    
@@ -482,7 +488,7 @@ function displaySea(seaArray = allSea) {
     li.classList.add(`${sea.id}`) 
     
      // * CREATING SEA TILES
-     li.innerHTML = `<h2 class="name">${sea.name['name-USen']}</h2><h4 class="location">${sea.shadow} Shadow • ${sea.speed}</h4><h4 class="months">${monthString}</h4><h4 class="time">${sea.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${sea['icon_uri']}"><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${sea.price}</p><p class="quote">${sea['catch-phrase']}</p>`
+     li.innerHTML = `<h2 class="name">${sea.name['name-USen']}</h2><h4 class="location">${sea.shadow} • ${sea.speed}</h4><h4 class="months"><i class="fa-solid fa-calendar-days"></i> ${monthString}</h4><h4 class="time"><i class="fa-solid fa-clock"></i> ${sea.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${sea['icon_uri']}"><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${sea.price}</p><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p class="quote">${sea['catch-phrase']}</p>`
 
     // CREATING BLATHERS WINDOWS
    
@@ -549,7 +555,7 @@ function displayBugs(bugArray = allBugs) {
     li.classList.add(`${bug.id}`) 
     
      // * CREATING BUG TILES
-     li.innerHTML = `<h2 class="name">${bug.name['name-USen']}</h2><h4 class="location">${bug.availability.location} • ${bug.availability.rarity}</h4><h4 class="months">${monthString}</h4><h4 class="time">${bug.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${bug['icon_uri']}"><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${bug.price}</p><p class="quote">${bug['catch-phrase']}</p>`
+     li.innerHTML = `<h2 class="name">${bug.name['name-USen']}</h2><h4 class="location">${bug.id === 4 ? 'Flying' : bug.availability.location} • ${bug.availability.rarity}</h4><h4 class="months"><i class="fa-solid fa-calendar-days"></i> ${monthString}</h4><h4 class="time"><i class="fa-solid fa-clock"></i> ${bug.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${bug['icon_uri']}"><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${bug.price}</p><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p class="quote">${bug['catch-phrase']}</p>`
 
     contentGrid.appendChild(li)
     // console.log('-----')
