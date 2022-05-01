@@ -2,6 +2,7 @@
 // twitter.com/ramblingadam
 // github.com/ramblingadam 
 
+// All images, audio, and data dispalyed by this project is copyright Nintendo.
 // All code copyright Adam Morsa. All rights reserved.
 
 // ! --------------- GRAB HTML ELEMENTS --------------------
@@ -62,8 +63,6 @@ searchBar.addEventListener('input', search)
 
 // Blathers Full Text - Hide when clicked
 blathersFullWindow.addEventListener('click', hideBlathersOverlay)
-// TODO Event listeners to DISPLAY the Blathers Overlay are in the displayFish function.
-
 
 // ! ---------------- GLOBAL VARIABLES --------------
 // Declare month reference cache. Fish, Diving, and Bugs will use this.
@@ -92,6 +91,7 @@ let searchCategory
 // Turn on music by default.
 let musicOn = true
 
+// Set default hemisphere.
 let hemisphere = 'northern'
 
 // Store current date to check birthdays and critter availability
@@ -117,11 +117,7 @@ setTimeout(musicSelection, 1200)
 
 
 
-// TODO BLATHERS HIDE FUNCTION
-function hideBlathersOverlay() {
-  blathersFullWindow.classList.add('blathersHidden')
-  setTimeout(blathersFullWindow.classList.add('blathersHiddenZ'), 600)
-}
+
 
 // ! ------------------- USER INTERFACE FUNCTIONS ----------------------
 // HEMISPHERE TOGGLE FUNCITON
@@ -169,10 +165,10 @@ function musicSelection() {
 // NOW PLAYING WINDOW UPDATE
 function displayCurrentMusic(hour, weather) {
   // console.log(hour, weather)
-  nowPlayingSong.innerText = `${hour}${+hour >= 0 && hour < 11 ? 'am' : 'pm'} - ${weather}`
+  nowPlayingSong.innerText = `${+hour === 0 ? '12' : +hour >= 13 ? +hour - 12 : +hour}${+hour >= 0 && hour < 11 ? 'am' : 'pm'} - ${weather}`
   nowPlayingBox.classList.remove('nowPlayingHidden')
   const hidePlayingBox = () => {nowPlayingBox.classList.add('nowPlayingHidden')}
-  setTimeout(hidePlayingBox, 3000)
+  setTimeout(hidePlayingBox, 5000)
 }
 // MUSIC TOGGLE FUNCTION
 function toggleMusic() {
@@ -571,13 +567,20 @@ function displayBugs(bugArray = allBugs) {
 }
 
 
+// !------------------------- BLATHERS OVERLAY --------------------------------
 
-// TODO BLATHERS OVERLAY FUNCTION MOVE ME
+
 // *Adds event listeners for Blathers overlay to all critters
 function addBlathersOverlayListeners() {
   document.querySelectorAll('#contentGrid li').forEach(critter => {
     critter.addEventListener('click', displayBlathersOverlay)
   })
+}
+
+// *Hide Blathers Overlay when overlay clicked on
+function hideBlathersOverlay() {
+  blathersFullWindow.classList.add('blathersHidden')
+  setTimeout(blathersFullWindow.classList.add('blathersHiddenZ'), 600)
 }
 
 // *Display Blathers overlay when critter item clicked

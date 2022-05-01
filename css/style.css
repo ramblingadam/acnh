@@ -2,6 +2,8 @@
 twitter.com/ramblingadam
 github.com/ramblingadam 
 
+All images, audio, and data dispalyed by this project is copyright Nintendo.
+
 All code copyright Adam Morsa. All rights reserved.*/
 
 /* Box Model Bugfixer */
@@ -153,7 +155,7 @@ header {
      overflow: hidden;
 }
 
-/* FLOATING BALLOON */
+/* ? --------------- FLOATING BALLOON --------------- */
 #balloon {
      position: absolute;
      top: 7%;
@@ -208,6 +210,14 @@ header {
 }
 
 
+/* ? -----------------SWIMMING PASCAL -------------- */
+
+#pascal {
+     position: absolute;
+     bottom: 25%;
+     animation: tinywiggle 3s linear infinite, float 40s linear infinite reverse;
+     z-index: 0
+}
 
 
 /* LOGO */
@@ -245,7 +255,7 @@ header {
 .nowPlayingBox {
      position: absolute;
      top: 6%;
-     left: 65%;
+     left: 67%;
      transform: translateX(-50%);
      white-space: nowrap;
 
@@ -269,11 +279,12 @@ header {
      transition: opacity 2s;
 }
 
+/* ! ------------------- SOCIAL BUTTONS ---------------- */
 /* Twitter Button */
 #twitter {
      position: absolute;
      right: -5%;
-     bottom: 5%;
+     bottom: 39%;
      font-size: 2rem;
      /* color: rgb(122, 84, 46); */
      color: rgb(255, 222, 113);
@@ -285,10 +296,42 @@ header {
 
 }
 
-#twitter:hover {
+#twitter:hover,
+#github:hover,
+#linkedin:hover {
      /* text-shadow: 0 0 10px rgba(255, 255, 255,1); */
      transition: .3s;
      animation: wiggle .5s linear infinite;
+}
+
+/* Github Button */
+#github {
+     position: absolute;
+     right: -5%;
+     bottom: 22%;
+     font-size: 2rem;
+     /* color: rgb(122, 84, 46); */
+     color: rgb(255, 222, 113);
+     /* text-shadow: 2px 2px 4px rgb(255, 209, 80); */
+     cursor: pointer;
+     /* transition: text-shadow .5s;  */
+     text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0);
+     /* text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0), 0 0 4px rgb(0,0,0); */
+}
+
+/* LinkedIn Button */
+#linkedin {
+     position: absolute;
+     right: -4.5%;
+     bottom: 5%;
+     font-size: 2rem;
+     /* color: rgb(122, 84, 46); */
+     color: rgb(255, 222, 113);
+     /* text-shadow: 2px 2px 4px rgb(255, 209, 80); */
+     cursor: pointer;
+     /* transition: text-shadow .5s;  */
+     text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0);
+     /* text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0), 0 0 4px rgb(0,0,0); */
 }
 
 
