@@ -2,8 +2,9 @@
 // twitter.com/ramblingadam
 // github.com/ramblingadam 
 
-// All images, audio, and data dispalyed by this project is copyright Nintendo.
-// All code copyright Adam Morsa. All rights reserved.
+// All fetched images, audio, and data displayed by this project are copyright Nintendo.
+
+// Copyright Adam Morsa. All rights reserved. The code for this project is licensed under the GNU GPL v2.0 License (https://github.com/ramblingadam/acnh/blob/main/LICENSE.md)
 
 // ! --------------- GRAB HTML ELEMENTS --------------------
 // ? -------------- HEADER ELEMENTS ------------------
