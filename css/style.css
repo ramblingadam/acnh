@@ -5,6 +5,51 @@ github.com/ramblingadam
 All fetched images, audio, and data displayed by this project are copyright Nintendo.
 
 Copyright Adam Morsa. All rights reserved. The code for this project is licensed under the GNU GPL v2.0 License (https://github.com/ramblingadam/acnh/blob/main/LICENSE.md)*/
+/* CSS RESET */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
 
 /* Box Model */
 * {
@@ -18,10 +63,10 @@ Copyright Adam Morsa. All rights reserved. The code for this project is licensed
      font-family: 'Fink Heavy';
      src: url('../assets/FinkHeavy.otf') format('opentype');
 }
-@font-face {
+/* @font-face {
      font-family: 'Adventure';
      src: url('../assets/Adventure.otf') format('opentype');
-}
+} */
 html {
      font-family: 'Source Sans Pro', sans-serif;
 }
@@ -90,6 +135,85 @@ border: 3px solid orange;
 /******************************************
 /* LAYOUT
 /*******************************************/
+/* Welcome Window */
+.welcomeWindowBG {
+     width: 100vw;
+     height: 100vh;
+     overflow: hidden;
+     background: rgba(0, 0, 0,.5);
+     position: absolute;
+     z-index: 10;
+     cursor: pointer;
+}
+
+.welcomeWindow {
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     transform: translate(-50%, -50%);
+     background: rgb(255, 222, 113);
+     border-radius: 10px;
+     width: 90%;
+     max-width: 70rem;
+     border: 2px dashed black;
+     padding-bottom: 2rem;;
+}
+
+
+.welcomeWindow h2 {
+     font-size: 3rem;
+     width: 100%;
+     text-align: center;
+     /* white-space: nowrap; */
+     background: rgba(255,255,255,.5);
+     border-radius: 10px 10px 0 0;
+     padding: 2rem 2rem .5rem 2rem;
+}
+
+.welcomeWindow span {
+     display: block;
+     text-align: center;
+     background: rgba(255, 255, 255,.5);
+     font-size: 1.3rem;
+     padding-bottom: 1rem;
+}
+
+.welcomeWindow h3:first-of-type {
+     text-align: center;
+}
+
+.welcomeWindow h3 {
+     font-size: 2rem;
+     font-family: 'Fink Heavy', serif;
+     margin-top: 1rem;
+}
+
+.welcomeWindow h3:not(:first-of-type),
+.welcomeWindow ul {
+     padding-left: 2rem;
+}
+
+.welcomeWindow ul {
+     font-size: 1.5rem;
+     list-style-type: disc;
+     margin-left: 2rem;
+}
+
+.welcomeWindow a {
+     transition: color .5s;
+}
+
+.welcomeWindow a:hover {
+     color: rgb(213, 75, 255);
+     transition: .3s;
+}
+
+em {
+     font-style: italic;
+}
+
+
+
 
 /* To Top Button */
 #toTop {   
@@ -591,17 +715,23 @@ form  {
 /* Special style applied if it is villager's birthday */
 .birthdayMonth {
      background: url(../assets/confetti.png), rgb(255, 222, 113);
-     background-size: 170%;
+     background-size: 120%;
+
 }
 
 .birthdayMonth .birthday {
      color: red;
      font-weight: bold;
+     text-shadow: 0 0 1px white, 0 0 2px white;;
 }
 
 .birthdayDay {
-     background: url(../assets/confetti.png), rgb(255, 255, 0);
+     /* background: url(../assets/confetti.png), rgb(255, 255, 0); */
+     background: url(../assets/confetti.png), radial-gradient(rgb(255, 244, 207), yellow),rgb(255, 222, 113);
+
      background-size: 170%;
+     border: 2px dashed yellow;
+
 }
 
 /* Villager Image Box - Img & Catchphrase Hover */
@@ -684,8 +814,8 @@ p.quote {
 /* ! ------------------------- FISH / CRITTERS---------------------- */
 /* Available In Current Month */
 .availableNow {
-     background: radial-gradient(rgb(255, 244, 207), orange),rgb(255, 222, 113);
-     border: 2px solid black;
+     background: radial-gradient(at center 60%, rgb(255, 244, 207), orange),rgb(255, 222, 113);
+     border: 2px dashed yellow;
 }
 
 /* Location */

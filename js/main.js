@@ -7,6 +7,8 @@
 // Copyright Adam Morsa. All rights reserved. The code for this project is licensed under the GNU GPL v2.0 License (https://github.com/ramblingadam/acnh/blob/main/LICENSE.md)
 
 // ! --------------- GRAB HTML ELEMENTS --------------------
+// ? -------------- WELCOME SCREEN ------------------
+const welcomeScreen = document.querySelector('.welcomeWindowBG')
 // ? -------------- HEADER ELEMENTS ------------------
 // Grab audio element for BG Music
 const bgAudio = document.querySelector('#bgMusic')
@@ -46,6 +48,8 @@ const blathersFullCritterImg = document.querySelector('#blathersFullCritterImg')
 const blathersFullCritterText = document.querySelector('#blathersFullCritterText')
 
 // ! ----------------- EVENT LISTENERS ---------------
+// ? ------------ Welcome Screen -------------
+welcomeScreen.addEventListener('click', hideWelcome)
 // ? ------------ Header UI -------------
 // Music Toggle
 musicToggle.addEventListener('click', toggleMusic)
@@ -109,18 +113,19 @@ setTimeout(getSea, 750)
 setTimeout(getBugs, 1000)
 
 // Play music.
-setTimeout(musicSelection, 1200)
-
-
-// ! ------------------ INITIALIZATION --------------------
-
-
-
-
-
+// setTimeout(musicSelection, 1200)
 
 
 // ! ------------------- USER INTERFACE FUNCTIONS ----------------------
+// ? ---------------- HIDE WELCOME SCREEN --------------
+function hideWelcome() {
+  welcomeScreen.classList.add('blathersHidden')
+  setTimeout(welcomeScreen.classList.add('blathersHiddenZ') , 600)
+  // ! PLAY MUSIC
+  musicSelection()
+}
+
+
 // HEMISPHERE TOGGLE FUNCITON
 function toggleHemisphere() {
   if(hemisphere === 'northern') {
@@ -128,13 +133,11 @@ function toggleHemisphere() {
     hemisphereToggle.classList.remove('fa-earth-americas')
     hemisphereToggle.classList.add('fa-earth-oceania')
     search()
-    // displayFish()
   } else {
     hemisphere = 'northern'
     hemisphereToggle.classList.remove('fa-earth-oceania')
     hemisphereToggle.classList.add('fa-earth-americas')
     search()
-    // displayFish()
   }
 }
 
@@ -171,6 +174,7 @@ function displayCurrentMusic(hour, weather) {
   const hidePlayingBox = () => {nowPlayingBox.classList.add('nowPlayingHidden')}
   setTimeout(hidePlayingBox, 5000)
 }
+
 // MUSIC TOGGLE FUNCTION
 function toggleMusic() {
   if(musicOn) {
