@@ -34,7 +34,6 @@ const btnBugs = document.querySelector('#btnBugs')
 
 // ? ------------ CONTENT GRID AREA ELEMENTS ----------------
 // Grab search bar
-const searchForm = document.querySelector('form')
 const searchBar = document.querySelector('#search')
 
 // Grab content grid
@@ -65,6 +64,7 @@ btnBugs.addEventListener('click', () => {displayBugs()})
 // ? -----------Content Grid Area UI --------------
 // Active search
 searchBar.addEventListener('input', search)
+searchBar.addEventListener('search', e => e.preventDefault)
 
 // Blathers Full Text - Hide when clicked
 blathersFullWindow.addEventListener('click', hideBlathersOverlay)
