@@ -16,7 +16,7 @@ A responsive web app designed to assist and delight players of the popular Ninte
 - Critters that are currently available to catch are automagically highlighted.
 - Toggle your hemisphere by pressing the globe icon next to the search bar.
 - Easily see the sell price and time available of every critter at a glance.
-- Click on a critter to read the full speech given by museum curator Blathers when that critter is donated- **_whevever you like!_**
+- Click on a critter to read the full speech given by museum curator Blathers when that critter is donated- **_whenever you like!_**
 
 ## Ambience
 - Enjoy the soothing soundtrack of _AC:NH_ as you browse the database. The track played syncs up to your local time for the authentic Animal Crossing experience.
