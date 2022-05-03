@@ -1,6 +1,9 @@
 # New Horizons Database Browser
 
-A responsive web app designed to assist players of the popular Nintendo game _Animal Crossing: New Horizons_.
+A responsive web app designed to assist and delight players of the popular Nintendo game _Animal Crossing: New Horizons_.
+
+### [**Click here to check it out!**](https://acnh-browser.netlify.app/)
+![chrome_JRETOu1xcO](https://user-images.githubusercontent.com/96756923/166129214-60670002-0fbc-428f-a1e9-1be668463bcb.png)
 
 
 # Features
@@ -22,7 +25,7 @@ A responsive web app designed to assist players of the popular Nintendo game _An
 
 #### Note: This project does not yet include the new villagers added in the v2.0 update.
 
-![chrome_JRETOu1xcO](https://user-images.githubusercontent.com/96756923/166129214-60670002-0fbc-428f-a1e9-1be668463bcb.png)
+
 
 
 # Usage
