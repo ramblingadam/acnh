@@ -141,7 +141,7 @@ border: 3px solid orange;
      height: 100vh;
      overflow: hidden;
      background: rgba(0, 0, 0,.5);
-     position: absolute;
+     position: fixed;
      z-index: 10;
      cursor: pointer;
 }
@@ -503,6 +503,7 @@ nav li {
      padding: 1rem;
      text-decoration: none;
      color: rgb(95, 38, 112);
+     /* color: rgb(38, 58, 112); */
      /* color: rgb(255, 222, 113); */
      /* border: 1px solid rgb(162, 107, 56); */
      /* min-width: 10rem; */
@@ -514,6 +515,7 @@ nav li {
 nav li:hover {
      cursor: pointer;
      color: rgb(213, 75, 255);
+     /* color: rgb(102, 75, 255); */
      /* text-shadow: -2px 2px 5px rgba(0,0,0,1); */
      text-shadow: 0 0 5px white;
 
@@ -522,6 +524,7 @@ nav li:hover {
 
 .currentCategory {
      color: rgb(213, 75, 255);
+     /* color: rgb(102, 75, 255); */
      text-shadow: 0 0 10px rgb(255, 255, 255);
 }
 
