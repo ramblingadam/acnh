@@ -9,19 +9,20 @@ A responsive web app designed to assist and delight players of the popular Ninte
 ## Villagers
 - Search villagers by name, species, personality, or birthday.
 - Enjoy discovering each villager's personal quote and catchphrase.
-- Note: Due to a lack of updates on the API being used, this project does not _currently_ display the 16 new villagers added in the v2.0 update. I'm looking into addressing this, when I can.
+- Note: Due to a lack of recent API updates, this project does not currently display the 16 new villagers added in the v2.0 update. I'm looking into addressing this, when I can.
 
 ## Critters
 - Search bugs, fish, and sea creatures by species, location, rarity, or month available.
+- Critters that are currently available to catch are automagically highlighted.
 - Toggle your hemisphere by pressing the globe icon next to the search bar.
 - Easily see the sell price and time available of every critter at a glance.
 - Click on a critter to read the full speech given by museum curator Blathers when that critter is donated- **_whevever you like!_**
 
 ## Ambience
-- Enjoy the soothing soundtrack of _AC:NH_ live as you browse the database. The track played syncs up to your local time for the authentic Animal Crossing experience.
+- Enjoy the soothing soundtrack of _AC:NH_ as you browse the database. The track played syncs up to your local time for the authentic Animal Crossing experience.
 
-## More...?
-- Coming soon! Follow me on [twitter](https://twitter.com/ramblingadam) for updates on this and my other fun projects!
+## More to come...?
+- Maybe! Follow me on [Twitter](https://twitter.com/ramblingadam) for updates on this and my other fun projects!
 
 # Usage
 The code for this project is licensed under the [GNU GPL v2.0 License](https://github.com/ramblingadam/acnh/blob/main/LICENSE.md).
