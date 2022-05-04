@@ -56,10 +56,26 @@ musicToggle.addEventListener('click', toggleMusic)
 hemisphereToggle.addEventListener('click', toggleHemisphere)
 
 // Main Menu Buttons
-btnVillagers.addEventListener('click', () => {displayVillagers()})
-btnFish.addEventListener('click', () => {displayFish()})
-btnSea.addEventListener('click', () => {displaySea()})
-btnBugs.addEventListener('click', () => {displayBugs()})
+// btnVillagers.addEventListener('click', () => {displayVillagers()})
+btnVillagers.addEventListener('click', () => {
+  updateCategory('Villagers')
+  displayVillagers()
+})
+// btnFish.addEventListener('click', () => {displayFish()})
+btnFish.addEventListener('click', () => {
+  updateCategory('Fish')
+  displayFish()
+})
+// btnSea.addEventListener('click', () => {displaySea()})
+btnSea.addEventListener('click', () => {
+  updateCategory('Sea')
+  displaySea()
+})
+// btnBugs.addEventListener('click', () => {displayBugs()})
+btnBugs.addEventListener('click', () => {
+  updateCategory('Bugs')
+  displayBugs()
+})
 
 // ? -----------Content Grid Area UI --------------
 // Active search
@@ -250,7 +266,7 @@ function search(e) {
 
 
 
-// UPDATE CURRENT CATEGORY
+// ! ------------------- UPDATE CURRENT CATEGORY-------------------
 function updateCategory(category) {
   btnList.forEach(btn => {
     if(btn.matches(`#btn${category}`)) {
@@ -262,7 +278,7 @@ function updateCategory(category) {
     }
   })
   searchCategory = category
-  // console.log('we in here')
+  console.log('we in here')
   // searchBar.value = ''
 }
 
@@ -298,6 +314,8 @@ function updateSearchBar(category) {
     })
     searchBar.classList.add(category.toLowerCase())
   }
+  searchBar.value = ''
+
 }
 
 //  CLEAR CONTENT GRID
@@ -328,7 +346,7 @@ function getVillagers() {
 
 // DISPLAY VILLAGERS
 function displayVillagers(villagerArray = allVillagers) {
-  updateCategory('Villagers')
+  // updateCategory('Villagers')
   clearGrid()
   villagerArray.forEach(villager => {
     const li = document.createElement('li')
@@ -386,7 +404,7 @@ function getFish() {
 
 // DISPLAY FISH
 function displayFish(fishArray = allFish) {
-  updateCategory('Fish')
+  // updateCategory('Fish')
   clearGrid()
   fishArray.forEach(fish => {
     const li = document.createElement('li')
@@ -456,7 +474,7 @@ function getSea() {
 })
 }
 function displaySea(seaArray = allSea) {
-  updateCategory('Sea')
+  // updateCategory('Sea')
   clearGrid()
   seaArray.forEach(sea => {
     const li = document.createElement('li')
@@ -523,7 +541,7 @@ function getBugs() {
 })
 }
 function displayBugs(bugArray = allBugs) {
-  updateCategory('Bugs')
+  // updateCategory('Bugs')
   clearGrid()
   bugArray.forEach(bug => {
     const li = document.createElement('li')
