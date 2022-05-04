@@ -28,7 +28,7 @@ const btnVillagers = document.querySelector('#btnVillagers')
 const btnFish = document.querySelector('#btnFish')
 const btnSea = document.querySelector('#btnSea')
 const btnBugs = document.querySelector('#btnBugs')
-// const btnFossils = document.querySelector('#btnFossils')
+const btnFossils = document.querySelector('#btnFossils')
 // const btnArt = document.querySelector('#btnArt')
 // const btnSongs = document.querySelector('#btnSongs')
 
@@ -76,6 +76,10 @@ btnBugs.addEventListener('click', () => {
   updateCategory('Bugs')
   displayBugs()
 })
+btnFossils.addEventListener('click', () => {
+  updateCategory('Fossils')
+  displayFossils()
+})
 
 // ? -----------Content Grid Area UI --------------
 // Active search
@@ -106,6 +110,7 @@ let allVillagers
 let allFish
 let allSea
 let allBugs
+let allFossils
 
 let searchCategory
 
@@ -124,9 +129,10 @@ let now = new Date()
 getVillagers()
 
 // Grab fish data.
-setTimeout(getFish, 500)
-setTimeout(getSea, 750)
-setTimeout(getBugs, 1000)
+setTimeout(getFish, 200)
+setTimeout(getSea, 400)
+setTimeout(getBugs, 600)
+setTimeout(getFossils, 800)
 
 // Play music.
 // setTimeout(musicSelection, 1200)
@@ -224,7 +230,7 @@ function search(e) {
 
     const filtered = allFish.filter(fish => {
 
-      fishMonths = buildFishMonthString(fish)
+      fishMonths = buildCritterMonthString(fish)
 
       if(fish.name['name-USen'].toLowerCase().includes(searchString)
       || fish.availability.location.toLowerCase().includes(searchString)
@@ -238,7 +244,7 @@ function search(e) {
 
     const filtered = allSea.filter(sea => {
 
-      seaMonths = buildFishMonthString(sea)
+      seaMonths = buildCritterMonthString(sea)
 
       if(sea.name['name-USen'].toLowerCase().includes(searchString)
       || sea.shadow.toLowerCase().includes(searchString)
@@ -252,7 +258,7 @@ function search(e) {
 
     const filtered = allBugs.filter(bug => {
 
-      bugMonths = buildFishMonthString(bug)
+      bugMonths = buildCritterMonthString(bug)
 
       if(bug.name['name-USen'].toLowerCase().includes(searchString)
       || bug.availability.location.toLowerCase().includes(searchString)
@@ -346,7 +352,6 @@ function getVillagers() {
 
 // DISPLAY VILLAGERS
 function displayVillagers(villagerArray = allVillagers) {
-  // updateCategory('Villagers')
   clearGrid()
   villagerArray.forEach(villager => {
     const li = document.createElement('li')
@@ -404,7 +409,6 @@ function getFish() {
 
 // DISPLAY FISH
 function displayFish(fishArray = allFish) {
-  // updateCategory('Fish')
   clearGrid()
   fishArray.forEach(fish => {
     const li = document.createElement('li')
@@ -437,7 +441,7 @@ function displayFish(fishArray = allFish) {
 
 
     // Add .availableNow class if available in current month, for highlight
-    if(buildFishMonthString(fish).includes(monthCache[now.getMonth() + 1])) {
+    if(buildCritterMonthString(fish).includes(monthCache[now.getMonth() + 1])) {
       li.classList.add('availableNow')
     }
 
@@ -474,7 +478,6 @@ function getSea() {
 })
 }
 function displaySea(seaArray = allSea) {
-  // updateCategory('Sea')
   clearGrid()
   seaArray.forEach(sea => {
     const li = document.createElement('li')
@@ -507,7 +510,7 @@ function displaySea(seaArray = allSea) {
 
 
     // Add .availableNow class if available in current month, for highlight
-    if(buildFishMonthString(sea).includes(monthCache[now.getMonth() + 1])) {
+    if(buildCritterMonthString(sea).includes(monthCache[now.getMonth() + 1])) {
       li.classList.add('availableNow')
     }
 
@@ -541,7 +544,6 @@ function getBugs() {
 })
 }
 function displayBugs(bugArray = allBugs) {
-  // updateCategory('Bugs')
   clearGrid()
   bugArray.forEach(bug => {
     const li = document.createElement('li')
@@ -572,7 +574,7 @@ function displayBugs(bugArray = allBugs) {
 
 
     // Add .availableNow class if available in current month, for highlight
-    if(buildFishMonthString(bug).includes(monthCache[now.getMonth() + 1])) {
+    if(buildCritterMonthString(bug).includes(monthCache[now.getMonth() + 1])) {
       li.classList.add('availableNow')
     }
 
@@ -581,6 +583,47 @@ function displayBugs(bugArray = allBugs) {
     
      // * CREATING BUG TILES
      li.innerHTML = `<h2 class="name">${bug.name['name-USen']}</h2><h4 class="location">${bug.id === 4 ? 'Flying' : bug.availability.location} • ${bug.availability.rarity}</h4><h4 class="months"><i class="fa-solid fa-calendar-days"></i> ${monthString}</h4><h4 class="time"><i class="fa-solid fa-clock"></i> ${bug.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${bug['icon_uri']}"><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${bug.price}</p><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p class="quote">${bug['catch-phrase']}</p>`
+
+    contentGrid.appendChild(li)
+
+  })
+  // Add Blathers Overlay Listeners
+  addBlathersOverlayListeners()
+}
+
+// !-------------------------- FOSSILS -----------------------
+function getFossils() {
+  fetch(`https://acnhapi.com/v1a/fossils/`)
+  .then(res => res.json())
+  .then(data => {
+    // console.log(data)
+    allFossils = data  
+  })
+  .catch(err => {
+    console.log(`error ${err}`)
+})
+}
+function displayFossils(fossilArray = allFossils) {
+  clearGrid()
+  fossilArray.forEach(fossil => {
+    const li = document.createElement('li')
+
+    li.classList.add('contentItem')
+    li.classList.add('fossil')   
+  
+    // Create museum string preview
+    museumString = fossil['museum-phrase']
+    museumStringArray = museumString.split(' ')
+    museumStringArray.length = 5
+    museumStringPreview = museumStringArray.join(' ') + '...'
+
+
+
+    // Add fossil.id class so Blathers overlay can find and display the right info
+    li.classList.add(`${fossil['file-name']}`) 
+    
+     // * CREATING FOSSIL TILES
+     li.innerHTML = `<h2 class="name">${fossil.name['name-USen']}</h2><div class="critterImgBox"><img src="${fossil['image_uri']}"><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${fossil.price}</p><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div>`
 
     contentGrid.appendChild(li)
 
@@ -625,8 +668,8 @@ function displayBlathersOverlay(e) {
   }
   let critterLiElementClasses = Array.from(critterLiElement.classList) // Grab classlist of the content item and convert that list into an array
   // console.log(critterLiElementClasses)
-  const critterID = +critterLiElementClasses.pop() // Grab the last item from the classlist, which should be the fish ID num
-  // console.log(critterID)
+  const critterID = searchCategory === 'Fossils' ? critterLiElementClasses.pop() : +critterLiElementClasses.pop() // Grab the last item from the classlist, which should be the fish ID num- unless we're looking at fossils
+  console.log(critterID)
 
   switch(searchCategory) {
     case 'Fish': critterArray = allFish
@@ -635,14 +678,14 @@ function displayBlathersOverlay(e) {
     break
     case 'Bugs': critterArray = allBugs
     break
-    // case 'Fossils': critterArray = allFish
-    // break
+    case 'Fossils': critterArray = allFossils
+    break
     // case 'Art': critterArray = allFish
     // break
   }
 
-  const currentCritter = critterArray[critterID - 1]
-  // console.log(currentCritter)
+  const currentCritter = searchCategory === 'Fossils' ? critterArray[critterArray.indexOf(critterArray.find(fossil => fossil['file-name'] === critterID))] : critterArray[critterID - 1]
+  console.log(currentCritter)
 
   // console.log(critterLiElement)
   // Update information in Blathers overlay
@@ -657,7 +700,7 @@ function displayBlathersOverlay(e) {
 }
 
 // * HELPER FUNCTION - BUILD CRITTER MONTH STRING
-function buildFishMonthString(fish) {
+function buildCritterMonthString(fish) {
   let fishMonths = []
   if(fish.availability.isAllYear === true) {
     for(let key in monthCache) fishMonths.push(monthCache[key])
