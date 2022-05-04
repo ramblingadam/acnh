@@ -611,13 +611,14 @@ function displayBlathersOverlay(e) {
 
   let critterLiElement
 
-  // console.log(e.composedPath)
+  // console.log(e.composedPath())
 
   // Iterate through each element in the event path (except the last two, which are always #document and Window), searching for the
-  let path = e.path || (e.composedPath() && e.composedPath)
+  let path = e.path || (e.composedPath())
   // console.log(path)
   for(let i = 0; i < path.length - 2 ; i++) {
     const element = path[i]
+    // console.log(element)
       if(element.matches('li')) {
         critterLiElement = element
       }
