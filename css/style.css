@@ -319,7 +319,7 @@ header {
      top: 7%;
      /* animation: sway 5s linear infinite, float 60s linear infinite alternate both; */
      animation: sway 5s linear infinite, float-delay 120s linear infinite alternate both;
-     z-index: 1
+     z-index: 2
 }
 
 @media all and (min-width: 1200px) {
@@ -348,6 +348,37 @@ header {
      z-index: 0
 }
 
+
+/* ? ---------------------- CHARACTER SPY ----------------- */
+#spy {
+     position: absolute;
+     z-index: -1;
+     top: 25%;
+     left: 20%;
+     width: 5rem;
+     transform: rotate(-8deg);
+     /* animation: hideandseek 5s ease; */
+}
+
+.peekaboo {
+     animation: hideandseek 5s ease;
+}
+
+@keyframes hideandseek {
+     0% {
+          top: 25%;
+          left: 20%;
+     }
+     25%,75% {
+          top: 0%;
+          left: 15%;
+     }
+     100% {
+          top: 25%;
+          left: 20%;
+     }
+
+}
 
 /* ? ---------------------- WEATHER EFFECTS ------------------ */
 hr {
@@ -462,11 +493,12 @@ hr {
 /* LOGO */
 .logoBox {
      position: relative;
+     z-index: 1;
 }
 .logo {
      max-height: 15rem;
      margin: .5rem;
-     /* z-index: 1; */
+     z-index: 1;
 }
 
 /* ! ------- MUSIC, WEATHER, VOLUME BUTTONS -------- */
@@ -496,7 +528,7 @@ hr {
 /* Now Playing Popup */
 .nowPlayingBox {
      position: absolute;
-     top: 10%;
+     bottom: 5%;
      left: 50%;
      transform: translateX(-50%);
      white-space: nowrap;

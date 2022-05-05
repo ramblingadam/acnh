@@ -134,9 +134,10 @@ let now = new Date()
 
 // ! --------------- RUN INITIAL FUNCTIONS -------------
 // Start by loading villagers by default.
+getMusic()
 getVillagers()
 updateCategory('Villagers')
-getMusic()
+
 
 // Fetch data for other categories.
 setTimeout(getFish, 150)
@@ -185,7 +186,7 @@ function getMusic() {
   fetch(`https://acnhapi.com/v1/backgroundmusic/`)
   .then(res => res.json())
   .then(data => {
-      console.log(data)
+      // console.log(data)
       allMusic = data
       music.getCurrentTrack()
   })
@@ -227,7 +228,7 @@ const music = {
   play() {
     switch(weather) {
       case 'Sunny':
-        console.log('sunny music?')
+        // console.log('sunny music?')
         document.querySelector('#sunnyAudio').play()
         document.querySelector('#rainyAudio').pause()
 
@@ -254,7 +255,7 @@ function displayCurrentMusic(hour, weather) {
   nowPlayingSong.innerText = `${+hour === 0 ? '12' : +hour >= 13 ? +hour - 12 : +hour}${+hour >= 0 && hour < 11 ? 'am' : 'pm'} - ${weather}`
   nowPlayingBox.classList.remove('nowPlayingHidden')
   const hidePlayingBox = () => {nowPlayingBox.classList.add('nowPlayingHidden')}
-  setTimeout(hidePlayingBox, 5000)
+  setTimeout(hidePlayingBox, 4000)
 }
 
 // MUSIC TOGGLE FUNCTION
@@ -275,7 +276,7 @@ function toggleMusic() {
 // ? ------------------- WEATHER EFFECTS ------------------
 const weatherBtn = document.querySelector('#weatherBtn')
 weatherBtn.addEventListener('click', () => {
-  console.log('we clickin')
+  // console.log('we clickin')
   weather === 'Sunny' ? rain.start() : rain.stop()
 })
 const rain = {
@@ -315,6 +316,45 @@ const rain = {
   }
 }
 
+// ? -------------------- RANDOM CHARACTER SPY ------------------
+let charArray = ['celeste', 'isabelle', 'kicks', 'kk', 'kkdj', 'label', 'mable', 'sable', 'nooklings', 'sable', 'tom', 'sahara', 'gulliver']
+function shuffle(array) {
+  var m = array.length, t, i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array;
+}
+
+charArray = shuffle(charArray)
+// console.log(charArray)
+charArrayIndex = 0
+// peekaboo()
+setInterval(peekaboo, 25000)
+
+function peekaboo() {
+  // console.log('peekaboo?', 'index', charArrayIndex, charArray[charArrayIndex])
+  const spy = document.querySelector('#spy')
+  spy.src = `assets/char_${charArray[charArrayIndex]}.png`
+  if(charArrayIndex < charArray.length - 1) {
+    charArrayIndex += 1
+  } else charArrayIndex = 0
+  spy.classList.add('peekaboo')
+  spy.addEventListener('animationend', removePeekaboo)
+}
+function removePeekaboo() {
+  document.querySelector('#spy').classList.remove('peekaboo')
+}
 
 // ACTIVE SEARCH FUNCTION
 function search(e) {
@@ -401,8 +441,6 @@ function updateCategory(category) {
     }
   })
   searchCategory = category
-  console.log('we in here')
-  // searchBar.value = ''
 }
 
 // UPDATE SEARCHBAR TO CURRENT CATEGORY
@@ -845,7 +883,7 @@ function displayBlathersOverlay(e) {
   let critterLiElementClasses = Array.from(critterLiElement.classList) // Grab classlist of the content item and convert that list into an array
   // console.log(critterLiElementClasses)
   const critterID = searchCategory === 'Fossils' ? critterLiElementClasses.pop() : +critterLiElementClasses.pop() // Grab the last item from the classlist, which should be the fish ID num- unless we're looking at fossils
-  console.log(critterID)
+  // console.log(critterID)
 
   switch(searchCategory) {
     case 'Fish': critterArray = allFish
@@ -861,7 +899,7 @@ function displayBlathersOverlay(e) {
   }
 
   const currentCritter = searchCategory === 'Fossils' ? critterArray[critterArray.indexOf(critterArray.find(fossil => fossil['file-name'] === critterID))] : critterArray[critterID - 1]
-  console.log(currentCritter)
+  // console.log(currentCritter)
 
   // console.log(critterLiElement)
   // Update information in Blathers overlay
