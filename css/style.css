@@ -528,6 +528,8 @@ nav li:hover {
      text-shadow: 0 0 10px rgb(255, 255, 255);
 }
 
+
+
 /* TODO Hamburger Menu */
 @media all and (max-width: 580px) {
      /* nav ul { */
@@ -957,10 +959,12 @@ p.quote {
 
 #blathersFullImgBox {
      position: relative;
+     width: 100%;
 }
 .bigFish {
-     max-width: 100%;
+     width: 100%;
      padding: 0 1.5rem 0 1.5rem;
+     
 }
 
 .blathersFullInnerWindow p {
