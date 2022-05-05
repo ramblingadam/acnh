@@ -469,11 +469,14 @@ hr {
      /* z-index: 1; */
 }
 
+/* ! ------- MUSIC, WEATHER, VOLUME BUTTONS -------- */
 /** Music Toggle Button */
 #musicToggle {
      position: absolute;
-     left: 20%;
-     top: 10%;
+     /* left: 20%; */
+     /* top: 10%; */
+     bottom: 39%;
+     left: -6%;
      font-size: 2rem;
      /* color: rgb(122, 84, 46); */
      color: rgb(255, 222, 113);
@@ -493,8 +496,8 @@ hr {
 /* Now Playing Popup */
 .nowPlayingBox {
      position: absolute;
-     top: 6%;
-     left: 67%;
+     top: 10%;
+     left: 50%;
      transform: translateX(-50%);
      white-space: nowrap;
 
@@ -521,8 +524,21 @@ hr {
 /* Weather Button */
 #weatherBtn {
      position: absolute;
-     left: 5%;
-     top: 10%;
+     /* left: 5%; */
+     /* top: 13%; */
+     bottom: 22%;
+     left: -6%;
+     font-size: 2rem;
+     color: rgb(255, 222, 113);
+     cursor: pointer;
+     text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0);
+}
+
+/* Info Button */
+#infoBtn {
+     position: absolute;
+     left: -6%;
+     bottom: 5%;
      font-size: 2rem;
      color: rgb(255, 222, 113);
      cursor: pointer;
@@ -550,6 +566,7 @@ hr {
 #github:hover,
 #linkedin:hover,
 #weatherBtn:hover,
+#infoBtn:hover,
 nav li:hover img {
      /* text-shadow: 0 0 10px rgba(255, 255, 255,1); */
      /* transition: .3s; */
@@ -841,7 +858,7 @@ nav li:hover img {
      align-items: center;
 
      transition: transform .3s;
-     z-index: 0;
+     /* z-index: 3; */
 }
 
 @media all and (max-width: 435px) {

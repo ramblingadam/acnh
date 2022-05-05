@@ -278,7 +278,8 @@ const rain = {
     weatherBtn.classList.remove('fa-cloud-showers-heavy')
     weatherBtn.classList.add('fa-sun')
 
-    document.querySelector('header').classList.add('raining')
+    // document.querySelector('header').classList.add('raining')
+    document.querySelector('body').classList.add('raining')
 
     let hrElement;
     let counter = 100;
@@ -299,7 +300,8 @@ const rain = {
     weatherBtn.classList.add('fa-cloud-showers-heavy')
     weatherBtn.classList.remove('fa-sun')
 
-    document.querySelector('header').classList.remove('raining')
+    // document.querySelector('header').classList.remove('raining')
+    document.querySelector('body').classList.remove('raining')
 
     document.querySelectorAll('hr').forEach(raindrop => raindrop.remove())
 
