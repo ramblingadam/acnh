@@ -44,29 +44,40 @@ Copyright Adam Morsa. All rights reserved. The code for this project is licensed
 	<div id="toTop"><a href="#"><i class="fa-solid fa-angle-up"></i></a></div>
 	<section class="welcomeWindowBG">
 		<div class="welcomeWindow">
-			<h2>Welcome to the ACNH Database Browser!</h2>
+			<h2><img class="menuIcon" src="assets/icon_bug.png">Welcome to the ACNH Database!<img class="menuIcon" src="assets/icon_sea.png"></h2>
 			<span>A Fan Project by <a href="https://twitter.com/ramblingadam" target='_blank'>Adam Morsa</a></span>
-			<h3>- Features -</h3>
-			<h3>Villagers</h3>
+			<h3><img class="menuIcon" src="assets/icon_star.png">Features<img class="menuIcon" src="assets/icon_star.png"></h3>
+			<h3><img class="menuIcon" src="assets/icon_villager.png">Villagers</h3>
 			<ul>
-				<li>Search villagers by name, species, personality, or birthday.</li>
-				<li>Enjoy discovering each villager's personal quote and catchphrase.</li>
-				<li>Note: Due to a lack of recent API updates, this project does not currently display the 16 new villagers added in the v2.0 update. I'm looking into addressing this, when I can.</li>
+				<li>Search villagers by <em>name</em>, <em>species</em>, <em>personality</em>, or <em>birthday</em>.</li>
+				<li>Enjoy discovering each villager's <em>personal quote</em> and <em>catchphrase</em>.</li>
+				<li>Note: Due to a lack of recent API updates, this project does <em>not</em> currently display the 16 new villagers added in the v2.0 update. I'm looking into addressing this when I can.</li>
 			</ul>
-			<h3>Critters</h3>
+			<h3><img class="menuIcon" src="assets/icon_critters.png">Critters</h3>
 			<ul>
-				<li>Search bugs, fish, and sea creatures by species, location, rarity, or month available.</li>
-				<li>Critters that are currently available to catch are automagically highlighted.</li>
-				<li>Easily see the sell price and time available of every critter at a glance.</li>
-				<li>Click on a critter to read the full speech given by museum curator Blathers when that critter is donated- <em>whenever you like!</em></li>
+				<li>Search bugs, fish, and sea creatures by <em>species</em>, <em>location</em>, <em>rarity</em>, or <em>month available</em>.</li>
+				<li>Easily see the <em>sell price</em> and <em>time available</em> of every critter at a glance.</li>
+				<li>Critters that are currently available to catch are <em>automagically</em> highlighted.</li>
+				<li>Click on a critter to read the <em>full speech</em> given by museum curator <em>Blathers</em> when that critter is donated.</li>
 			</ul>
-			<h3>Ambience</h3>
+			<h3><img class="menuIcon" src="assets/icon_antiquities.png">Fossils & Art</h3>
 			<ul>
-				<li>Enjoy the soothing soundtrack of AC:NH as you browse the database. The track played syncs up to your local time for the authentic Animal Crossing experience.</li>
+				<li>Search fossils and art by <em>name</em>.</li>
+				<li>Click on a fossil to read the <em>full speech</em> given by museum curator <em>Blathers</em> when that fossil is donated.</li>
+				<li>Click on an art piece to read the <em>museum description</em>.</li>
+				<li>Note: There's more I want do with these sections, but am limited by the API. <em>May or may not</em> become much more awesome in the future.</li>
 			</ul>
-			<h3>More to come...?</h3>
+			<h3><img class="menuIcon" src="assets/icon_music.png"></i>Ambience</h3>
 			<ul>
-				<li>Maybe! Follow me on <a href="https://twitter.com/ramblingadam" target='_blank'>Twitter</a> for updates on this and my other fun projects!</li>
+				<li>Enjoy the <em>soothing</em> soundtrack of AC:NH as you browse the database. The track played <em>syncs up</em> to your local time for the <em>authentic</em> Animal Crossing experience.</li>
+				<li>Oh no, is the <em>2pm</em> music playing? Have no fear, toggle the music off with the <em>speaker button</em> at the top of the page.</li>
+				<li>Prefer the <em>rain</em> to the heat of the sun? So do I. Click the <em>weather</em> icon at the top to bring on the rain, and enjoy the accompanying rainy music track.</li>
+			</ul>
+			<h3><img class="menuIcon" src="assets/icon_present.png">More to come...?</h3>
+			<ul>
+				<li>Maybe! Follow me on <a href="https://twitter.com/ramblingadam" target='_blank'>Twitter</a> for updates on this and my other <em>fun</em> projects!</li>
+				<li><em>Thanks so much</em> for visiting! I hope you have as much fun playing with this app as I did building it!</li>
+				<li>Click or tap <em>anywhere</em> to get started!</li>
 			</ul>
 		</div>
 	</section>
@@ -89,28 +100,28 @@ Copyright Adam Morsa. All rights reserved. The code for this project is licensed
 	<header>
 		<img id="balloon" src="assets/balloon_sm.png">
 		<img id="pascal" src="assets/pascal_swim_sm.png">
-		<!-- <section class="headerLeft"> -->
+		<img id="seaplane" src="assets/seaplane_sm.png">
+		<!-- <div class="raindrop"></div> -->
 		<div class="logoBox">
-			<img class="logo" src="assets/headerImgCustom_sm.png">
-			<i id="musicToggle" class="fa-solid fa-volume-high"></i>
+			<img class="logo front" src="assets/headerImgCustom_sm.png">
+			<i id="musicToggle" class="fa-solid fa-volume-high front"></i>
 			<!-- <i id="musicToggle" class="fa-solid fa-volume-xmark"></i> -->
-			<!-- TODO Add Personal Links -->
-			<a href="https://twitter.com/ramblingadam" target="_blank"><i id="twitter" class="fa-brands fa-twitter"></i></a>
-			<a href="https://github.com/ramblingadam" target="_blank"><i id="github" class="fa-brands fa-github"></i></a>
-			<a href="https://www.linkedin.com/in/adam-morsa" target="_blank"><i id="linkedin" class="fa-brands fa-linkedin"></i></a>
+			<!-- TODO Weather Button -->
+			<i id="weatherBtn" class="fa-solid fa-cloud-showers-heavy front"></i>
+			<!-- <i id="weatherBtn" class="fa-solid fa-sun"></i> -->
+			<!-- TODO Personal Links -->
+			<a href="https://twitter.com/ramblingadam" target="_blank"><i id="twitter" class="fa-brands fa-twitter front"></i></a>
+			<a href="https://github.com/ramblingadam" target="_blank"><i id="github" class="fa-brands fa-github front"></i></a>
+			<a href="https://www.linkedin.com/in/adam-morsa" target="_blank"><i id="linkedin" class="fa-brands fa-linkedin front"></i></a>
 			<!-- TODO Now Playing Popup -->
-			<div class="nowPlayingBox nowPlayingHidden">
+			<div class="nowPlayingBox nowPlayingHidden front">
 				<p class="nowPlayingHeader"><i class="fa-solid fa-music"></i> <span id="nowPlayingSong">1AM, Rainy</span></p>
 			</div>
 
 		</div>
-		<!-- Background Music -->
-		<audio id="bgMusic" src="" loop></audio>
-		
 
-
-		
-		<nav>
+	
+		<nav class="front">
 			<ul class="desktopMenu">
 				<li class="btnVillagers"><img class="menuIcon" src="assets/icon_villager.png">Villagers</li>
 				<li class="btnFish"><img class="menuIcon" src="assets/icon_fish.png">Fish</li>
@@ -126,7 +137,7 @@ Copyright Adam Morsa. All rights reserved. The code for this project is licensed
 				<li class="btnBugs"><img class="menuIcon" src="assets/icon_bug.png"></li>
 				<li class="btnSea"><img class="menuIcon" src="assets/icon_sea.png"></li>
 				<li class="btnFossils"><img class="menuIcon" src="assets/icon_fossil.png"></li>
-				<li class="btnArt"><img class="menuIcon" src="assets/icon_art.png"></li>
+				<li class="btnArt"><img class="menuIcon" src="assets/icon_art2.png"></li>
 				<!-- <li id="btnSongs">Songs</li> -->
 			</ul>
 		</nav>

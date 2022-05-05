@@ -11,7 +11,8 @@
 const welcomeScreen = document.querySelector('.welcomeWindowBG')
 // ? -------------- HEADER ELEMENTS ------------------
 // Grab audio element for BG Music
-const bgAudio = document.querySelector('#bgMusic')
+const bgAudioSunny = document.querySelector('#bgMusicSunny')
+const bgAudioRainy = document.querySelector('#bgMusicRainy')
 
 // Grab music toggle button
 const musicToggle = document.querySelector('#musicToggle')
@@ -56,7 +57,6 @@ musicToggle.addEventListener('click', toggleMusic)
 hemisphereToggle.addEventListener('click', toggleHemisphere)
 
 // Main Menu Buttons
-
 btnVillagers.forEach(btn => btn.addEventListener('click', () => {
   updateCategory('Villagers')
   displayVillagers()
@@ -115,6 +115,8 @@ let allSea
 let allBugs
 let allFossils
 let allArt
+let allMusic
+let weather = 'Sunny'
 
 let searchCategory
 
@@ -132,8 +134,9 @@ let now = new Date()
 // Start by loading villagers by default.
 getVillagers()
 updateCategory('Villagers')
+getMusic()
 
-// Grab fish data.
+// Fetch data for other categories.
 setTimeout(getFish, 150)
 setTimeout(getSea, 300)
 setTimeout(getBugs, 450)
@@ -150,7 +153,8 @@ function hideWelcome() {
   welcomeScreen.classList.add('blathersHidden')
   setTimeout(welcomeScreen.classList.add('blathersHiddenZ') , 600)
   // ! PLAY MUSIC
-  musicSelection()
+  // musicSelection()
+  music.play()
 }
 
 
@@ -170,27 +174,71 @@ function toggleHemisphere() {
 }
 
 // ? ----------------------- MUSIC -------------------
-//  HOURLY MUSIC SELECTION
-function musicSelection() {
-  let weather = 'Sunny'
-  let hour = String(now.getHours())
-  let shortHour = hour
-  if(hour.length === 1) hour = '0' + hour
-
+function getMusic() {
+  
   fetch(`https://acnhapi.com/v1/backgroundmusic/`)
   .then(res => res.json())
   .then(data => {
-      // console.log(data)
-      const musicData = data
-      const musicURI = musicData[`BGM_24Hour_${hour}_${weather}`]['music_uri']
-      bgAudio.src = musicURI
-      bgAudio.play()
-      bgAudio.addEventListener('playing', () => {displayCurrentMusic(shortHour, weather)})
-
+      console.log(data)
+      allMusic = data
+      music.getCurrentTrack()
   })
   .catch(err => {
       console.log(`error ${err}`)
   })
+}
+//  HOURLY MUSIC SELECTION
+const music = {
+  // ? ---- DETERMINE/PRELOAD CURRENT SUNNY & RAINY TRACKS -----
+  getCurrentTrack(musicData = allMusic) {
+    let hour = String(now.getHours())
+    this.shortHour = hour
+    if(hour.length === 1) hour = '0' + hour
+    // const musicURI = musicData[`BGM_24Hour_${hour}_${weather}`]['music_uri']
+    const musicSunnyURI = musicData[`BGM_24Hour_${hour}_Sunny`]['music_uri']
+    const musicRainyURI = musicData[`BGM_24Hour_${hour}_Rainy`]['music_uri']
+    // bgAudioSunny.src = musicSunnyURI
+    // bgAudioRainy.src = musicRainyURI
+    let sunnyAudio = document.createElement('audio')
+    sunnyAudio.src = musicSunnyURI
+    sunnyAudio.preload = 'auto'
+    sunnyAudio.loop = true
+    sunnyAudio.id = 'sunnyAudio'
+
+
+    let rainyAudio = document.createElement('audio')
+    rainyAudio.src = musicRainyURI
+    rainyAudio.preload = 'auto'
+    rainyAudio.loop = true
+    rainyAudio.id = 'rainyAudio'
+
+
+    document.body.appendChild(sunnyAudio)
+    document.body.appendChild(rainyAudio)
+
+  },
+
+  play() {
+    switch(weather) {
+      case 'Sunny':
+        console.log('sunny music?')
+        document.querySelector('#sunnyAudio').play()
+        document.querySelector('#rainyAudio').pause()
+
+        break
+      case 'Rainy':
+        document.querySelector('#sunnyAudio').pause()
+        document.querySelector('#rainyAudio').play()
+        break
+    }
+
+    document.querySelectorAll('audio').forEach(audio => audio.addEventListener('playing', () => {displayCurrentMusic(this.shortHour, weather)}))
+  },
+
+  pause() {
+    rainyAudio.pause()
+    sunnyAudio.pause()
+  }
 }
 
 
@@ -209,15 +257,56 @@ function toggleMusic() {
     musicOn = false
     musicToggle.classList.remove('fa-volume-high')
     musicToggle.classList.add('fa-volume-xmark')
-    bgAudio.pause()
+    music.pause()
   } else {
     musicOn = true
     musicToggle.classList.remove('fa-volume-xmark')
     musicToggle.classList.add('fa-volume-high')
-    bgAudio.play()
-    musicSelection()
+    music.play()
   }
 }
+
+// ? ------------------- WEATHER EFFECTS ------------------
+const weatherBtn = document.querySelector('#weatherBtn')
+weatherBtn.addEventListener('click', () => {
+  console.log('we clickin')
+  weather === 'Sunny' ? rain.start() : rain.stop()
+})
+const rain = {
+  start() {
+    weather = 'Rainy'
+    weatherBtn.classList.remove('fa-cloud-showers-heavy')
+    weatherBtn.classList.add('fa-sun')
+
+    document.querySelector('header').classList.add('raining')
+
+    let hrElement;
+    let counter = 100;
+    for (let i = 0; i < counter; i++) {
+      hrElement = document.createElement("hr");
+      
+      hrElement.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
+      hrElement.style.animationDuration = 1.6 + Math.random() * 0.3 + "s";
+      hrElement.style.animationDelay = Math.random() * 5 + "s";
+    
+      document.querySelector('header').appendChild(hrElement);
+    }
+    musicOn === true ? music.play() : null
+  },
+
+  stop() {
+    weather = 'Sunny'
+    weatherBtn.classList.add('fa-cloud-showers-heavy')
+    weatherBtn.classList.remove('fa-sun')
+
+    document.querySelector('header').classList.remove('raining')
+
+    document.querySelectorAll('hr').forEach(raindrop => raindrop.remove())
+
+    musicOn === true ? music.play() : null
+  }
+}
+
 
 // ACTIVE SEARCH FUNCTION
 function search(e) {
