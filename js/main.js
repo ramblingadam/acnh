@@ -16,6 +16,7 @@ const bgAudioRainy = document.querySelector('#bgMusicRainy')
 
 // Grab music toggle button
 const musicToggle = document.querySelector('#musicToggle')
+const infoBtn = document.querySelector('#infoBtn')
 // Grab now playing window
 const nowPlayingBox = document.querySelector('.nowPlayingBox')
 const nowPlayingSong = document.querySelector('#nowPlayingSong')
@@ -50,6 +51,7 @@ const blathersFullCritterText = document.querySelector('#blathersFullCritterText
 // ! ----------------- EVENT LISTENERS ---------------
 // ? ------------ Welcome Screen -------------
 welcomeScreen.addEventListener('click', hideWelcome)
+infoBtn.addEventListener('click', showWelcome)
 // ? ------------ Header UI -------------
 // Music Toggle
 musicToggle.addEventListener('click', toggleMusic)
@@ -154,7 +156,11 @@ function hideWelcome() {
   setTimeout(welcomeScreen.classList.add('blathersHiddenZ') , 600)
   // ! PLAY MUSIC
   // musicSelection()
-  music.play()
+  musicOn === true ? music.play() : null
+}
+function showWelcome() {
+  welcomeScreen.classList.remove('blathersHidden')
+  welcomeScreen.classList.remove('blathersHiddenZ')
 }
 
 
