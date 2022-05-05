@@ -272,7 +272,7 @@ header {
 #balloon {
      position: absolute;
      top: 7%;
-     animation: sway 5s linear infinite, float 60s linear infinite alternate;
+     animation: sway 5s linear infinite, float 60s linear infinite alternate both;
      z-index: 1
 }
 
@@ -328,7 +328,7 @@ header {
 #pascal {
      position: absolute;
      bottom: 25%;
-     animation: tinywiggle 3s linear infinite, float 50s linear 30s infinite reverse;
+     animation: tinywiggle 3s linear infinite, float 50s linear 30s infinite reverse both;
      z-index: 0
 }
 
@@ -500,16 +500,24 @@ nav ul {
 }
 
 nav li {
-     padding: 1rem;
+     padding: .7rem;
      text-decoration: none;
      color: rgb(95, 38, 112);
      /* color: rgb(38, 58, 112); */
      /* color: rgb(255, 222, 113); */
      /* border: 1px solid rgb(162, 107, 56); */
      /* min-width: 10rem; */
-     text-align: center;
+     /* text-align: center; */
+
+     display: flex;
+     align-items: center;
+     justify-content: center;
 
      transition: color .5s, text-shadow .5s;
+}
+
+nav li:last-of-type {
+     padding-right: 1rem;
 }
 
 nav li:hover {
@@ -522,13 +530,42 @@ nav li:hover {
      transition: color .5s, text-shadow .5s;
 }
 
-.currentCategory {
-     color: rgb(213, 75, 255);
-     /* color: rgb(102, 75, 255); */
-     text-shadow: 0 0 10px rgb(255, 255, 255);
+nav li:hover img {
+     filter: invert(43%) sepia(82%) saturate(3342%) hue-rotate(259deg) brightness(100%) contrast(102%);
+
+     /* This magic is courtesy of https://codepen.io/sosuke/pen/Pjoqqp */
+
+     /* transition: filter 1s; */
 }
 
+.currentCategory {
+     color: rgb(213, 75, 255);
+     /* color: rgb(48, 132, 138); */
+     text-shadow: 0 0 10px rgb(255, 255, 255);
+     
+}
 
+.currentCategory img {
+     filter: invert(43%) sepia(82%) saturate(3342%) hue-rotate(259deg) brightness(100%) contrast(102%);
+     
+}
+
+.menuIcon {
+     max-height: 3rem;
+}
+
+.mobileMenu {
+     display: none;
+}
+
+@media all and (max-width: 580px) {
+     .desktopMenu {
+          display: none;
+     }
+     .mobileMenu {
+          display: flex;
+     }
+}
 
 /* TODO Hamburger Menu */
 @media all and (max-width: 580px) {
@@ -871,7 +908,8 @@ p.quote {
 .contentItem.fish:hover,
 .contentItem.sea:hover,
 .contentItem.bug:hover,
-.contentItem.fossil:hover {
+.contentItem.fossil:hover,
+.contentItem.art:hover {
      cursor: pointer;
 }
 

@@ -24,12 +24,12 @@ const hemisphereToggle = document.querySelector('#hemisphereToggle')
 
 // * Grab main menu items
 const btnList = document.querySelectorAll('nav ul li')
-const btnVillagers = document.querySelector('#btnVillagers')
-const btnFish = document.querySelector('#btnFish')
-const btnSea = document.querySelector('#btnSea')
-const btnBugs = document.querySelector('#btnBugs')
-const btnFossils = document.querySelector('#btnFossils')
-// const btnArt = document.querySelector('#btnArt')
+const btnVillagers = document.querySelectorAll('.btnVillagers')
+const btnFish = document.querySelectorAll('.btnFish')
+const btnSea = document.querySelectorAll('.btnSea')
+const btnBugs = document.querySelectorAll('.btnBugs')
+const btnFossils = document.querySelectorAll('.btnFossils')
+const btnArt = document.querySelectorAll('.btnArt')
 // const btnSongs = document.querySelector('#btnSongs')
 
 // ? ------------ CONTENT GRID AREA ELEMENTS ----------------
@@ -56,30 +56,33 @@ musicToggle.addEventListener('click', toggleMusic)
 hemisphereToggle.addEventListener('click', toggleHemisphere)
 
 // Main Menu Buttons
-// btnVillagers.addEventListener('click', () => {displayVillagers()})
-btnVillagers.addEventListener('click', () => {
+
+btnVillagers.forEach(btn => btn.addEventListener('click', () => {
   updateCategory('Villagers')
   displayVillagers()
-})
-// btnFish.addEventListener('click', () => {displayFish()})
-btnFish.addEventListener('click', () => {
+}))
+
+btnFish.forEach(btn => btn.addEventListener('click', () => {
   updateCategory('Fish')
   displayFish()
-})
-// btnSea.addEventListener('click', () => {displaySea()})
-btnSea.addEventListener('click', () => {
+}))
+
+btnSea.forEach(btn => btn.addEventListener('click', () => {
   updateCategory('Sea')
   displaySea()
-})
-// btnBugs.addEventListener('click', () => {displayBugs()})
-btnBugs.addEventListener('click', () => {
+}))
+btnBugs.forEach(btn => btn.addEventListener('click', () => {
   updateCategory('Bugs')
   displayBugs()
-})
-btnFossils.addEventListener('click', () => {
+}))
+btnFossils.forEach(btn => btn.addEventListener('click', () => {
   updateCategory('Fossils')
   displayFossils()
-})
+}))
+btnArt.forEach(btn => btn.addEventListener('click', () => {
+  updateCategory('Art')
+  displayArt()
+}))
 
 // ? -----------Content Grid Area UI --------------
 // Active search
@@ -111,6 +114,7 @@ let allFish
 let allSea
 let allBugs
 let allFossils
+let allArt
 
 let searchCategory
 
@@ -127,12 +131,14 @@ let now = new Date()
 // ! --------------- RUN INITIAL FUNCTIONS -------------
 // Start by loading villagers by default.
 getVillagers()
+updateCategory('Villagers')
 
 // Grab fish data.
-setTimeout(getFish, 200)
-setTimeout(getSea, 400)
-setTimeout(getBugs, 600)
-setTimeout(getFossils, 800)
+setTimeout(getFish, 150)
+setTimeout(getSea, 300)
+setTimeout(getBugs, 450)
+setTimeout(getFossils, 600)
+setTimeout(getArt, 750)
 
 // Play music.
 // setTimeout(musicSelection, 1200)
@@ -268,6 +274,20 @@ function search(e) {
     })
     displayBugs(filtered)
   }
+  else if(searchCategory === 'Fossils') {
+
+    const filtered = allFossils.filter(fossil => {
+      if(fossil.name['name-USen'].toLowerCase().includes(searchString)) return true
+    })
+    displayFossils(filtered)
+  }
+  else if(searchCategory === 'Art') {
+
+    const filtered = allArt.filter(art => {
+      if(art.name['name-USen'].toLowerCase().includes(searchString)) return true
+    })
+    displayArt(filtered)
+  }
 }
 
 
@@ -275,7 +295,7 @@ function search(e) {
 // ! ------------------- UPDATE CURRENT CATEGORY-------------------
 function updateCategory(category) {
   btnList.forEach(btn => {
-    if(btn.matches(`#btn${category}`)) {
+    if(btn.matches(`.btn${category}`)) {
       btn.classList.add('currentCategory')
       updateSearchBar(category)
     }
@@ -315,6 +335,20 @@ function updateSearchBar(category) {
   }
   else if(category === 'Bugs') {
     searchBar.placeholder = 'Search species, location, rarity, month...'
+    categoryClasses.forEach(categoryClass => {
+      searchBar.classList.remove(categoryClass)
+    })
+    searchBar.classList.add(category.toLowerCase())
+  }
+  else if(category === 'Fossils') {
+    searchBar.placeholder = 'Search fossil name...'
+    categoryClasses.forEach(categoryClass => {
+      searchBar.classList.remove(categoryClass)
+    })
+    searchBar.classList.add(category.toLowerCase())
+  }
+  else if(category === 'Art') {
+    searchBar.placeholder = 'Search artwork name...'
     categoryClasses.forEach(categoryClass => {
       searchBar.classList.remove(categoryClass)
     })
@@ -633,6 +667,51 @@ function displayFossils(fossilArray = allFossils) {
 }
 
 
+
+// ! -------------------- WORKS OF ART ----------------------
+function getArt() {
+  fetch(`https://acnhapi.com/v1a/art/`)
+  .then(res => res.json())
+  .then(data => {
+    // console.log(data)
+    allArt = data  
+  })
+  .catch(err => {
+    console.log(`error ${err}`)
+})
+}
+function displayArt(artArray = allArt) {
+  clearGrid()
+  artArray.forEach(art => {
+    const li = document.createElement('li')
+
+    li.classList.add('contentItem')
+    li.classList.add('art')   
+  
+    // Create museum string preview
+    museumString = art['museum-desc']
+    museumStringArray = museumString.split(' ')
+    museumStringArray.length = 5
+    museumStringPreview = museumStringArray.join(' ') + '...'
+
+
+
+    // Add art.id class so Blathers overlay can find and display the right info
+    li.classList.add(`${art.id}`) 
+    
+     // * CREATING ART TILES
+     li.innerHTML = `<h2 class="name">${art.name['name-USen']}</h2><div class="critterImgBox"><img src="${art['image_uri']}"><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div>`
+
+    contentGrid.appendChild(li)
+
+  })
+  // Add Blathers Overlay Listeners
+  addBlathersOverlayListeners()
+}
+
+
+
+
 // !------------------------- BLATHERS OVERLAY --------------------------------
 
 
@@ -680,8 +759,8 @@ function displayBlathersOverlay(e) {
     break
     case 'Fossils': critterArray = allFossils
     break
-    // case 'Art': critterArray = allFish
-    // break
+    case 'Art': critterArray = allArt
+    break
   }
 
   const currentCritter = searchCategory === 'Fossils' ? critterArray[critterArray.indexOf(critterArray.find(fossil => fossil['file-name'] === critterID))] : critterArray[critterID - 1]
@@ -692,7 +771,7 @@ function displayBlathersOverlay(e) {
   blathersFullCritterImg.src = ''
   blathersFullCritterImg.src = currentCritter['image_uri']
   blathersFullCritterName.innerText = currentCritter.name['name-USen']
-  blathersFullCritterText.innerText = currentCritter['museum-phrase']
+  blathersFullCritterText.innerText = searchCategory === 'Art' ? currentCritter['museum-desc'] : currentCritter['museum-phrase']
 
   // Remove hidden classes to display Blathers overlay
   blathersFullWindow.classList.remove('blathersHiddenZ')
@@ -713,3 +792,4 @@ function buildCritterMonthString(fish) {
   fishMonths = fishMonths.join('')
   return fishMonths
 }
+
