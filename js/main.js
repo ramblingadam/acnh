@@ -355,7 +355,9 @@ function removePeekaboo() {
   document.querySelector('#spy').classList.remove('peekaboo')
 }
 
-// ACTIVE SEARCH FUNCTION
+
+
+// ! -------------------------- ACTIVE SEARCH ---------------------
 function search(e) {
   clearGrid()
   searchString = searchBar.value.toLowerCase()
