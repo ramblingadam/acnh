@@ -149,14 +149,19 @@ border: 3px solid orange;
 .welcomeWindow {
      position: absolute;
      left: 50%;
-     top: 50%;
-     transform: translate(-50%, -50%);
+     top: 5%;
+     transform: translate(-50%);
      background: rgb(255, 222, 113);
      border-radius: 10px;
      width: 90%;
      max-width: 70rem;
      border: 2px dashed black;
      padding-bottom: 2rem;
+     max-height: 90vh;
+     overflow-x: hidden;
+     overflow-y: auto;
+     scrollbar-gutter: auto;
+     
 }
 
 
@@ -720,7 +725,7 @@ nav li:hover {
      /* text-shadow: -2px 2px 5px rgba(0,0,0,1); */
      text-shadow: 0 0 5px white;
 
-     transition: color .5s, text-shadow .5s;
+     transition: color 0s, text-shadow .5s;
 }
 
 nav li:hover img {

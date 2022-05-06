@@ -339,7 +339,6 @@ function shuffle(array) {
 charArray = shuffle(charArray)
 // console.log(charArray)
 charArrayIndex = 0
-// peekaboo()
 setInterval(peekaboo, 25000)
 
 function peekaboo() {
