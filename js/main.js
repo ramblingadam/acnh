@@ -317,9 +317,9 @@ const rain = {
 }
 
 // ? -------------------- RANDOM CHARACTER SPY ------------------
-let charArray = ['celeste', 'isabelle', 'kicks', 'kk', 'kkdj', 'label', 'mable', 'sable', 'nooklings', 'sable', 'tom', 'sahara', 'gulliver']
+let charArray = ['blathers', 'booker', 'brewster', 'celeste', 'chip', 'cj', 'copper', 'cyrus', 'daisymae', 'digby', 'don', 'flick', 'franklin', 'gracie', 'grams', 'gulivaar', 'gulliver', 'harriet', 'harvey', 'isabelle', 'jack', 'jingle', 'joan', 'kappn', 'katie', 'katrina', 'kicks', 'kk', 'kkdj', 'label', 'leif', 'leila', 'leilani', 'lottie', 'luna', 'lyle', 'mable', 'nat', 'niko', 'nooklings', 'orville', 'pave', 'pelly', 'pete', 'phineas', 'phyllis', 'porter', 'redd', 'reese', 'resetti', 'rover', 'sable', 'sahara', 'shrunk', 'tom', 'tortimer', 'wardell', 'wendell', 'wilbur', 'wisp', 'zipper']
 function shuffle(array) {
-  var m = array.length, t, i;
+  let m = array.length, t, i;
 
   // While there remain elements to shuffle…
   while (m) {
