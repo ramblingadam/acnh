@@ -41,7 +41,6 @@ const searchBar = document.querySelector('#search')
 // Grab content grid
 const contentGrid = document.querySelector('#contentGrid')
 
-
 // ? ------------- BLATHERS FULL TEXT --------------------
 const blathersFullWindow = document.querySelector('.blathersFullWindow')
 const blathersFullCritterName = document.querySelector('#blathersFullCritterName')
@@ -131,7 +130,6 @@ let hemisphere = 'northern'
 // Store current date to check birthdays and critter availability
 let now = new Date()
 
-
 // ! --------------- RUN INITIAL FUNCTIONS -------------
 // Start by loading villagers by default.
 getMusic()
@@ -146,17 +144,12 @@ setTimeout(getBugs, 450)
 setTimeout(getFossils, 600)
 setTimeout(getArt, 750)
 
-// Play music.
-// setTimeout(musicSelection, 1200)
-
-
 // ! ------------------- USER INTERFACE FUNCTIONS ----------------------
 // ? ---------------- HIDE WELCOME SCREEN --------------
 function hideWelcome() {
   welcomeScreen.classList.add('blathersHidden')
   setTimeout(welcomeScreen.classList.add('blathersHiddenZ') , 600)
   // ! PLAY MUSIC
-  // musicSelection()
   musicOn === true ? music.play() : null
 }
 function showWelcome() {
@@ -165,7 +158,7 @@ function showWelcome() {
 }
 
 
-// HEMISPHERE TOGGLE FUNCITON
+// ? --------- HEMISPHERE TOGGLE -----------
 function toggleHemisphere() {
   if(hemisphere === 'northern') {
     hemisphere = 'southern'
@@ -194,44 +187,40 @@ function getMusic() {
       console.log(`error ${err}`)
   })
 }
-//  HOURLY MUSIC SELECTION
+//  HOURLY MUSIC SELECTION (About time we got some OOP in here)
 const music = {
   // ? ---- DETERMINE/PRELOAD CURRENT SUNNY & RAINY TRACKS -----
   getCurrentTrack(musicData = allMusic) {
     let hour = String(now.getHours())
     this.shortHour = hour
     if(hour.length === 1) hour = '0' + hour
-    // const musicURI = musicData[`BGM_24Hour_${hour}_${weather}`]['music_uri']
+
     const musicSunnyURI = musicData[`BGM_24Hour_${hour}_Sunny`]['music_uri']
     const musicRainyURI = musicData[`BGM_24Hour_${hour}_Rainy`]['music_uri']
-    // bgAudioSunny.src = musicSunnyURI
-    // bgAudioRainy.src = musicRainyURI
+
+    // Create Sunny music audio element.
     let sunnyAudio = document.createElement('audio')
     sunnyAudio.src = musicSunnyURI
     sunnyAudio.preload = 'auto'
     sunnyAudio.loop = true
     sunnyAudio.id = 'sunnyAudio'
 
-
+    // Create Rainy music audio element.
     let rainyAudio = document.createElement('audio')
     rainyAudio.src = musicRainyURI
     rainyAudio.preload = 'auto'
     rainyAudio.loop = true
     rainyAudio.id = 'rainyAudio'
 
-
     document.body.appendChild(sunnyAudio)
     document.body.appendChild(rainyAudio)
-
   },
 
   play() {
     switch(weather) {
       case 'Sunny':
-        // console.log('sunny music?')
         document.querySelector('#sunnyAudio').play()
         document.querySelector('#rainyAudio').pause()
-
         break
       case 'Rainy':
         document.querySelector('#sunnyAudio').pause()
@@ -239,6 +228,7 @@ const music = {
         break
     }
 
+    // Display Now Playing popup whenever a track starts playing.
     document.querySelectorAll('audio').forEach(audio => audio.addEventListener('playing', () => {displayCurrentMusic(this.shortHour, weather)}))
   },
 
@@ -247,7 +237,6 @@ const music = {
     sunnyAudio.pause()
   }
 }
-
 
 // NOW PLAYING WINDOW UPDATE
 function displayCurrentMusic(hour, weather) {
@@ -276,7 +265,6 @@ function toggleMusic() {
 // ? ------------------- WEATHER EFFECTS ------------------
 const weatherBtn = document.querySelector('#weatherBtn')
 weatherBtn.addEventListener('click', () => {
-  // console.log('we clickin')
   weather === 'Sunny' ? rain.start() : rain.stop()
 })
 const rain = {
@@ -299,6 +287,7 @@ const rain = {
     
       document.querySelector('header').appendChild(hrElement);
     }
+    // If music is on, run play function to swap to appropriate weather track.
     musicOn === true ? music.play() : null
   },
 
@@ -318,6 +307,7 @@ const rain = {
 
 // ? -------------------- RANDOM CHARACTER SPY ------------------
 let charArray = ['blathers', 'booker', 'brewster', 'celeste', 'chip', 'cj', 'copper', 'cyrus', 'daisymae', 'digby', 'don', 'flick', 'franklin', 'gracie', 'grams', 'gulivaar', 'gulliver', 'harriet', 'harvey', 'isabelle', 'jack', 'jingle', 'joan', 'kappn', 'katie', 'katrina', 'kicks', 'kk', 'kkdj', 'label', 'leif', 'leila', 'leilani', 'lottie', 'luna', 'lyle', 'mable', 'nat', 'niko', 'nooklings', 'orville', 'pave', 'pelly', 'pete', 'phineas', 'phyllis', 'porter', 'redd', 'reese', 'resetti', 'rover', 'sable', 'sahara', 'shrunk', 'tom', 'tortimer', 'wardell', 'wendell', 'wilbur', 'wisp', 'zipper']
+// Awesome shuffle function from https://bost.ocks.org/mike/shuffle/
 function shuffle(array) {
   let m = array.length, t, i;
 
@@ -337,7 +327,6 @@ function shuffle(array) {
 }
 
 charArray = shuffle(charArray)
-// console.log(charArray)
 charArrayIndex = 0
 setInterval(peekaboo, 25000)
 
@@ -371,9 +360,7 @@ function search(e) {
       displayVillagers(filtered)
   }
   else if(searchCategory === 'Fish') {
-
     const filtered = allFish.filter(fish => {
-
       fishMonths = buildCritterMonthString(fish)
 
       if(fish.name['name-USen'].toLowerCase().includes(searchString)
@@ -385,9 +372,7 @@ function search(e) {
     displayFish(filtered)
   }
   else if(searchCategory === 'Sea') {
-
     const filtered = allSea.filter(sea => {
-
       seaMonths = buildCritterMonthString(sea)
 
       if(sea.name['name-USen'].toLowerCase().includes(searchString)
@@ -399,9 +384,7 @@ function search(e) {
     displaySea(filtered)
   }
   else if(searchCategory === 'Bugs') {
-
     const filtered = allBugs.filter(bug => {
-
       bugMonths = buildCritterMonthString(bug)
 
       if(bug.name['name-USen'].toLowerCase().includes(searchString)
@@ -413,14 +396,12 @@ function search(e) {
     displayBugs(filtered)
   }
   else if(searchCategory === 'Fossils') {
-
     const filtered = allFossils.filter(fossil => {
       if(fossil.name['name-USen'].toLowerCase().includes(searchString)) return true
     })
     displayFossils(filtered)
   }
   else if(searchCategory === 'Art') {
-
     const filtered = allArt.filter(art => {
       if(art.name['name-USen'].toLowerCase().includes(searchString)) return true
     })
@@ -452,8 +433,7 @@ function updateSearchBar(category) {
     categoryClasses.forEach(categoryClass => {
       searchBar.classList.remove(categoryClass)
     })
-    searchBar.classList.add(category.toLowerCase())
-    
+    searchBar.classList.add(category.toLowerCase()) 
   }
   else if(category === 'Villagers') {
     searchBar.placeholder = 'Search name, species, personality, birthday...'
@@ -491,7 +471,6 @@ function updateSearchBar(category) {
     searchBar.classList.add(category.toLowerCase())
   }
   searchBar.value = ''
-
 }
 
 //  CLEAR CONTENT GRID
@@ -500,7 +479,6 @@ function clearGrid() {
   items.forEach(item => item.remove())
 }
 
-
 // ! -------------------- VILLAGERS FUNCTIONS ----------------------
 
 // GRAB VILLAGER DATA
@@ -508,7 +486,7 @@ function getVillagers() {
   fetch(`https://acnhapi.com/v1a/villagers/`)
   .then(res => res.json())
   .then(data => {
-    // console.log(data)
+
     allVillagers = data
 
     // Run villager display function
@@ -525,12 +503,9 @@ function displayVillagers(villagerArray = allVillagers) {
   clearGrid()
   villagerArray.forEach(villager => {
     const li = document.createElement('li')
-    // console.log(li)
-  
-    // console.log(villager)
+
     li.classList.add('contentItem')
     li.classList.add('villager')   
-
 
     // Check if the villager has a birthday this month. If so, add the birthdayMonth class via template literal.
     // First create a birthday string JS can read.
@@ -539,7 +514,6 @@ function displayVillagers(villagerArray = allVillagers) {
     let birthdayMonth = ''
     if(birthday.getMonth() === now.getMonth()) {
       // console.log(`${villager.name['name-USen']}'s birthday is this month!`)
-      // birthdayMonth = ' birthdayMonth'
       li.classList.add('birthdayMonth')
       if(birthday.getDate() === now.getDate()) {
         li.classList.add('birthdayDay')
@@ -554,11 +528,8 @@ function displayVillagers(villagerArray = allVillagers) {
     // CREATING VILLAGER TILES
     li.innerHTML = `<h2 class="name">${villager.name['name-USen']}</h2><h4 class="personality">${genderString}${villager.personality}</h4><h4 class="birthday${birthdayMonth}"><i class="fa-solid fa-cake-candles"></i> ${villager['birthday-string']}</h4><div class="villagerImgBox"><img src="${villager['image_uri']}"><div class="catchphraseBox"><span class="catchphrase">"${villager['catch-phrase']}!"</span><img src="${villager['icon_uri']}"></div></div><p class="quote">${villager.saying}</p>`
 
-    
-
     contentGrid.appendChild(li)
-    // console.log('-----')
-    // console.log(now.toLocaleString())
+
   })
 }
 
@@ -569,7 +540,6 @@ function getFish() {
   fetch(`https://acnhapi.com/v1a/fish/`)
   .then(res => res.json())
   .then(data => {
-    // console.log(data)
     allFish = data  
   })
   .catch(err => {
@@ -582,9 +552,7 @@ function displayFish(fishArray = allFish) {
   clearGrid()
   fishArray.forEach(fish => {
     const li = document.createElement('li')
-    // console.log(li)
-  
-    // console.log(villager)
+
     li.classList.add('contentItem')
     li.classList.add('fish')   
 
@@ -601,14 +569,12 @@ function displayFish(fishArray = allFish) {
       const lastMonth = monthArray[fishMonths[fishMonths.length - 1]]
       monthString = `${firstMonth} - ${lastMonth}`
     }
-    
 
     // Create museum string preview
     museumString = fish['museum-phrase']
     museumStringArray = museumString.split(' ')
     museumStringArray.length = 5
     museumStringPreview = museumStringArray.join(' ') + '...'
-
 
     // Add .availableNow class if available in current month, for highlight
     if(buildCritterMonthString(fish).includes(monthCache[now.getMonth() + 1])) {
@@ -621,18 +587,12 @@ function displayFish(fishArray = allFish) {
      // * CREATING FISH TILES
      li.innerHTML = `<h2 class="name">${fish.name['name-USen']}</h2><h4 class="location">${fish.id === 80 ? 'Sea (Raining)' : fish.availability.location} • ${fish.availability.rarity}</h4><h4 class="months"><i class="fa-solid fa-calendar-days"></i> ${monthString}</h4><h4 class="time"><i class="fa-solid fa-clock"></i> ${fish.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${fish['icon_uri']}"><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${fish.price}</p><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p class="quote">${fish['catch-phrase']}</p>`
 
-    // CREATING BLATHERS WINDOWS
-   
-    
-
     contentGrid.appendChild(li)
-    // console.log('-----')
+
   })
-  // * Add Event Listeners to display Blathers overlay
+  // Add Blathers Overlay Listeners
   addBlathersOverlayListeners()
 }
-
-
 
 // ! ----------------------- SEA CREATURES --------------------
 
@@ -640,20 +600,18 @@ function getSea() {
   fetch(`https://acnhapi.com/v1a/sea/`)
   .then(res => res.json())
   .then(data => {
-    // console.log(data)
     allSea = data  
   })
   .catch(err => {
     console.log(`error ${err}`)
 })
 }
+
 function displaySea(seaArray = allSea) {
   clearGrid()
   seaArray.forEach(sea => {
     const li = document.createElement('li')
-    // console.log(li)
-  
-    // console.log(villager)
+
     li.classList.add('contentItem')
     li.classList.add('sea')   
 
@@ -671,13 +629,11 @@ function displaySea(seaArray = allSea) {
       monthString = `${firstMonth} - ${lastMonth}`
     }
     
-
     // Create museum string preview
     museumString = sea['museum-phrase']
     museumStringArray = museumString.split(' ')
     museumStringArray.length = 5
     museumStringPreview = museumStringArray.join(' ') + '...'
-
 
     // Add .availableNow class if available in current month, for highlight
     if(buildCritterMonthString(sea).includes(monthCache[now.getMonth() + 1])) {
@@ -690,29 +646,25 @@ function displaySea(seaArray = allSea) {
      // * CREATING SEA TILES
      li.innerHTML = `<h2 class="name">${sea.name['name-USen']}</h2><h4 class="location">${sea.shadow} • ${sea.speed}</h4><h4 class="months"><i class="fa-solid fa-calendar-days"></i> ${monthString}</h4><h4 class="time"><i class="fa-solid fa-clock"></i> ${sea.availability.time || 'All Day'}</h4><div class="critterImgBox"><img src="${sea['icon_uri']}"><p id="salesPrice"><img src="assets/bellBag_sm1.png">&nbsp;${sea.price}</p><div class="critterHoverBox"><span class="blathersQuote">${museumStringPreview}</span><img src="assets/Blathers_Icon.png"></div></div><p class="quote">${sea['catch-phrase']}</p>`
 
-    // CREATING BLATHERS WINDOWS
-   
-    
-
     contentGrid.appendChild(li)
-    // console.log('-----')
+
   })
+  // Add Blathers Overlay Listeners
   addBlathersOverlayListeners()
 }
-
 
 // ! ----------------------------- BUGS ----------------------------
 function getBugs() {
   fetch(`https://acnhapi.com/v1a/bugs/`)
   .then(res => res.json())
   .then(data => {
-    // console.log(data)
     allBugs = data  
   })
   .catch(err => {
     console.log(`error ${err}`)
 })
 }
+
 function displayBugs(bugArray = allBugs) {
   clearGrid()
   bugArray.forEach(bug => {
@@ -734,14 +686,12 @@ function displayBugs(bugArray = allBugs) {
       const lastMonth = monthArray[bugMonths[bugMonths.length - 1]]
       monthString = `${firstMonth} - ${lastMonth}`
     }
-    
 
     // Create museum string preview
     museumString = bug['museum-phrase']
     museumStringArray = museumString.split(' ')
     museumStringArray.length = 5
     museumStringPreview = museumStringArray.join(' ') + '...'
-
 
     // Add .availableNow class if available in current month, for highlight
     if(buildCritterMonthString(bug).includes(monthCache[now.getMonth() + 1])) {
@@ -766,7 +716,6 @@ function getFossils() {
   fetch(`https://acnhapi.com/v1a/fossils/`)
   .then(res => res.json())
   .then(data => {
-    // console.log(data)
     allFossils = data  
   })
   .catch(err => {
@@ -787,8 +736,6 @@ function displayFossils(fossilArray = allFossils) {
     museumStringArray.length = 5
     museumStringPreview = museumStringArray.join(' ') + '...'
 
-
-
     // Add fossil.id class so Blathers overlay can find and display the right info
     li.classList.add(`${fossil['file-name']}`) 
     
@@ -802,14 +749,11 @@ function displayFossils(fossilArray = allFossils) {
   addBlathersOverlayListeners()
 }
 
-
-
 // ! -------------------- WORKS OF ART ----------------------
 function getArt() {
   fetch(`https://acnhapi.com/v1a/art/`)
   .then(res => res.json())
   .then(data => {
-    // console.log(data)
     allArt = data  
   })
   .catch(err => {
@@ -830,8 +774,6 @@ function displayArt(artArray = allArt) {
     museumStringArray.length = 5
     museumStringPreview = museumStringArray.join(' ') + '...'
 
-
-
     // Add art.id class so Blathers overlay can find and display the right info
     li.classList.add(`${art.id}`) 
     
@@ -845,11 +787,7 @@ function displayArt(artArray = allArt) {
   addBlathersOverlayListeners()
 }
 
-
-
-
 // !------------------------- BLATHERS OVERLAY --------------------------------
-
 
 // *Adds event listeners for Blathers overlay to all critters
 function addBlathersOverlayListeners() {
@@ -869,22 +807,20 @@ function displayBlathersOverlay(e) {
 
   let critterLiElement
 
-  // console.log(e.composedPath())
-
   // Iterate through each element in the event path (except the last two, which are always #document and Window), searching for the
   let path = e.path || (e.composedPath())
-  // console.log(path)
+
   for(let i = 0; i < path.length - 2 ; i++) {
     const element = path[i]
-    // console.log(element)
-      if(element.matches('li')) {
-        critterLiElement = element
-      }
+
+    if(element.matches('li')) {
+      critterLiElement = element
+    }
   }
+
   let critterLiElementClasses = Array.from(critterLiElement.classList) // Grab classlist of the content item and convert that list into an array
-  // console.log(critterLiElementClasses)
+
   const critterID = searchCategory === 'Fossils' ? critterLiElementClasses.pop() : +critterLiElementClasses.pop() // Grab the last item from the classlist, which should be the fish ID num- unless we're looking at fossils
-  // console.log(critterID)
 
   switch(searchCategory) {
     case 'Fish': critterArray = allFish
@@ -899,10 +835,11 @@ function displayBlathersOverlay(e) {
     break
   }
 
+  // If we're in fossils, find the index of the clicked-on-fossil by searching for the fossil within the API array with the same name as the critterID (file-name). Needed because the API didnotinclude ID nums for fossils.
+  // If we in anything BUT fossils, grab the data based on the nice easy-to-use ID.
+  // This one-liner makes me feel like a genius btw.
   const currentCritter = searchCategory === 'Fossils' ? critterArray[critterArray.indexOf(critterArray.find(fossil => fossil['file-name'] === critterID))] : critterArray[critterID - 1]
-  // console.log(currentCritter)
 
-  // console.log(critterLiElement)
   // Update information in Blathers overlay
   blathersFullCritterImg.src = ''
   blathersFullCritterImg.src = currentCritter['image_uri']

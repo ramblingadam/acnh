@@ -63,23 +63,15 @@ table {
      font-family: 'Fink Heavy';
      src: url('../assets/FinkHeavy.otf') format('opentype');
 }
-/* @font-face {
-     font-family: 'Adventure';
-     src: url('../assets/Adventure.otf') format('opentype');
-} */
+
 html {
      font-family: 'Source Sans Pro', sans-serif;
 }
 
 header li,
 h2 {
-     /* font-family: 'Concert One', cursive; */
      font-family: 'Fink Heavy', serif;
-     /* font-family: 'Adventure' */
-    
 }
-
-
 
 /******************************************
 /* BASE STYLES
@@ -87,18 +79,12 @@ h2 {
 /* Set 1 rem to 10px */
 html {
      font-size: 62.5%;
-     /* font-family: sans-serif; */
 
      scroll-behavior: smooth;
-     
 
      background: url('../assets/grassPattern.png');
      background-size: 70px;
-     /* background-size: 100% auto; */
-     /* background-position: contain; */
      background-attachment: fixed;
-     /* background: rgb(255, 222, 113); */
-     /* padding-top: 2rem; */
 }
 
 body {
@@ -164,7 +150,6 @@ border: 3px solid orange;
      
 }
 
-
 .welcomeWindow h2 {
      font-size: 3rem;
      width: 100%;
@@ -187,7 +172,6 @@ border: 3px solid orange;
 }
 
 .welcomeWindow h3:first-of-type {
-     /* text-align: center; */
      display: flex;
      align-items: center;
      justify-content: center;
@@ -197,9 +181,8 @@ border: 3px solid orange;
      font-size: 2rem;
      font-family: 'Fink Heavy', serif;
      margin-top: 1rem;
-
-     /* justify-content: center; */
 }
+
 .welcomeWindow h3:not(:first-of-type) {
      display: flex;
      align-items: center;
@@ -235,7 +218,6 @@ border: 3px solid orange;
      filter: saturate(400%);
 }
 
-
 .welcomeWindow a {
      transition: color .5s;
 }
@@ -249,21 +231,14 @@ border: 3px solid orange;
      margin-right: .5rem;
 }
 
-
-
 em {
-     /* font-style: italic; */
      font-weight: bold;
-     /* color: rgb(47, 199, 171); */
      color: rgb(95, 38, 112);
-     /* text-shadow: 0 0 1px black, 0 0 2px black; */
 }
 
 i.menuIcon {
      color: rgb(47, 19, 56);
 }
-
-
 
 /* To Top Button */
 #toTop {   
@@ -271,8 +246,6 @@ i.menuIcon {
      bottom: 20px;
      right: 20px;
      z-index: 2;
-
-     /* margin-top: calc(100vh - 100px); */
 
      font-size: 3rem;
 
@@ -285,8 +258,6 @@ i.menuIcon {
      display: flex;
      justify-content: center;
      align-items: center;
-     /* transition: .5s; */
-
 }
 
 #toTop a {
@@ -303,7 +274,6 @@ i.menuIcon {
 header {
      position: relative;
 
-     /* background: rgb(255, 222, 113); */
      background: url('../assets/acnhBeachCropped_sm.jpg');
      background-size: contain;
      background-size: auto 100%;
@@ -333,9 +303,7 @@ header {
      }
 }
 
-
 /* ? -----------------SWIMMING PASCAL -------------- */
-
 #pascal {
      position: absolute;
      bottom: 25%;
@@ -344,7 +312,6 @@ header {
      z-index: 0
 }
 
-
 /* ? ----------------------- SEAPLANE ----------------- */
 #seaplane {
      position: absolute;
@@ -352,7 +319,6 @@ header {
      animation: bob 3s linear infinite, float-delay-long 125s linear infinite both;
      z-index: 0
 }
-
 
 /* ? ---------------------- CHARACTER SPY ----------------- */
 #spy {
@@ -382,7 +348,6 @@ header {
           top: 25%;
           left: 20%;
      }
-
 }
 
 /* ? ---------------------- WEATHER EFFECTS ------------------ */
@@ -503,12 +468,6 @@ body::after {
      }
 }
 
-
-
-
-
-
-
 /* LOGO */
 .logoBox {
      position: relative;
@@ -562,7 +521,6 @@ body::after {
      width: auto;
 }
 
-
 .nowPlayingBox i {
      animation: tinywiggle 3s linear infinite;
 }
@@ -603,14 +561,9 @@ body::after {
      right: -5%;
      bottom: 39%;
      font-size: 2rem;
-     /* color: rgb(122, 84, 46); */
      color: rgb(255, 222, 113);
-     /* text-shadow: 2px 2px 4px rgb(255, 209, 80); */
      cursor: pointer;
-     /* transition: text-shadow .5s;  */
      text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0);
-     /* text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0), 0 0 4px rgb(0,0,0); */
-
 }
 
 #twitter:hover,
@@ -619,8 +572,6 @@ body::after {
 #weatherBtn:hover,
 #infoBtn:hover,
 nav li:hover img {
-     /* text-shadow: 0 0 10px rgba(255, 255, 255,1); */
-     /* transition: .3s; */
      animation: wiggle .5s linear infinite;
 }
 
@@ -630,13 +581,9 @@ nav li:hover img {
      right: -5%;
      bottom: 22%;
      font-size: 2rem;
-     /* color: rgb(122, 84, 46); */
      color: rgb(255, 222, 113);
-     /* text-shadow: 2px 2px 4px rgb(255, 209, 80); */
      cursor: pointer;
-     /* transition: text-shadow .5s;  */
      text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0);
-     /* text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0), 0 0 4px rgb(0,0,0); */
 }
 
 /* LinkedIn Button */
@@ -645,23 +592,14 @@ nav li:hover img {
      right: -4.5%;
      bottom: 5%;
      font-size: 2rem;
-     /* color: rgb(122, 84, 46); */
      color: rgb(255, 222, 113);
-     /* text-shadow: 2px 2px 4px rgb(255, 209, 80); */
      cursor: pointer;
-     /* transition: text-shadow .5s;  */
      text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0);
-     /* text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0), 0 0 4px rgb(0,0,0); */
 }
 
 
 /* ! ------------------- SET Z-INDEX OF MENU ITEMS TO BE ABOVE WEATHER ---------------- */
-.front {
-     /* z-index: 3 !important; */
-}
-
 /* Button wiggle animations! */
-
 @keyframes wiggle {
      0% {
           transform: rotate(0deg);
@@ -692,9 +630,7 @@ nav li:hover img {
      }
 }
 
-
 /* ! ---------------- CATEGORIES MENU --------------- */
-
 /* Nav */
 
 nav ul {
@@ -703,7 +639,6 @@ nav ul {
      justify-content: center;
      font-size: 2rem;
      background: rgba(255, 222, 113,1);
-     /* background: rgba(162, 107, 56,1); */
      border-radius: 10px 10px 0 0;
      border-top: 2px dashed black;
      border-right: 2px dashed black;
@@ -715,16 +650,9 @@ nav li {
      padding: .7rem;
      text-decoration: none;
      color: rgb(95, 38, 112);
-     /* color: rgb(38, 58, 112); */
-     /* color: rgb(255, 222, 113); */
-     /* border: 1px solid rgb(162, 107, 56); */
-     /* min-width: 10rem; */
-     /* text-align: center; */
-
      display: flex;
      align-items: center;
      justify-content: center;
-
      transition: color .5s, text-shadow .5s;
 }
 
@@ -735,31 +663,23 @@ nav li:last-of-type {
 nav li:hover {
      cursor: pointer;
      color: rgb(213, 75, 255);
-     /* color: rgb(102, 75, 255); */
-     /* text-shadow: -2px 2px 5px rgba(0,0,0,1); */
      text-shadow: 0 0 5px white;
-
      transition: color 0s, text-shadow .5s;
 }
 
 nav li:hover img {
      filter: invert(43%) sepia(82%) saturate(3342%) hue-rotate(259deg) brightness(100%) contrast(102%);
-
      /* This magic is courtesy of https://codepen.io/sosuke/pen/Pjoqqp */
-
-     /* transition: filter 1s; */
 }
 
 .currentCategory {
      color: rgb(213, 75, 255);
-     /* color: rgb(48, 132, 138); */
-     text-shadow: 0 0 10px rgb(255, 255, 255);
-     
+     text-shadow: 0 0 10px rgb(255, 255, 255);   
 }
 
 .currentCategory img {
      filter: invert(43%) sepia(82%) saturate(3342%) hue-rotate(259deg) brightness(100%) contrast(102%);
-     
+     /* This magic is courtesy of https://codepen.io/sosuke/pen/Pjoqqp */
 }
 
 .menuIcon {
@@ -779,50 +699,25 @@ nav li:hover img {
      }
 }
 
-/* TODO Hamburger Menu */
-@media all and (max-width: 580px) {
-     /* nav ul { */
-          /* position: fixed; */
-          /* display: flex; */
-          /* flex-flow: column nowrap; */
-          /* z-index: 100; */
-          /* border-radius: 10px; */
-          /* width: 10vw; */
-          /* left: 25vw; */
-     /* } */
-     /* nav li:not(:last-of-type) { */
-       /* padding-bottom: 0rem    */
-     /* } */
-}
-
-
-
 /* ! ---------------- CONTENT GRID ------------------ */
 /** GRID CONTAINER */
 .content {
-     /* padding-top: 1rem; */
-
      display: flex;
      flex-flow: column nowrap;
      justify-content: center;
      align-items: center;
- 
 }
 
 
 /** SEARCH BAR & HEMISPHERE TOGGLE */
 .searchBox {
-     /* background: rgba(255, 222, 113,1); */
-     /* padding: 0 1rem 1rem 1rem; */
      padding: 1.3rem;
-     /* border-radius: 0 0 10px 10px; */
      border-radius: 10px;
 }
 
 .searchBox figure  {
      position: relative;
 }
-
 
 /** Hemisphere Toggle Button */
 #hemisphereToggle {
@@ -831,31 +726,22 @@ nav li:hover img {
      top: -8%;
      font-size: 3rem;
      color: rgb(255, 222, 113);
-     /* color: rgb(255, 209, 80); */
-     /* text-shadow: 2px 2px 4px rgb(255, 209, 80); */
      cursor: pointer;
      transition: text-shadow .5s, transform .5s;
-
      text-shadow: 0 0 1px rgba(0, 0, 0,1);
-     /* text-shadow: 0 3px 3px rgba(0, 0, 0,1); */
-     /* transform: translateY(-2px); */
-     
 }
+
 #hemisphereToggle:hover {
-     /* text-shadow: 0 0 2px rgba(255, 255, 255,1); */
      text-shadow: 0 3px 3px rgba(0, 0, 0,1);
-     /* transform: translateY(-2px); */
      transform: translateY(-2px);
      transition: .5s;
-     /* animation: wiggle 1s linear infinite; */
 }
+
 #hemisphereToggle:active {
-     /* text-shadow: 0 0 3px rgba(255, 255, 255,1); */
      text-shadow: 0 0 3px rgba(255, 255, 255,1);
      transform: translateY(0px);
      transition: text-shadow .2s;
 }
-
 
 #search {
      width: 30rem;
@@ -873,12 +759,9 @@ nav li:hover img {
      }
      #hemisphereToggle {
           left: -8%;
-
      }
      
 }
-
-
 
 /* CONTENT GRID */
 #contentGrid {
@@ -892,24 +775,16 @@ nav li:hover img {
      position: relative;
      border: 2px solid black;
      border-radius: 10px;
-     /* height: 25rem; */
      width: 20rem;
-     /* padding: .5rem; */
-     /* padding-bottom: .5rem; */
      margin: .5rem;
-     /* background: rgb(255, 255, 255); */
      background: rgb(255, 222, 113);
      box-shadow: -2px 2px 5px black;
-
-     /* text-shadow: -1 0 1px white, 0 0 2px white, 0 0 3px white; */
-     /* font-weight: bold; */
 
      display: flex;
      flex-flow: column nowrap;
      align-items: center;
 
      transition: transform .3s;
-     /* z-index: 3; */
 }
 
 @media all and (max-width: 435px) {
@@ -925,8 +800,6 @@ nav li:hover img {
      transition: transform .3s;
      z-index: 1;
 }
-
-
 
 .contentItem h2,
 .blathersFullInnerWindow h2 {
@@ -970,7 +843,6 @@ nav li:hover img {
 .birthdayMonth {
      background: url(../assets/confetti.png), rgb(255, 222, 113);
      background-size: 120%;
-
 }
 
 .birthdayMonth .birthday {
@@ -980,12 +852,9 @@ nav li:hover img {
 }
 
 .birthdayDay {
-     /* background: url(../assets/confetti.png), rgb(255, 255, 0); */
      background: url(../assets/confetti.png), radial-gradient(rgb(255, 244, 207), yellow),rgb(255, 222, 113);
-
      background-size: 170%;
      border: 2px dashed yellow;
-
 }
 
 /* Villager Image Box - Img & Catchphrase Hover */
@@ -998,20 +867,18 @@ nav li:hover img {
      margin-bottom: 1rem;
 }
 
-
 .content img {
      border-radius: 10px;
      max-width: 100%;
      margin-bottom: .2rem;
 }
 
-
-
 /* Catchphrase */
 .contentItem:hover .catchphraseBox {
      opacity: 1;
      transition: opacity .5s;
 }
+
 .catchphraseBox {
      opacity: 0;
      transition: opacity .5s;
@@ -1034,16 +901,13 @@ nav li:hover img {
 
 .catchphraseBox img {
      max-height: 4rem;
-     /* animation: wiggle 3s linear infinite; */
-
 }
 
 .catchphrase {
      display: inline-block;
      background: rgba(255,255,255,.7);
      color: black;
-     padding: .3rem;
-     
+     padding: .3rem; 
      border-radius: 10px;
 }
 
@@ -1055,8 +919,6 @@ nav li:hover img {
 p.quote {
      font-size: 1.3rem;
      text-align: center;
-     /* width: 80%; */
-     /* padding-bottom: .8rem; */
      width: 100%;
      max-width: 100%;
      background: rgba(255, 255, 255,.5);
@@ -1083,7 +945,6 @@ p.quote {
 .location i {
      color: black;
 }
-
 
 /* Critter Image Box */
 .critterImgBox {
@@ -1129,6 +990,7 @@ p.quote {
      opacity: 1;
      transition: opacity .5s;
 }
+
 .critterHoverBox {
      opacity: 0;
      transition: opacity .5s;
@@ -1151,7 +1013,6 @@ p.quote {
 
 .critterHoverBox img {
      max-height: 4rem;
-     /* animation: wiggle 3s linear infinite; */
 }
 
 .blathersQuote {
@@ -1164,7 +1025,6 @@ p.quote {
      border-radius: 10px;
 }
 
-
 /* ! ----------------- BLATHERS FULL DESCRIPTION POP UPWINDOW ------------- */
 .blathersFullWindow {
      position: fixed;
@@ -1174,7 +1034,6 @@ p.quote {
      z-index: 5;
      cursor: pointer;
      opacity: 1;
-     /* overflow: none; */
 
      transition: opacity .5s;
 }
@@ -1227,16 +1086,10 @@ p.quote {
 .blathersFace {
      position: absolute;
      max-height: 8rem;
-     /* text-align: center; */
      bottom: 0;
-     /* left: 50%; */
-     /* transform: translateX(-50%); */
      right: 1rem;
-     /* left: 0rem; */
-     /* z-index: -1 */
      animation: smallwiggle 4s linear infinite;
 }
-
 
 @keyframes smallwiggle {
      0% {
@@ -1261,17 +1114,6 @@ p.quote {
 .blathersHiddenZ {
      z-index: -5;
 }
-
-
-
-
-/* Searchbar */
-
-
-/* Content Grid */
-
-
-
 
 /******************************************
 /* ADDITIONAL STYLES
