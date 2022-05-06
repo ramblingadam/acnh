@@ -3,9 +3,10 @@
 A responsive web app designed to assist and delight players of the popular Nintendo game _Animal Crossing: New Horizons_.
 
 ### [**Click here to check it out!**](https://acnh-database.netlify.app/)
-<!-- ![chrome_JRETOu1xcO](https://user-images.githubusercontent.com/96756923/166129214-60670002-0fbc-428f-a1e9-1be668463bcb.png) -->
-![chrome_yJdMD6QwC2](https://user-images.githubusercontent.com/96756923/166415707-3676a395-d069-42c3-bfac-6116c0e39a87.png)
-# Features
+![Screenshot](https://user-images.githubusercontent.com/96756923/167181894-17ab1963-4ffa-4dc4-8248-1d02ea2e343d.png)
+
+
+# Features!
 ## Villagers
 - Search villagers by **name**, **species**, **personality**, or **birthday**.
 - Enjoy discovering each villager's **personal quote** and **catchphrase**.
