@@ -286,6 +286,7 @@ const rain = {
       hrElement.style.animationDelay = Math.random() * 5 + "s";
     
       document.querySelector('header').appendChild(hrElement);
+      // document.querySelector('body').appendChild(hrElement);
     }
     // If music is on, run play function to swap to appropriate weather track.
     musicOn === true ? music.play() : null
@@ -309,18 +310,23 @@ const rain = {
 let charArray = ['blathers', 'booker', 'brewster', 'celeste', 'chip', 'cj', 'copper', 'cyrus', 'daisymae', 'digby', 'don', 'flick', 'franklin', 'gracie', 'grams', 'gulivaar', 'gulliver', 'harriet', 'harvey', 'isabelle', 'jack', 'jingle', 'joan', 'kappn', 'katie', 'katrina', 'kicks', 'kk', 'kkdj', 'label', 'leif', 'leila', 'leilani', 'lottie', 'luna', 'lyle', 'mable', 'nat', 'niko', 'nooklings', 'orville', 'pave', 'pelly', 'pete', 'phineas', 'phyllis', 'porter', 'redd', 'reese', 'resetti', 'rover', 'sable', 'sahara', 'shrunk', 'tom', 'tortimer', 'wardell', 'wendell', 'wilbur', 'wisp', 'zipper']
 // Awesome shuffle function from https://bost.ocks.org/mike/shuffle/
 function shuffle(array) {
-  let m = array.length, t, i;
+  let m = array.length
+  let t
+  let i
 
   // While there remain elements to shuffle…
   while (m) {
 
     // Pick a remaining element…
-    i = Math.floor(Math.random() * m--);
+    i = Math.floor(Math.random() * m);
+    m--
+
 
     // And swap it with the current element.
     t = array[m];
     array[m] = array[i];
     array[i] = t;
+
   }
 
   return array;
@@ -486,16 +492,40 @@ function getVillagers() {
   fetch(`https://acnhapi.com/v1a/villagers/`)
   .then(res => res.json())
   .then(data => {
-
+    console.log('OG DATA', data)
     allVillagers = data
+      //// Add NEW data from MY OWN API WHAAAAAT
+    fetch(`https://acnh-mini-api.herokuapp.com/api`)
+    .then(res => res.json())
+    .then(data => {
+      // console.log(data)
 
+      // Add villager info from my API to data obtained from main API
+      for(villager in data) {
+        allVillagers.push(data[villager])
+      }
+      
+      allVillagers.sort( (a,b) => {
+        if(a.species !== b.species) return a.species.localeCompare(b.species)
+        else return a.name['name-USen'].localeCompare(b.name['name-USen'])
+      })
+
+      // Run villager display function
+      displayVillagers(allVillagers)
+
+    
+    })
+    .catch(err => {
+      throw new Error(`error ${err}`)
+    })
     // Run villager display function
-    displayVillagers(allVillagers)
+    // displayVillagers(allVillagers)
   
   })
   .catch(err => {
     console.log(`error ${err}`)
-})
+  })
+
 }
 
 // DISPLAY VILLAGERS
