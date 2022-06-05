@@ -492,7 +492,7 @@ function getVillagers() {
   fetch(`https://acnhapi.com/v1a/villagers/`)
   .then(res => res.json())
   .then(data => {
-    console.log('OG DATA', data)
+    // console.log('OG DATA', data)
     allVillagers = data
       //// Add NEW data from MY OWN API WHAAAAAT
     fetch(`https://acnh-mini-api.herokuapp.com/api`)
