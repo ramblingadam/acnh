@@ -3,9 +3,22 @@
 A responsive web app designed to assist and delight players of the popular Nintendo game _Animal Crossing: New Horizons_.
 
 ### [**Click here to check it out!**](https://acnh-database.netlify.app/)
-<!-- ![chrome_JRETOu1xcO](https://user-images.githubusercontent.com/96756923/166129214-60670002-0fbc-428f-a1e9-1be668463bcb.png) -->
-![chrome_yJdMD6QwC2](https://user-images.githubusercontent.com/96756923/166415707-3676a395-d069-42c3-bfac-6116c0e39a87.png)
-# Features
+![Screenshot](https://user-images.githubusercontent.com/96756923/167181894-17ab1963-4ffa-4dc4-8248-1d02ea2e343d.png)
+
+# How It's Made:
+**Tech used:** HTML, CSS, JavaScript
+
+As a decades-long fan of Nintendo's wildly popular Animal Crossing series, when I stumbled across an API which returned data fromtheir latest game, I just HAD to build something it!
+
+The API had tons of data which was distributed over a dozen endpoints, so I set out to use as many of those endpoints as I could to create a beautiful, responsive app which fans of the series could use to search for and view information on any of the games hundreds of villagers, critters, and art pieces.
+
+This project presented me with two large challenges.
+
+The first was converting the complex data returned by the API into a unique, feature-rich display for the user. For example, the app checks the current date, and applies special styling to a villager's information card if it is the birthday or birthday-month of the villager. It does the same for any catchable critters, highlighting those that are currently available in the users region- which can be toggled by pressing the glboe icon next to the search bar. I also wrote code which converts the user's current time into a query I could send to the API in order to fetch a music track which matches the user's current time. (In the actual game, the music changes every hour- and this is reflected in the app as well!)
+
+The second big challenge was creating a beautiful user interface. I wanted the user to be delighted at every turn. I spent much of my time on this project in Photoshop, tweaking assets to match the visual-style of the game. I also set out to cram in as many easter eggs as possible, to keep the user surprised and delighted as they used the app. Keep an eye out for floating presents drifting by on the wind, a seaplane zooming across the sky, an otter paddling along the coast, and a rotating cast of special characters poking their heads out from behind the logo. I am also quite proud of the toggle-able rain effect, which, in addition to the visual change, switches the audio track to a more somber version to match the rainy mood.
+
+# Features!
 ## Villagers
 - Search villagers by **name**, **species**, **personality**, or **birthday**.
 - Enjoy discovering each villager's **personal quote** and **catchphrase**.
