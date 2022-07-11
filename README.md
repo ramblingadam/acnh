@@ -1,6 +1,6 @@
 # New Horizons Database
 
-A responsive web app designed to assist and delight players of the popular Nintendo game _Animal Crossing: New Horizons_.
+A beautiful, responsive single-page web app designed to assist and delight players of the popular Nintendo game _Animal Crossing: New Horizons_.
 
 ### [**Click here to check it out!**](https://acnh-database.netlify.app/)
 ![Screenshot](https://user-images.githubusercontent.com/96756923/167181894-17ab1963-4ffa-4dc4-8248-1d02ea2e343d.png)
