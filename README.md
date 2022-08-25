@@ -57,3 +57,27 @@ Most of the data displayed in this web app is provided via the [ACNH API](https:
 The 2.0 villager data is provided by a custom API I wrote, the [ACNH-Mini-API](https://acnh-mini-api.herokuapp.com)
 
 All characters and graphics related to Nintendo and Animal Crossing: New Horizons are the sole property of Nintendo.
+
+---
+
+## Other Projects:
+Take a look at these other awesome projects from my portfolio:
+
+#
+
+**Magic Task Timer** [https://github.com/ramblingadam/magic-task-timer](https://github.com/ramblingadam/magic-task-timer)
+
+[![Screenshot of Magic Task Timer](https://user-images.githubusercontent.com/96756923/186636834-a45327e8-90ea-4c34-b3e9-b5e5b1dfdd5b.gif)](https://user-images.githubusercontent.com/96756923/186636834-a45327e8-90ea-4c34-b3e9-b5e5b1dfdd5b.gif)
+
+
+#
+
+**X-Wing VS TIE Fighter:** [https://github.com/ramblingadam/tic-tac-starwars](https://github.com/ramblingadam/tic-tac-starwars)
+
+[![Screenshot of X-Wing VS TIE Fighter](https://user-images.githubusercontent.com/96756923/170849366-e1b8d33b-6236-46f1-8dd9-b38fd2c27380.gif)](https://github.com/ramblingadam/tic-tac-starwars)
+
+#
+
+**The Universe Console** [https://github.com/ramblingadam/nasapod](https://github.com/ramblingadam/nasapod)
+
+[![Screenshot of NASA Astronomy Photo/Video Browser](https://user-images.githubusercontent.com/96756923/170848850-67f872fc-b92e-438b-add6-47d83673d3c9.gif)](https://github.com/ramblingadam/nasapod)
