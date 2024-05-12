@@ -112,7 +112,7 @@ blathersFullWindow.addEventListener('click', hideBlathersOverlay)
 // ! ---------------- GLOBAL VARIABLES --------------
 // API root route. change this if API hosting location changes- ie, from localhost to heroku, or from heroku to something that's still free. :)
 // const API_ROOT = 'http://localhost:8000'
-const API_ROOT = 'https://acnh-mini-api.herokuapp.com/'
+const API_ROOT = 'https://acnh-mini-api.herokuapp.com'
 // Declare month reference cache. Fish, Diving, and Bugs will use this.
 const monthCache = {
   1: 'January',
