@@ -6,71 +6,151 @@ All fetched images, audio, and data displayed by this project are copyright Nint
 
 Copyright Adam Morsa. All rights reserved. The code for this project is licensed under the GNU GPL v2.0 License (https://github.com/ramblingadam/acnh/blob/main/LICENSE.md)*/
 /* CSS RESET */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-
 
 /* Box Model */
 * {
-     box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /******************************************
 /* TYPOGRAPHY
 /*******************************************/
 @font-face {
-     font-family: 'Fink Heavy';
-     src: url('../assets/FinkHeavy.otf') format('opentype');
+  font-family: 'Fink Heavy';
+  src: url('../assets/FinkHeavy.otf') format('opentype');
 }
 
 html {
-     font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 header li,
 h2 {
-     font-family: 'Fink Heavy', serif;
+  font-family: 'Fink Heavy', serif;
 }
 
 /******************************************
@@ -78,492 +158,493 @@ h2 {
 /*******************************************/
 /* Set 1 rem to 10px */
 html {
-     font-size: 62.5%;
+  font-size: 62.5%;
 
-     scroll-behavior: smooth;
+  scroll-behavior: smooth;
 
-     background: url('../assets/grassPattern.png');
-     background-size: 70px;
-     background-attachment: fixed;
+  background: url('../assets/grassPattern.png');
+  background-size: 70px;
+  background-attachment: fixed;
 }
 
 body {
-     position: relative;
-     overflow-x:hidden;
-     overflow-y: scroll;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
-
 
 /* SCROLLBARS */
 /* Firefox */
 * {
-     scrollbar-width: auto;
-     scrollbar-color: orange rgb(255, 203, 65);
+  scrollbar-width: auto;
+  scrollbar-color: orange rgb(255, 203, 65);
 }
 
 /* Chrome, Edge, Safari */
 *::-webkit-scrollbar {
-width: 15px;
+  width: 15px;
 }
 
 *::-webkit-scrollbar-track {
-background: rgb(255, 222, 113);
+  background: rgb(255, 222, 113);
 }
 
 *::-webkit-scrollbar-thumb {
-background-color: rgb(255, 203, 65);
-border-radius: 20px;
-border: 3px solid orange;
+  background-color: rgb(255, 203, 65);
+  border-radius: 20px;
+  border: 3px solid orange;
 }
 /* END SCROLLBARS */
-
 
 /******************************************
 /* LAYOUT
 /*******************************************/
 /* Welcome Window */
 .welcomeWindowBG {
-     width: 100vw;
-     height: 100vh;
-     overflow: hidden;
-     background: rgba(0, 0, 0,.5);
-     position: fixed;
-     z-index: 10;
-     cursor: pointer;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 10;
+  cursor: pointer;
 }
 
 .welcomeWindow {
-     position: absolute;
-     left: 50%;
-     top: 5%;
-     transform: translate(-50%);
-     background: rgb(255, 222, 113);
-     border-radius: 10px;
-     width: 90%;
-     max-width: 70rem;
-     border: 2px dashed black;
-     padding-bottom: 2rem;
-     max-height: 90vh;
-     overflow-x: hidden;
-     overflow-y: auto;
-     scrollbar-gutter: auto;
-     
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  transform: translate(-50%);
+  background: rgb(255, 222, 113);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 70rem;
+  border: 2px dashed black;
+  padding-bottom: 2rem;
+  max-height: 90vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: auto;
 }
 
 .welcomeWindow h2 {
-     font-size: 3rem;
-     width: 100%;
-     text-align: center;
-     /* white-space: nowrap; */
-     background: rgba(255,255,255,.5);
-     border-radius: 10px 10px 0 0;
-     padding: 1rem 2rem .5rem 2rem;
-     display: flex;
-     align-items: center;
-     justify-content: center;
+  font-size: 3rem;
+  width: 100%;
+  text-align: center;
+  /* white-space: nowrap; */
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px 10px 0 0;
+  padding: 1rem 2rem 0.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .welcomeWindow span {
-     display: block;
-     text-align: center;
-     background: rgba(255, 255, 255,.5);
-     font-size: 1.3rem;
-     padding-bottom: 1rem;
+  display: block;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 1.3rem;
+  padding-bottom: 1rem;
 }
 
 .welcomeWindow h3:first-of-type {
-     display: flex;
-     align-items: center;
-     justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .welcomeWindow h3 {
-     font-size: 2rem;
-     font-family: 'Fink Heavy', serif;
-     margin-top: 1rem;
+  font-size: 2rem;
+  font-family: 'Fink Heavy', serif;
+  margin-top: 1rem;
 }
 
 .welcomeWindow h3:not(:first-of-type) {
-     display: flex;
-     align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .welcomeWindow h3:not(:first-of-type),
 .welcomeWindow ul {
-     padding-left: 2rem;
+  padding-left: 2rem;
 }
 
 .welcomeWindow ul {
-     font-size: 1.5rem;
-     /* list-style-type: disc; */
-     margin-left: 3rem;
+  font-size: 1.5rem;
+  /* list-style-type: disc; */
+  margin-left: 3rem;
 }
 
 .welcomeWindow li {
-     line-height: 2rem;
-     position: relative;
-     padding-right: 1rem;
+  line-height: 2rem;
+  position: relative;
+  padding-right: 1rem;
 }
 
 .welcomeWindow li::before {
-     content: '';
-     position: absolute;
-     left: -2.2rem;
-     top: .2rem;
-     height: 1.5rem;
-     width: 1.5rem;
-     background: url('../assets/icon_leaf.png');
-     background-size: contain;
-     background-repeat: no-repeat;
-     filter: saturate(400%);
+  content: '';
+  position: absolute;
+  left: -2.2rem;
+  top: 0.2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  background: url('../assets/icon_leaf.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: saturate(400%);
 }
 
 .welcomeWindow a {
-     transition: color .5s;
+  transition: color 0.5s;
 }
 
 .welcomeWindow a:hover {
-     color: rgb(213, 75, 255);
-     transition: .3s;
+  color: rgb(213, 75, 255);
+  transition: 0.3s;
 }
 
-.welcomeWindow img{
-     margin-right: .5rem;
+.welcomeWindow img {
+  margin-right: 0.5rem;
 }
 
 em {
-     font-weight: bold;
-     color: rgb(95, 38, 112);
+  font-weight: bold;
+  color: rgb(95, 38, 112);
 }
 
 i.menuIcon {
-     color: rgb(47, 19, 56);
+  color: rgb(47, 19, 56);
 }
 
 /* To Top Button */
-#toTop {   
-     position: fixed;
-     bottom: 20px;
-     right: 20px;
-     z-index: 2;
+#toTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2;
 
-     font-size: 3rem;
+  font-size: 3rem;
 
-     border: 1px dashed black;
-     border-radius: 50%;
-     background: rgb(255, 222, 113);
-     width: 32px;
-     height: 32px;
+  border: 1px dashed black;
+  border-radius: 50%;
+  background: rgb(255, 222, 113);
+  width: 32px;
+  height: 32px;
 
-     display: flex;
-     justify-content: center;
-     align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #toTop a {
-     color:rgb(95, 38, 112);
-     transition: color .3s;
+  color: rgb(95, 38, 112);
+  transition: color 0.3s;
 }
 #toTop a:hover {
-     color:rgb(213, 75, 255);
-     transition: color .3s;
+  color: rgb(213, 75, 255);
+  transition: color 0.3s;
 }
-
 
 /* HEADER/ NAV LAYOUT */
 header {
-     position: relative;
+  position: relative;
 
-     background: url('../assets/acnhBeachCropped_sm.jpg');
-     background-size: contain;
-     background-size: auto 100%;
-     background-repeat: repeat-x;
+  background: url('../assets/acnhBeachCropped_sm.jpg');
+  background-size: contain;
+  background-size: auto 100%;
+  background-repeat: repeat-x;
 
-     display: flex;
-     flex-flow: column nowrap;
-     justify-content: space-around;
-     align-items: center;
-     border-bottom: 3px dashed black;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 3px dashed black;
 
-     overflow: hidden;
+  overflow: hidden;
 }
 
 /* ? --------------- FLOATING BALLOON --------------- */
 #balloon {
-     position: absolute;
-     top: 7%;
-     /* animation: sway 5s linear infinite, float 60s linear infinite alternate both; */
-     animation: sway 5s linear infinite, float-delay 120s linear infinite alternate both;
-     z-index: 2
+  position: absolute;
+  top: 7%;
+  /* animation: sway 5s linear infinite, float 60s linear infinite alternate both; */
+  animation: sway 5s linear infinite,
+    float-delay 120s linear infinite alternate both;
+  z-index: 2;
 }
 
 @media all and (min-width: 1200px) {
-     #balloon {
-          animation: sway 5s linear infinite, float-delay 160s linear infinite alternate;
-     }
+  #balloon {
+    animation: sway 5s linear infinite,
+      float-delay 160s linear infinite alternate;
+  }
 }
 
 /* ? -----------------SWIMMING PASCAL -------------- */
 #pascal {
-     position: absolute;
-     bottom: 25%;
-     /* animation: tinywiggle 3s linear infinite, float 50s linear 30s infinite reverse both; */
-     animation: tinywiggle 3s linear infinite, float-delay 100s linear 30s infinite reverse both;
-     z-index: 0
+  position: absolute;
+  bottom: 25%;
+  /* animation: tinywiggle 3s linear infinite, float 50s linear 30s infinite reverse both; */
+  animation: tinywiggle 3s linear infinite,
+    float-delay 100s linear 30s infinite reverse both;
+  z-index: 0;
 }
 
 /* ? ----------------------- SEAPLANE ----------------- */
 #seaplane {
-     position: absolute;
-     top: 15%;
-     animation: bob 3s linear infinite, float-delay-long 125s linear infinite both;
-     z-index: 0
+  position: absolute;
+  top: 15%;
+  animation: bob 3s linear infinite, float-delay-long 125s linear infinite both;
+  z-index: 0;
 }
 
 /* ? ---------------------- CHARACTER SPY ----------------- */
 #spy {
-     position: absolute;
-     z-index: -1;
-     top: 25%;
-     left: 20%;
-     width: 5rem;
-     transform: rotate(-8deg);
-     /* animation: hideandseek 5s ease; */
+  position: absolute;
+  z-index: -1;
+  top: 25%;
+  left: 20%;
+  width: 5rem;
+  transform: rotate(-8deg);
+  /* animation: hideandseek 5s ease; */
 }
 
 .peekaboo {
-     animation: hideandseek 5s ease;
+  animation: hideandseek 5s ease;
 }
 
 @keyframes hideandseek {
-     0% {
-          top: 25%;
-          left: 20%;
-     }
-     25%,75% {
-          top: 0%;
-          left: 15%;
-     }
-     100% {
-          top: 25%;
-          left: 20%;
-     }
+  0% {
+    top: 25%;
+    left: 20%;
+  }
+  25%,
+  75% {
+    top: 0%;
+    left: 15%;
+  }
+  100% {
+    top: 25%;
+    left: 20%;
+  }
 }
 
 /* ? ---------------------- WEATHER EFFECTS ------------------ */
 hr {
-     width: 50px;
-     border-color: transparent;
-     border-right-color: rgba(255, 255, 255, 0.7);
-     border-right-width: 50px;
-     position: absolute;
-     bottom: 100%;
-     transform-origin: 100% 50%;
-     animation-name: rain;
-     animation-duration: 30s;
-     animation-timing-function: linear;
-     animation-iteration-count: infinite;
+  width: 50px;
+  border-color: transparent;
+  border-right-color: rgba(255, 255, 255, 0.7);
+  border-right-width: 50px;
+  position: absolute;
+  bottom: 100%;
+  transform-origin: 100% 50%;
+  animation-name: rain;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .raining::after {
-     content: '';
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     z-index: 2;
-     background: rgba(0,0,0,.5);
-     pointer-events: none;
-     transition: 1s;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  transition: 1s;
 }
 
 body::after {
-     content: '';
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     z-index: 2;
-     background: rgba(0,0,0,0);
-     pointer-events: none;
-     transition: 1s;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  transition: 1s;
 }
 
 @keyframes rain {
-     from {
-       transform: rotate(105deg) translateX(0);
-     } 
-     to {
-       transform: rotate(105deg) translateX(calc(100vh + 20px));
-     }
-   }
+  from {
+    transform: rotate(105deg) translateX(0);
+  }
+  to {
+    transform: rotate(105deg) translateX(calc(100vh + 20px));
+  }
+}
 
 @keyframes sway {
-     0% {
-          transform: rotate(15deg)
-     }
-     /* 45% {
+  0% {
+    transform: rotate(15deg);
+  }
+  /* 45% {
           transform: rotate(-10deg)
      } */
-     50% {
-          transform: rotate(-15deg)
-     }
-     /* 95% {
+  50% {
+    transform: rotate(-15deg);
+  }
+  /* 95% {
           transform: rotate(10deg)
      } */
 
-     100% {
-          transform: rotate(15deg)
-     }
+  100% {
+    transform: rotate(15deg);
+  }
 }
 
 @keyframes float {
-     0% {
-          right: 150%
-     }
-     100% {
-          right: -50%
-     }
+  0% {
+    right: 150%;
+  }
+  100% {
+    right: -50%;
+  }
 }
 
 @keyframes float-delay-short {
-     0% {
-          right: 150%
-     }
-     75%, 100% {
-          right: -50%
-     }
+  0% {
+    right: 150%;
+  }
+  75%,
+  100% {
+    right: -50%;
+  }
 }
 
 @keyframes float-delay {
-     0% {
-          right: 150%
-     }
-     50%, 100% {
-          right: -50%
-     }
+  0% {
+    right: 150%;
+  }
+  50%,
+  100% {
+    right: -50%;
+  }
 }
 
 @keyframes float-delay-long {
-     0% {
-          right: 150%
-     }
-     10%, 100% {
-          right: -50%
-     }
+  0% {
+    right: 150%;
+  }
+  10%,
+  100% {
+    right: -50%;
+  }
 }
 
-
 @keyframes bob {
-     0% {
-          top: 10%;
-     }
-     50% {
-          top: 15%;
-     }
-     100% {
-          top: 10%;
-     }
+  0% {
+    top: 10%;
+  }
+  50% {
+    top: 15%;
+  }
+  100% {
+    top: 10%;
+  }
 }
 
 /* LOGO */
 .logoBox {
-     position: relative;
-     z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 .logo {
-     max-height: 15rem;
-     margin: .5rem;
-     z-index: 1;
+  max-height: 15rem;
+  margin: 0.5rem;
+  z-index: 1;
 }
 
 /* ! ------- MUSIC, WEATHER, VOLUME BUTTONS -------- */
 /** Music Toggle Button */
 #musicToggle {
-     position: absolute;
-     /* left: 20%; */
-     /* top: 10%; */
-     bottom: 39%;
-     left: -6%;
-     font-size: 2rem;
-     /* color: rgb(122, 84, 46); */
-     color: rgb(255, 222, 113);
-     /* text-shadow: 2px 2px 4px rgb(255, 209, 80); */
-     cursor: pointer;
-     /* transition: text-shadow .5s; */
-     text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0);
-
+  position: absolute;
+  /* left: 20%; */
+  /* top: 10%; */
+  bottom: 39%;
+  left: -6%;
+  font-size: 2rem;
+  /* color: rgb(122, 84, 46); */
+  color: rgb(255, 222, 113);
+  /* text-shadow: 2px 2px 4px rgb(255, 209, 80); */
+  cursor: pointer;
+  /* transition: text-shadow .5s; */
+  text-shadow: 0 0 1px rgb(0, 0, 0), 0 0 2px rgb(0, 0, 0), 0 0 3px rgb(0, 0, 0);
 }
 
 #musicToggle:hover {
-     /* text-shadow: 0 0 5px rgba(255, 255, 255,1); */
-     transition: .3s;
-     animation: wiggle .5s linear infinite;
+  /* text-shadow: 0 0 5px rgba(255, 255, 255,1); */
+  transition: 0.3s;
+  animation: wiggle 0.5s linear infinite;
 }
 
 /* Now Playing Popup */
 .nowPlayingBox {
-     position: absolute;
-     bottom: 5%;
-     left: 50%;
-     transform: translateX(-50%);
-     white-space: nowrap;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
 
-     font-size: 2rem;
-     padding: .5rem;
-     background: rgb(255, 222, 113);
-     border: 1px dashed black;
-     border-radius: 5px;
-     opacity: 1;
-     transition: opacity .5s;
-     width: auto;
+  font-size: 2rem;
+  padding: 0.5rem;
+  background: rgb(255, 222, 113);
+  border: 1px dashed black;
+  border-radius: 5px;
+  opacity: 1;
+  transition: opacity 0.5s;
+  width: auto;
 }
 
 .nowPlayingBox i {
-     animation: tinywiggle 3s linear infinite;
+  animation: tinywiggle 3s linear infinite;
 }
 
 .nowPlayingHidden {
-     opacity: 0;
-     transition: opacity 2s;
+  opacity: 0;
+  transition: opacity 2s;
 }
 
 /* Weather Button */
 #weatherBtn {
-     position: absolute;
-     /* left: 5%; */
-     /* top: 13%; */
-     bottom: 22%;
-     left: -6%;
-     font-size: 2rem;
-     color: rgb(255, 222, 113);
-     cursor: pointer;
-     text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0);
+  position: absolute;
+  /* left: 5%; */
+  /* top: 13%; */
+  bottom: 22%;
+  left: -6%;
+  font-size: 2rem;
+  color: rgb(255, 222, 113);
+  cursor: pointer;
+  text-shadow: 0 0 1px rgb(0, 0, 0), 0 0 2px rgb(0, 0, 0), 0 0 3px rgb(0, 0, 0);
 }
 
 /* Info Button */
 #infoBtn {
-     position: absolute;
-     left: -6%;
-     bottom: 5%;
-     font-size: 2rem;
-     color: rgb(255, 222, 113);
-     cursor: pointer;
-     text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0);
+  position: absolute;
+  left: -6%;
+  bottom: 5%;
+  font-size: 2rem;
+  color: rgb(255, 222, 113);
+  cursor: pointer;
+  text-shadow: 0 0 1px rgb(0, 0, 0), 0 0 2px rgb(0, 0, 0), 0 0 3px rgb(0, 0, 0);
 }
 
 /* ! ------------------- SOCIAL BUTTONS ---------------- */
 /* Twitter Button */
 #twitter {
-     position: absolute;
-     right: -5%;
-     bottom: 39%;
-     font-size: 2rem;
-     color: rgb(255, 222, 113);
-     cursor: pointer;
-     text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0);
+  position: absolute;
+  right: -5%;
+  bottom: 39%;
+  font-size: 2rem;
+  color: rgb(255, 222, 113);
+  cursor: pointer;
+  text-shadow: 0 0 1px rgb(0, 0, 0), 0 0 2px rgb(0, 0, 0), 0 0 3px rgb(0, 0, 0);
 }
 
 #twitter:hover,
@@ -572,409 +653,407 @@ body::after {
 #weatherBtn:hover,
 #infoBtn:hover,
 nav li:hover img {
-     animation: wiggle .5s linear infinite;
+  animation: wiggle 0.5s linear infinite;
 }
 
 /* Github Button */
 #github {
-     position: absolute;
-     right: -5%;
-     bottom: 22%;
-     font-size: 2rem;
-     color: rgb(255, 222, 113);
-     cursor: pointer;
-     text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0);
+  position: absolute;
+  right: -5%;
+  bottom: 22%;
+  font-size: 2rem;
+  color: rgb(255, 222, 113);
+  cursor: pointer;
+  text-shadow: 0 0 1px rgb(0, 0, 0), 0 0 2px rgb(0, 0, 0), 0 0 3px rgb(0, 0, 0);
 }
 
 /* LinkedIn Button */
 #linkedin {
-     position: absolute;
-     right: -4.5%;
-     bottom: 5%;
-     font-size: 2rem;
-     color: rgb(255, 222, 113);
-     cursor: pointer;
-     text-shadow: 0 0 1px rgb(0,0,0), 0 0 2px rgb(0,0,0), 0 0 3px rgb(0,0,0);
+  position: absolute;
+  right: -4.5%;
+  bottom: 5%;
+  font-size: 2rem;
+  color: rgb(255, 222, 113);
+  cursor: pointer;
+  text-shadow: 0 0 1px rgb(0, 0, 0), 0 0 2px rgb(0, 0, 0), 0 0 3px rgb(0, 0, 0);
 }
-
 
 /* ! ------------------- SET Z-INDEX OF MENU ITEMS TO BE ABOVE WEATHER ---------------- */
 /* Button wiggle animations! */
 @keyframes wiggle {
-     0% {
-          transform: rotate(0deg);
-     }
-     25%{
-          transform: rotate(-15deg);
-     }
-     75%{
-          transform: rotate(15deg);
-     }
-     100% {
-          transform: rotate(0deg);
-     }
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-15deg);
+  }
+  75% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 @keyframes tinywiggle {
-     0% {
-          transform: rotate(0deg);
-     }
-     25%{
-          transform: rotate(-5deg);
-     }
-     75%{
-          transform: rotate(5deg);
-     }
-     100% {
-          transform: rotate(0deg);
-     }
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 /* ! ---------------- CATEGORIES MENU --------------- */
 /* Nav */
 
 nav ul {
-     display: flex;
-     flex-flow: row nowrap;
-     justify-content: center;
-     font-size: 2rem;
-     background: rgba(255, 222, 113,1);
-     border-radius: 10px 10px 0 0;
-     border-top: 2px dashed black;
-     border-right: 2px dashed black;
-     border-left: 2px dashed black;
-
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  font-size: 2rem;
+  background: rgba(255, 222, 113, 1);
+  border-radius: 10px 10px 0 0;
+  border-top: 2px dashed black;
+  border-right: 2px dashed black;
+  border-left: 2px dashed black;
 }
 
 nav li {
-     padding: .7rem;
-     text-decoration: none;
-     color: rgb(95, 38, 112);
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     transition: color .5s, text-shadow .5s;
+  padding: 0.7rem;
+  text-decoration: none;
+  color: rgb(95, 38, 112);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.5s, text-shadow 0.5s;
 }
 
 nav li:last-of-type {
-     padding-right: 1rem;
+  padding-right: 1rem;
 }
 
 nav li:hover {
-     cursor: pointer;
-     color: rgb(213, 75, 255);
-     text-shadow: 0 0 5px white;
-     transition: color 0s, text-shadow .5s;
+  cursor: pointer;
+  color: rgb(213, 75, 255);
+  text-shadow: 0 0 5px white;
+  transition: color 0s, text-shadow 0.5s;
 }
 
 nav li:hover img {
-     filter: invert(43%) sepia(82%) saturate(3342%) hue-rotate(259deg) brightness(100%) contrast(102%);
-     /* This magic is courtesy of https://codepen.io/sosuke/pen/Pjoqqp */
+  filter: invert(43%) sepia(82%) saturate(3342%) hue-rotate(259deg)
+    brightness(100%) contrast(102%);
+  /* This magic is courtesy of https://codepen.io/sosuke/pen/Pjoqqp */
 }
 
 .currentCategory {
-     color: rgb(213, 75, 255);
-     text-shadow: 0 0 10px rgb(255, 255, 255);   
+  color: rgb(213, 75, 255);
+  text-shadow: 0 0 10px rgb(255, 255, 255);
 }
 
 .currentCategory img {
-     filter: invert(43%) sepia(82%) saturate(3342%) hue-rotate(259deg) brightness(100%) contrast(102%);
-     /* This magic is courtesy of https://codepen.io/sosuke/pen/Pjoqqp */
+  filter: invert(43%) sepia(82%) saturate(3342%) hue-rotate(259deg)
+    brightness(100%) contrast(102%);
+  /* This magic is courtesy of https://codepen.io/sosuke/pen/Pjoqqp */
 }
 
 .menuIcon {
-     max-height: 3rem;
+  max-height: 3rem;
 }
 
 .mobileMenu {
-     display: none;
+  display: none;
 }
 
 @media all and (max-width: 580px) {
-     .desktopMenu {
-          display: none;
-     }
-     .mobileMenu {
-          display: flex;
-     }
+  .desktopMenu {
+    display: none;
+  }
+  .mobileMenu {
+    display: flex;
+  }
 }
 
 /* ! ---------------- CONTENT GRID ------------------ */
 /** GRID CONTAINER */
 .content {
-     display: flex;
-     flex-flow: column nowrap;
-     justify-content: center;
-     align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
-
 
 /** SEARCH BAR & HEMISPHERE TOGGLE */
 .searchBox {
-     padding: 1.3rem;
-     border-radius: 10px;
+  padding: 1.3rem;
+  border-radius: 10px;
 }
 
-.searchBox figure  {
-     position: relative;
+.searchBox figure {
+  position: relative;
 }
 
 /** Hemisphere Toggle Button */
 #hemisphereToggle {
-     position: absolute;
-     left: -12%;
-     top: -8%;
-     font-size: 3rem;
-     color: rgb(255, 222, 113);
-     cursor: pointer;
-     transition: text-shadow .5s, transform .5s;
-     text-shadow: 0 0 1px rgba(0, 0, 0,1);
+  position: absolute;
+  left: -12%;
+  top: -8%;
+  font-size: 3rem;
+  color: rgb(255, 222, 113);
+  cursor: pointer;
+  transition: text-shadow 0.5s, transform 0.5s;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 1);
 }
 
 #hemisphereToggle:hover {
-     text-shadow: 0 3px 3px rgba(0, 0, 0,1);
-     transform: translateY(-2px);
-     transition: .5s;
+  text-shadow: 0 3px 3px rgba(0, 0, 0, 1);
+  transform: translateY(-2px);
+  transition: 0.5s;
 }
 
 #hemisphereToggle:active {
-     text-shadow: 0 0 3px rgba(255, 255, 255,1);
-     transform: translateY(0px);
-     transition: text-shadow .2s;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 1);
+  transform: translateY(0px);
+  transition: text-shadow 0.2s;
 }
 
 #search {
-     width: 30rem;
-     text-align: center;
-     border-radius: 10px;
-     padding: .5rem;
-     background: rgb(255, 222, 113);
+  width: 30rem;
+  text-align: center;
+  border-radius: 10px;
+  padding: 0.5rem;
+  background: rgb(255, 222, 113);
 }
 
 @media all and (max-width: 405px) {
-     #search {
-          position: relative;
-          left: 5%;
-          width: 25rem;
-     }
-     #hemisphereToggle {
-          left: -8%;
-     }
-     
+  #search {
+    position: relative;
+    left: 5%;
+    width: 25rem;
+  }
+  #hemisphereToggle {
+    left: -8%;
+  }
 }
 
 /* CONTENT GRID */
 #contentGrid {
-     display: flex;
-     flex-flow: row wrap;
-     justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 /* CONTENT ITEMS */
 .contentItem {
-     position: relative;
-     border: 2px solid black;
-     border-radius: 10px;
-     width: 20rem;
-     margin: .5rem;
-     background: rgb(255, 222, 113);
-     box-shadow: -2px 2px 5px black;
+  position: relative;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 20rem;
+  margin: 0.5rem;
+  background: rgb(255, 222, 113);
+  box-shadow: -2px 2px 5px black;
 
-     display: flex;
-     flex-flow: column nowrap;
-     align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 
-     transition: transform .3s;
+  transition: transform 0.3s;
 }
 
 @media all and (max-width: 435px) {
-     .contentItem {
-          width: 15rem;
-          margin: .2rem;
-     }
-
+  .contentItem {
+    width: 15rem;
+    margin: 0.2rem;
+  }
 }
 
 .contentItem:hover {
-     transform: scale(1.1);
-     transition: transform .3s;
-     z-index: 1;
+  transform: scale(1.1);
+  transition: transform 0.3s;
+  z-index: 1;
 }
 
 .contentItem h2,
 .blathersFullInnerWindow h2 {
-     width: 100%;
-     background: rgba(255,255,255,.5);
-     border-radius: 10px 10px 0 0;
-     padding: .4rem;
-     text-align: center;
-     text-shadow: -2px 2px 5px rgba(0,0,0,.5);
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px 10px 0 0;
+  padding: 0.4rem;
+  text-align: center;
+  text-shadow: -2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .contentItem p {
-     font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 /* ! ----------------------- VILLAGERS ----------------------- */
 .name {
-     font-size: 2rem;
-     margin-bottom: .2rem;
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
 }
-
 
 /* Personality (Fish, Bug: Location) */
 .contentItem h4:first-of-type {
-     font-size: 1.3rem;
-     padding: .2rem;
-     margin-bottom: .2rem;
+  font-size: 1.3rem;
+  padding: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 
 .personality i {
-     color: black;
+  color: black;
 }
 
 /* Birthday (Fish, Bug: Rarity) */
 .contentItem h4 {
-     font-size: 1.3rem;
-     margin-bottom: .2rem;
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
 }
 
 /* Special style applied if it is villager's birthday */
 .birthdayMonth {
-     background: url(../assets/confetti.png), rgb(255, 222, 113);
-     background-size: 120%;
+  background: url(../assets/confetti.png), rgb(255, 222, 113);
+  background-size: 120%;
 }
 
 .birthdayMonth .birthday {
-     color: red;
-     font-weight: bold;
-     text-shadow: 0 0 1px white, 0 0 2px white;;
+  color: red;
+  font-weight: bold;
+  text-shadow: 0 0 1px white, 0 0 2px white;
 }
 
 .birthdayDay {
-     background: url(../assets/confetti.png), radial-gradient(rgb(255, 244, 207), yellow),rgb(255, 222, 113);
-     background-size: 170%;
-     border: 2px dashed yellow;
+  background: url(../assets/confetti.png),
+    radial-gradient(rgb(255, 244, 207), yellow), rgb(255, 222, 113);
+  background-size: 170%;
+  border: 2px dashed yellow;
+  animation: tinywiggle 3s linear infinite;
 }
 
 /* Villager Image Box - Img & Catchphrase Hover */
 .villagerImgBox {
-     position: relative;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     max-width: 90%;
-     margin-bottom: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 90%;
+  margin-bottom: 1rem;
 }
 
 .content img {
-     border-radius: 10px;
-     max-width: 100%;
-     margin-bottom: .2rem;
+  border-radius: 10px;
+  max-width: 100%;
+  margin-bottom: 0.2rem;
 }
 
 /* Catchphrase */
 .contentItem:hover .catchphraseBox {
-     opacity: 1;
-     transition: opacity .5s;
+  opacity: 1;
+  transition: opacity 0.5s;
 }
 
 .catchphraseBox {
-     opacity: 0;
-     transition: opacity .5s;
-     position: absolute;
-     top: 0;
-     height: 99%;
-     width: 100%;
+  opacity: 0;
+  transition: opacity 0.5s;
+  position: absolute;
+  top: 0;
+  height: 99%;
+  width: 100%;
 
-     background: rgba(0,0,0,.5);
-     border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 
-     display: flex;
-     flex-flow: column nowrap;
-     justify-content: flex-end;
-     align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-items: center;
 
-     color: white;
-     font-size: 2rem;
+  color: white;
+  font-size: 2rem;
 }
 
 .catchphraseBox img {
-     max-height: 4rem;
+  max-height: 4rem;
 }
 
 .catchphrase {
-     display: inline-block;
-     background: rgba(255,255,255,.7);
-     color: black;
-     padding: .3rem; 
-     border-radius: 10px;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.7);
+  color: black;
+  padding: 0.3rem;
+  border-radius: 10px;
 }
 
 /* Quote */
 .content p {
-     
 }
 
 p.quote {
-     font-size: 1.3rem;
-     text-align: center;
-     width: 100%;
-     max-width: 100%;
-     background: rgba(255, 255, 255,.5);
-     padding: .5rem 1.5rem .5rem 1.5rem;
-     height: 100%;
-     border-radius: 0 0 10px 10px;
+  font-size: 1.3rem;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  height: 100%;
+  border-radius: 0 0 10px 10px;
 }
 
 /* ! ------------------------- FISH / CRITTERS---------------------- */
 /* Available In Current Month */
 .availableNow {
-     background: radial-gradient(at center 60%, rgb(255, 244, 207), orange),rgb(255, 222, 113);
-     border: 2px dashed yellow;
+  background: radial-gradient(at center 60%, rgb(255, 244, 207), orange),
+    rgb(255, 222, 113);
+  border: 2px dashed yellow;
 }
 
 /* Location */
 .location {
-     font-size: 1.3rem;
-     padding: .2rem;
-     margin-bottom: .2rem;
-     text-align: center;
+  font-size: 1.3rem;
+  padding: 0.2rem;
+  margin-bottom: 0.2rem;
+  text-align: center;
 }
 
 .location i {
-     color: black;
+  color: black;
 }
 
 /* Critter Image Box */
 .critterImgBox {
-     position: relative;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     width: 95%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
 }
 
 .markers {
-     font-size: 2rem;
-     display: flex;
+  font-size: 2rem;
+  display: flex;
 }
 
 /* Critter Saleprice  */
 #salesPrice {
-     position: absolute;
-     bottom: 0;
-     background: rgba(255, 255, 255,.5);
-     padding: .2rem .4rem 0 .4em;
-     border-radius: 10px 10px 0 0;
+  position: absolute;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 0.2rem 0.4rem 0 0.4em;
+  border-radius: 10px 10px 0 0;
 
-     display: flex;
-     flex-flow: row nowrap;
-     align-items: center;
-     justify-content: center;;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
 }
 #salesPrice img {
-     max-width: 1.5rem;
+  max-width: 1.5rem;
 }
 
 /* Critter Hover Box */
@@ -983,142 +1062,143 @@ p.quote {
 .contentItem.bug:hover,
 .contentItem.fossil:hover,
 .contentItem.art:hover {
-     cursor: pointer;
+  cursor: pointer;
 }
 
 .contentItem:hover .critterHoverBox {
-     opacity: 1;
-     transition: opacity .5s;
+  opacity: 1;
+  transition: opacity 0.5s;
 }
 
 .critterHoverBox {
-     opacity: 0;
-     transition: opacity .5s;
-     position: absolute;
-     top: 0;
-     height: 99%;
-     width: 100%;
+  opacity: 0;
+  transition: opacity 0.5s;
+  position: absolute;
+  top: 0;
+  height: 99%;
+  width: 100%;
 
-     background: rgba(0,0,0,.5);
-     border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 
-     display: flex;
-     flex-flow: column nowrap;
-     justify-content: flex-end;
-     align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-items: center;
 
-     color: white;
-     font-size: 1.7rem;
+  color: white;
+  font-size: 1.7rem;
 }
 
 .critterHoverBox img {
-     max-height: 4rem;
+  max-height: 4rem;
 }
 
 .blathersQuote {
-     display: inline-block;
-     text-align: center;
-     background: rgba(255,255,255,.7);
-     color: black;
-     padding: .3rem;
-     
-     border-radius: 10px;
+  display: inline-block;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  color: black;
+  padding: 0.3rem;
+
+  border-radius: 10px;
 }
 
 /* ! ----------------- BLATHERS FULL DESCRIPTION POP UPWINDOW ------------- */
 .blathersFullWindow {
-     position: fixed;
-     width: 100vw;
-     height: 100vh;
-     background:rgba(0, 0, 0,.5);
-     z-index: 5;
-     cursor: pointer;
-     opacity: 1;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  cursor: pointer;
+  opacity: 1;
 
-     transition: opacity .5s;
+  transition: opacity 0.5s;
 }
-
 
 .blathersFullInnerWindow {
-     position: fixed;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     text-align: left;
-     background:rgba(0, 0, 0,.9);
-     background: rgb(255, 222, 113);
-     border: 2px solid black;
-     color: black;
-     z-index: 10;
-     font-size: 2rem;
-     width: 90vw;
-     max-width: 50rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+  background: rgba(0, 0, 0, 0.9);
+  background: rgb(255, 222, 113);
+  border: 2px solid black;
+  color: black;
+  z-index: 10;
+  font-size: 2rem;
+  width: 90vw;
+  max-width: 50rem;
+  max-height: 90vh;
 
-     border-radius: 10px;
-     padding-bottom: 1.5rem;
+  border-radius: 10px;
+  padding-bottom: 1.5rem;
 
-     display: flex;
-     flex-flow: column nowrap;
-     justify-content: center;
-     align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 .blathersFullInnerWindow h2 {
-     font-size: 3rem;
+  font-size: 3rem;
 }
 
 #blathersFullImgBox {
-     position: relative;
-     width: 100%;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
-.bigFish {
-     width: 100%;
-     padding: 0 1.5rem 0 1.5rem;
-     
+#blathersFullCritterImg {
+  position: relative;
+  max-width: 95%;
+  max-height: 95%;
 }
 
 .blathersFullInnerWindow p {
-     margin: 0 1rem .5rem 1rem;
-     padding: 1rem;
-     background: rgba(255, 255, 255,.5);
-     border-radius: 10px;
+  margin: 0 1rem 0.5rem 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
 }
 
 .blathersFace {
-     position: absolute;
-     max-height: 8rem;
-     bottom: 0;
-     right: 1rem;
-     animation: smallwiggle 4s linear infinite;
+  position: absolute;
+  max-height: 8rem;
+  bottom: 0;
+  right: 1rem;
+  animation: smallwiggle 4s linear infinite;
 }
 
 @keyframes smallwiggle {
-     0% {
-          transform: rotate(-5deg);
-     }
-     25%{
-          transform: rotate(-10deg);
-     }
-     75%{
-          transform: rotate(0deg);
-     }
-     100% {
-          transform: rotate(-5deg);
-     }
+  0% {
+    transform: rotate(-5deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-5deg);
+  }
 }
 
 .blathersHidden {
-     opacity: 0;
-     transition: .5s;
+  opacity: 0;
+  transition: 0.5s;
 }
 
 .blathersHiddenZ {
-     z-index: -5;
+  z-index: -5;
 }
 
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
 .hidden {
-     opacity: 0;
+  opacity: 0;
 }
-
