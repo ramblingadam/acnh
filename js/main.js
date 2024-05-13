@@ -207,27 +207,57 @@ function getMusic() {
 //  HOURLY MUSIC SELECTION (About time we got some OOP in here)
 const music = {
   // ? ---- DETERMINE/PRELOAD CURRENT SUNNY & RAINY TRACKS -----
-  getCurrentTrack(musicData = allMusic) {
+  async getCurrentTrack(musicData = allMusic) {
+    const musicRoute = `${API_ROOT}/api/music/hourly`
     let hour = String(now.getHours())
     this.shortHour = hour
     if (hour.length === 1) hour = '0' + hour
 
-    const musicSunnyURI = musicData[`BGM_24Hour_${hour}_Sunny`]['music_uri']
-    const musicRainyURI = musicData[`BGM_24Hour_${hour}_Rainy`]['music_uri']
+    //// SUNNY
+    await fetch(`${musicRoute}/${hour}/sunny`)
+      .then((response) => {
+        if (response.ok) {
+          return response.blob() // Convert the response to a blob
+        }
+        throw new Error('Network response was not ok.')
+      })
+      .then((blob) => {
+        const musicUrl = URL.createObjectURL(blob)
 
-    // Create Sunny music audio element.
-    let sunnyAudio = document.createElement('audio')
-    sunnyAudio.src = musicSunnyURI
-    sunnyAudio.preload = 'auto'
-    sunnyAudio.loop = true
-    sunnyAudio.id = 'sunnyAudio'
+        let sunnyAudio = document.createElement('audio')
+        sunnyAudio.src = musicUrl
+        sunnyAudio.preload = 'auto'
+        sunnyAudio.loop = true
+        sunnyAudio.id = 'sunnyAudio'
 
-    // Create Rainy music audio element.
-    let rainyAudio = document.createElement('audio')
-    rainyAudio.src = musicRainyURI
-    rainyAudio.preload = 'auto'
-    rainyAudio.loop = true
-    rainyAudio.id = 'rainyAudio'
+        document.body.appendChild(sunnyAudio)
+      })
+      .catch((error) => {
+        console.log('Fetch error:', error.message)
+      })
+
+    //// RAINY
+    await fetch(`${musicRoute}/${hour}/rainy`)
+      .then((response) => {
+        if (response.ok) {
+          return response.blob()
+        }
+        throw new Error('Network response was not ok.')
+      })
+      .then((blob) => {
+        const musicUrl = URL.createObjectURL(blob)
+
+        let rainyAudio = document.createElement('audio')
+        rainyAudio.src = musicUrl
+        rainyAudio.preload = 'auto'
+        rainyAudio.loop = true
+        rainyAudio.id = 'rainyAudio'
+
+        document.body.appendChild(rainyAudio)
+      })
+      .catch((error) => {
+        console.log('Fetch error:', error.message)
+      })
 
     document.body.appendChild(sunnyAudio)
     document.body.appendChild(rainyAudio)
@@ -422,7 +452,6 @@ charArrayIndex = 0
 setInterval(peekaboo, 25000)
 
 function peekaboo() {
-  // console.log('peekaboo?', 'index', charArrayIndex, charArray[charArrayIndex])
   const spy = document.querySelector('#spy')
   spy.src = `assets/char_${charArray[charArrayIndex]}.png`
   if (charArrayIndex < charArray.length - 1) {
@@ -439,13 +468,15 @@ function removePeekaboo() {
 function search(e) {
   clearGrid()
   searchString = searchBar.value.toLowerCase()
+
   if (searchCategory === 'Villagers') {
     const filtered = allVillagers.filter((villager) => {
       if (
-        villager.name['name-USen'].toLowerCase().includes(searchString) ||
+        villager.name.toLowerCase().includes(searchString) ||
         villager.personality.toLowerCase().includes(searchString) ||
         villager.species.toLowerCase().includes(searchString) ||
-        villager['birthday-string'].toLowerCase().includes(searchString)
+        villager.birthday.toLowerCase().includes(searchString) ||
+        villager.birthdayString.toLowerCase().includes(searchString)
       )
         return true
     })
@@ -582,37 +613,11 @@ function getVillagers() {
   fetch(`${API_ROOT}/api/villagers`)
     .then((res) => res.json())
     .then((data) => {
-      // console.log('OG DATA', data)
       allVillagers = data
-      // TODO --- DELETE. New villagers now included in villagers database from my updated mini-api.
-      //// Add NEW data from MY OWN API WHAAAAAT
-      // fetch(`https://acnh-mini-api.herokuapp.com/api`)
-      // fetch(`${API_ROOT}/api/villagersNew`)
-      // .then(res => res.json())
-      // .then(data => {
-      //   // console.log(data)
-
-      //   // Add villager info from my API to data obtained from main API
-      //   for(villager in data) {
-      //     allVillagers.push(data[villager])
-      //   }
-
-      //   allVillagers.sort( (a,b) => {
-      //     if(a.species !== b.species) return a.species.localeCompare(b.species)
-      //     else return a.name['name-USen'].localeCompare(b.name['name-USen'])
-      //   })
-
-      //   // Run villager display function
-      //   displayVillagers(allVillagers)
-
-      // })
-      // .catch(err => {
-      //   throw new Error(`error ${err}`)
-      // })
 
       allVillagers.sort((a, b) => {
         if (a.species !== b.species) return a.species.localeCompare(b.species)
-        else return a.name['name-USen'].localeCompare(b.name['name-USen'])
+        else return a.name.localeCompare(b.name)
       })
       // Run villager display function
       displayVillagers(allVillagers)
@@ -627,33 +632,36 @@ function displayVillagers(villagerArray = allVillagers) {
   clearGrid()
   villagerArray.forEach((villager) => {
     const li = document.createElement('li')
-
     li.classList.add('contentItem')
     li.classList.add('villager')
 
-    // Check if the villager has a birthday this month. If so, add the birthdayMonth class via template literal.
-    // First create a birthday string JS can read.
-    const birthday = new Date(
-      villager['birthday-string'].slice(0, -2) + ', ' + now.getFullYear()
-    )
-    // Init birthdayMonth string for template literal to be empty.
-    let birthdayMonth = ''
-    if (birthday.getMonth() === now.getMonth()) {
-      // console.log(`${villager.name['name-USen']}'s birthday is this month!`)
+    const {
+      name,
+      gender,
+      personality,
+      photoImage,
+      iconImage,
+      catchphrase,
+      favoriteSaying,
+      birthdayString,
+      birthdayDateString,
+    } = villager
+
+    const birthdayDate = new Date(birthdayDateString)
+
+    if (birthdayDate.getMonth() === now.getMonth()) {
       li.classList.add('birthdayMonth')
-      if (birthday.getDate() === now.getDate()) {
+      if (birthdayDate.getDate() === now.getDate()) {
         li.classList.add('birthdayDay')
       }
     }
 
     // Determine gender
     let genderString
-    if (villager.gender === 'Male')
-      genderString = '<i class="fa-solid fa-mars"></i>'
+    if (gender === 'Male') genderString = '<i class="fa-solid fa-mars"></i>'
     else genderString = '<i class="fa-solid fa-venus"></i>'
 
-    // CREATING VILLAGER TILES
-    li.innerHTML = `<h2 class="name">${villager.name['name-USen']}</h2><h4 class="personality">${genderString}${villager.personality}</h4><h4 class="birthday${birthdayMonth}"><i class="fa-solid fa-cake-candles"></i> ${villager['birthday-string']}</h4><div class="villagerImgBox"><img src="${villager['image_uri']}"><div class="catchphraseBox"><span class="catchphrase">"${villager['catch-phrase']}!"</span><img src="${villager['icon_uri']}"></div></div><p class="quote">${villager.saying}</p>`
+    li.innerHTML = `<h2 class="name">${name}</h2><h4 class="personality">${genderString}${personality}</h4><h4 class="birthday"><i class="fa-solid fa-cake-candles"></i> ${birthdayString}</h4><div class="villagerImgBox"><img src="${photoImage}"><div class="catchphraseBox"><span class="catchphrase">"${catchphrase}!"</span><img src="${iconImage}"></div></div><p class="quote">${favoriteSaying}</p>`
 
     contentGrid.appendChild(li)
   })
